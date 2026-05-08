@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+<!-- css file -->
+<link rel="stylesheet" href="contact.css">
+<link rel="stylesheet" href="../shared/nav-footer.css">
+<!-- icons link -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<title data-i18n="contact.pageTitle">Contact Us — Grand Egyptian Museum</title>
+</head>
+<body>
+    <div class="all">
+
+    <!-- Hero Section -->
+    <section class="hero">
+
+        <!-- Overlay -->
+        <div class="overlay"></div>
+
+        <!-- Contact -->
+        <div class="hero-content">
+            <h1 data-i18n="contact.heroTitle">CONTACT US</h1>
+            <p data-i18n="contact.heroSub">CONNECT WITH HISTORY &amp; PLAN YOUR VISIT</p>
+        </div>
+    </section>
+
+
+
+    <!--contact cards-->
+    <section class="contact-info">
+    <div class="cards-container">
+        <div class="card">
+        <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+        <h3 data-i18n="contact.addressLabel">ADDRESS</h3>
+        <p data-i18n="contact.addressValue">Cairo - Alexandria Desert Rd, Kafr Nassar, Al Haram, Giza</p>
+        </div>
+        <div class="card">
+        <div class="icon"><i class="fa-solid fa-phone"></i></div>
+        <h3 data-i18n="contact.phoneLabel">PHONE</h3>
+        <p>+20 235317344</p>
+        </div>
+        <div class="card">
+        <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+        <h3 data-i18n="contact.emailLabel">EMAIL</h3>
+        <p>tourism_info@efinance.com.eg</p>
+        </div>
+        <div class="card">
+        <div class="icon"><i class="fa-solid fa-clock"></i></div>
+        <h3 data-i18n="contact.hoursLabel">HOURS</h3>
+        <p data-i18n="contact.hoursValue">Open Daily: from 9:00 AM to 6:00 PM</p>
+        </div>
+    </div>
+    </section>
+
+
+
+    <!--contact form-->
+    <section class="contact-form">
+    <div class="form-box">
+        <div class="row">
+        <input type="text" data-i18n-placeholder="contact.namePlaceholder" placeholder="Full Name">
+        <input type="email" data-i18n-placeholder="contact.emailPlaceholder" placeholder="Email Address">
+        </div>
+        <input type="text" data-i18n-placeholder="contact.subjectPlaceholder" placeholder="Subject">
+        <textarea data-i18n-placeholder="contact.messagePlaceholder" placeholder="Message"></textarea>
+        <div class="feedback">
+        <p data-i18n="contact.experienceQ">How was your experience with us?</p>
+        <div class="emojis">
+            <div class="emojis" data-rating="0">
+                <button class="star" data-value="1"><i class="fa-solid fa-star"></i></button>
+                <button class="star" data-value="2"><i class="fa-solid fa-star"></i></button>
+                <button class="star" data-value="3"><i class="fa-solid fa-star"></i></button>
+                <button class="star" data-value="4"><i class="fa-solid fa-star"></i></button>
+                <button class="star" data-value="5"><i class="fa-solid fa-star"></i></button>
+            </div>
+        </div>
+        </div>
+        <button class="submit-btn" data-i18n="contact.submitBtn">Submit</button>
+    </div>
+    </section>
+
+
+
+    </div>
+   <script src="../shared/nav-footer.js"></script>
+   <script src="../shared/i18n.js"></script>
+   <script src="contact.js"></script>
+</body>
+</html>

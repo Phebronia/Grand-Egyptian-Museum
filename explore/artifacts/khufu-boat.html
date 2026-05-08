@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="artifact.boat.pageTitle">The Solar Boat of Khufu</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="artifactiembeded.css">
+<link rel="stylesheet" href="../../shared/nav-footer.css">
+</head>
+
+<body>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../home/home.html" data-i18n="nav.home">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <a href="../../explore/explore.htm" data-i18n="nav.explore">Explore</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span data-i18n="artifact.boat.breadcrumb">Solar Boat</span>
+</nav>
+
+<!-- EXHIBIT HERO -->
+<section class="exhibit">
+
+  <div class="exhibit-visual">
+    <div class="view-tabs" role="tablist">
+      <button class="view-tab active" data-view="3d" role="tab" aria-selected="true">
+        <i class="fa-solid fa-cube"></i> <span data-i18n="artifact.common.view3d">3D view</span>
+      </button>
+      <button class="view-tab" data-view="photo" role="tab" aria-selected="false">
+        <i class="fa-solid fa-image"></i> <span data-i18n="artifact.common.photo">Photo</span>
+      </button>
+    </div>
+
+    <div class="view-panel active" data-view="3d">
+  <iframe
+    class="sketchfab-iframe"
+    title="Ancient Egyptian Woodcraft: Khufu Ship"
+    frameborder="0"
+    allowfullscreen
+    mozallowfullscreen="true"
+    webkitallowfullscreen="true"
+    allow="autoplay; fullscreen; xr-spatial-tracking"
+    src="https://sketchfab.com/models/560d1842576345a9b96572bb338901fb/embed?autostart=1&ui_theme=dark">
+  </iframe>
+</div>
+
+    <div class="view-panel" data-view="photo">
+      <img src="imgs/khufu-ship.jpg" alt="The Solar Boat of Khufu">
+    </div>
+
+    <div class="visual-hint">
+      <i class="fa-solid fa-hand-pointer"></i>
+      <span data-i18n="artifact.common.dragHint">Drag to rotate · Scroll to zoom</span>
+    </div>
+  </div>
+
+  <div class="exhibit-info">
+
+    <span class="artifact-eyebrow" data-i18n="artifact.boat.eyebrow">Old Kingdom · Dynasty IV</span>
+    <h1 data-i18n="artifact.boat.h1">The Solar Boat <em>of Khufu</em></h1>
+    <p class="artifact-subtitle" data-i18n="artifact.boat.subtitle">The world's oldest intact ship —
+        built 4,600 years ago to carry a pharaoh across the heavens</p>
+
+    <div class="artifact-actions">
+
+      <div class="audio-player" id="audioPlayer">
+        <button class="audio-btn" id="audioBtn" aria-label="Play narration">
+          <i class="fa-solid fa-play" id="audioIcon"></i>
+        </button>
+        <div class="audio-info">
+          <div class="audio-top">
+            <span class="audio-label" data-i18n="artifact.common.listen">Listen</span>
+            <span class="audio-time"><span id="audioCurrent">0:00</span> / <span id="audioDuration">0:00</span></span>
+          </div>
+          <div class="audio-progress" id="audioProgress">
+            <div class="audio-progress-fill" id="audioProgressFill"></div>
+            <div class="audio-progress-thumb" id="audioProgressThumb"></div>
+          </div>
+        </div>
+        <audio id="audioElement" preload="metadata" src="audio/khufu-boat.mp3"></audio>
+      </div>
+
+      <button class="fav-btn" id="favBtn" aria-label="Add to favorites" aria-pressed="false">
+        <i class="fa-regular fa-heart" id="favIcon"></i>
+        <span class="fav-label" data-i18n="artifact.common.save">Save</span>
+      </button>
+
+    </div>
+
+    <dl class="artifact-meta">
+        <div class="meta-item"><dt data-i18n="artifact.common.era">Era</dt><dd>Old Kingdom</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.reignOf">Reign of</dt><dd>Khufu (c. 2589–2566 BC)</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.discovered">Discovered</dt><dd>1954</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.discoveredBy">Discovered by</dt><dd>Kamal el-Mallakh</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.material">Material</dt><dd>Lebanon Cedar</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.length">Length</dt><dd>43.4 m</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.width">Width</dt><dd>5.9 m</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.weight">Weight</dt><dd>~20 tons</dd></div>
+    </dl>
+
+  </div>
+
+</section>
+
+<!-- DESCRIPTION -->
+<section class="artifact-body">
+  <div class="body-content">
+    <h2 data-i18n="artifact.common.aboutArtifact">About the artifact</h2>
+
+    <p class="lead" data-i18n="artifact.boat.lead">Built around 2500 BC for the pharaoh Khufu — the builder of the Great Pyramid —
+        the Solar Boat is the oldest intact ship in the world. A 43.4-metre vessel of Lebanon cedar,
+        assembled without a single metal nail.</p>
+
+    <p data-i18n="artifact.boat.body1">On May 26, 1954, Egyptian archaeologist Kamal el-Mallakh uncovered a sealed limestone pit on the south
+        side of the Great Pyramid. Drilling a small hole through one of the massive blocks, he lowered a mirror
+        and caught the first glimpse of 1,224 wooden pieces — carefully dismantled, methodically arranged,
+        and preserved untouched for nearly 4,500 years. A faint scent of ancient cedar still rose from the chamber.</p>
+
+    <p data-i18n="[html]artifact.boat.body2">The reassembly fell to master restorer <em>Ahmed Youssef Moustafa</em>,
+        who spent more than a decade studying ancient boat reliefs and traditional Nile shipwrights to understand
+        how the vessel was built. The ship uses a <em>shell-first</em> construction method: planks of cedar joined
+        by mortise-and-tenon joints of Christ's-thorn wood, then lashed together with ropes of halfa grass.
+        It has been called a masterpiece of woodcraft — so well made that experts say it could sail today
+        if placed in water.</p>
+
+    <p data-i18n="[html]artifact.boat.body3">Called a <em>solar barque</em>, the boat was built to carry the resurrected king across the sky with the
+        sun god Ra, rising at dawn and descending through the underworld at night.
+        Whether it ever touched the Nile is debated; some traces suggest it may have served as a funerary vessel
+        to carry Khufu's body to Giza before being dismantled and buried. In August 2021,
+        after forty years in a small museum beside the pyramid, the 20-ton ship was transferred on a
+        remote-controlled shock-absorbing vehicle to its permanent home at the Grand Egyptian Museum.</p>
+
+    <blockquote class="quote">
+    <p data-i18n="artifact.boat.quote">A masterpiece of woodcraft — so well made it could sail today.</p>
+    <cite data-i18n="artifact.boat.cite">— On the Khufu ship, the world's oldest intact vessel</cite>
+    </blockquote>
+</section>
+
+<script>
+const viewTabs = document.querySelectorAll(".view-tab");
+const viewPanels = document.querySelectorAll(".view-panel");
+viewTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    viewTabs.forEach(t => { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
+    tab.classList.add("active");
+    tab.setAttribute("aria-selected", "true");
+    const view = tab.dataset.view;
+    viewPanels.forEach(p => { p.classList.toggle("active", p.dataset.view === view); });
+  });
+});
+
+const audio = document.getElementById("audioElement");
+const audioBtn = document.getElementById("audioBtn");
+const audioIcon = document.getElementById("audioIcon");
+const audioPlayer = document.getElementById("audioPlayer");
+const audioCurrent = document.getElementById("audioCurrent");
+const audioDuration = document.getElementById("audioDuration");
+const audioProgress = document.getElementById("audioProgress");
+const audioProgressFill = document.getElementById("audioProgressFill");
+const audioProgressThumb = document.getElementById("audioProgressThumb");
+
+function formatTime(seconds) {
+  if (!isFinite(seconds) || seconds < 0) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+audio.addEventListener("loadedmetadata", () => { audioDuration.textContent = formatTime(audio.duration); });
+audio.addEventListener("timeupdate", () => {
+  const percent = (audio.currentTime / audio.duration) * 100 || 0;
+  audioProgressFill.style.width = percent + "%";
+  audioProgressThumb.style.left = percent + "%";
+  audioCurrent.textContent = formatTime(audio.currentTime);
+});
+audio.addEventListener("play", () => {
+  audioIcon.className = "fa-solid fa-pause";
+  audioBtn.setAttribute("aria-label", "Pause narration");
+  audioPlayer.classList.add("playing");
+});
+audio.addEventListener("pause", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioBtn.setAttribute("aria-label", "Play narration");
+  audioPlayer.classList.remove("playing");
+});
+audio.addEventListener("ended", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioPlayer.classList.remove("playing");
+  audio.currentTime = 0;
+});
+audio.addEventListener("error", () => {
+  audioPlayer.classList.add("error");
+  audioDuration.textContent = "unavailable";
+});
+audioBtn.addEventListener("click", () => { if (audio.paused) audio.play(); else audio.pause(); });
+audioProgress.addEventListener("click", (e) => {
+  const rect = audioProgress.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+  if (isFinite(audio.duration)) { audio.currentTime = percent * audio.duration; }
+});
+window.addEventListener("beforeunload", () => { if (!audio.paused) audio.pause(); });
+
+window.GEM_ARTIFACT = { id: 'khufu-solar-boat', title: 'The Solar Boat of Khufu', era: 'Old Kingdom · Dynasty IV', img: 'imgs/khufu-ship.jpg', link: 'khufu-boat.html' };
+</script>
+<script src="gem-favorites.js"></script>
+<script src="../../shared/nav-footer.js"></script>
+<script src="../../shared/i18n.js"></script>
+
+</body>
+</html>

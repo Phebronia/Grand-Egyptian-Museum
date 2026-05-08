@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="gallery.grandHall.pageTitle">The Grand Hall</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="gallaries.css">
+<link rel="stylesheet" href="../../shared/nav-footer.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../../home/home.html" data-i18n="nav.home">Home</a>
+    <i class="fa-solid fa-chevron-right"></i>
+    <a href="../../explore/explore.htm" data-i18n="nav.explore">Explore</a>
+    <i class="fa-solid fa-chevron-right"></i>
+    <span data-i18n="gallery.grandHall.breadcrumb">Grand Hall</span>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="hall-header">
+    <span class="hall-eyebrow" data-i18n="gallery.grandHall.eyebrow">The Grand Egyptian Museum</span>
+    <h1 data-i18n="gallery.grandHall.h1">The Grand Hall</h1>
+    <p class="hall-subtitle" data-i18n="gallery.grandHall.subtitle">Where 3,200 years of kingship welcome the modern visitor</p>
+
+    <div class="hall-meta">
+      <div class="meta-item">
+        <span class="meta-num">10,000</span>
+        <span class="meta-label" data-i18n="gallery.grandHall.meta1">Square metres</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="meta-num">11 m</span>
+        <span class="meta-label" data-i18n="gallery.grandHall.meta2">Height of Ramses II</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="meta-num">30+</span>
+        <span class="meta-label" data-i18n="gallery.grandHall.meta3">Colossal statues</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <div class="tabs" role="tablist">
+    <button class="active" data-tab="artifacts" role="tab" aria-selected="true">
+      <i class="fa-solid fa-gem"></i>
+      <span data-i18n="gallery.common.artifacts">Artifacts</span>
+      <span class="tab-count">3</span>
+    </button>
+    <button data-tab="history" role="tab" aria-selected="false">
+      <i class="fa-solid fa-scroll"></i>
+      <span data-i18n="gallery.common.history">History</span>
+    </button>
+    <button data-tab="gallery" role="tab" aria-selected="false">
+      <i class="fa-solid fa-images"></i>
+      <span data-i18n="gallery.common.gallery">Gallery</span>
+      <span class="tab-count">11</span>
+    </button>
+    <span class="tab-indicator"></span>
+  </div>
+
+  <!-- ARTIFACTS -->
+  <section class="tab-content active" id="artifacts" role="tabpanel">
+    <div class="grid grid-artifacts">
+
+      <a href="../artifacts/ramses.html" class="card">
+        <div class="card-img">
+          <img src="imgs/ramsses.png" alt="Golden Burial Mask">
+        </div>
+        <div class="card-content">
+          <span class="card-tag" data-i18n="gallery.common.iconic">Iconic</span>
+          <h3 data-i18n="gallery.grandHall.card1Title">Colossus of Ramses II</h3>
+          <span class="card-link" data-i18n="gallery.common.viewArtifact">View artifact <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <a href="../artifacts/king.html" class="card">
+        <div class="card-img">
+          <img src="imgs/king.jpeg" alt="Golden Throne">
+        </div>
+        <div class="card-content">
+          <h3 data-i18n="gallery.grandHall.card2Title">Colossus of a Ptolemaic King</h3>
+          <span class="card-link" data-i18n="gallery.common.viewArtifact">View artifact <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <a href="../artifacts/column.html" class="card card-contain">
+        <div class="card-img">
+          <img src="imgs/column.png" alt="Head of Tutankhamun" style="object-fit: cover;">
+        </div>
+        <div class="card-content">
+          <h3 data-i18n="gallery.grandHall.card3Title">Column of King Merenptah</h3>
+          <span class="card-link" data-i18n="gallery.common.viewArtifact">View artifact <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section class="tab-content" id="history" role="tabpanel" hidden>
+    <div class="history">
+
+      <!-- AUDIO NARRATION PLAYER -->
+      <div class="audio-player" id="audioPlayer">
+        <button class="audio-btn" id="audioBtn" aria-label="Play narration">
+          <i class="fa-solid fa-play" id="audioIcon"></i>
+        </button>
+        <div class="audio-info">
+          <div class="audio-top">
+            <span class="audio-label" data-i18n="gallery.common.listenStory">Listen to the story</span>
+            <span class="audio-time"><span id="audioCurrent">0:00</span> / <span id="audioDuration">0:00</span></span>
+          </div>
+          <div class="audio-progress" id="audioProgress">
+            <div class="audio-progress-fill" id="audioProgressFill"></div>
+            <div class="audio-progress-thumb" id="audioProgressThumb"></div>
+          </div>
+        </div>
+        <div class="audio-waves" id="audioWaves" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <!-- Put your audio file in the same folder as this HTML, or adjust the src path -->
+        <audio id="audioElement" preload="metadata" src="audio/grand hall.mp3"></audio>
+      </div>
+
+      <article class="history-block">
+        <div class="history-year">c. 1250 BC</div>
+        <div class="history-body">
+          <h3 data-i18n="gallery.grandHall.hist1Title">Carved in Aswan</h3>
+          <p data-i18n="gallery.grandHall.hist1Body">A single block of red granite was quarried at Aswan and carved into an 11-metre statue of Ramses II,
+            the third pharaoh of the Nineteenth Dynasty. It was transported down the Nile and raised at the
+            Temple of Ptah in the ancient capital of Memphis, where it would stand for more than three thousand years.</p>
+        </div>
+      </article>
+
+      <article class="history-block">
+        <div class="history-year">1820</div>
+        <div class="history-body">
+          <h3 data-i18n="gallery.grandHall.hist2Title">Rediscovered in Six Pieces</h3>
+          <p data-i18n="gallery.grandHall.hist2Body">Italian explorer Giovanni Battista Caviglia — the same archaeologist who excavated the Great Sphinx —
+            found the statue lying on its side at Mit Rahina, broken into six fragments.
+            Offered to an Italian duke and then to the British Museum, both declined as too costly to move.
+            The colossus remained in the sand for another 135 years.</p>
+        </div>
+      </article>
+
+      <article class="history-block">
+        <div class="history-year">1955</div>
+        <div class="history-body">
+          <h3 data-i18n="gallery.grandHall.hist3Title">Rising Over Ramses Square</h3>
+          <p data-i18n="gallery.grandHall.hist3Body">Under Egyptian Prime Minister Gamal Abdel Nasser,
+            the fragments were restored and raised outside Cairo's main railway station.
+            For half a century the colossus stood as a silent sentinel in the heart of the capital —
+            surrounded by traffic and slowly corroded by the city's pollution.</p>
+        </div>
+      </article>
+
+      <article class="history-block history-highlight">
+        <div class="history-year">2018</div>
+        <div class="history-body">
+          <h3 data-i18n="gallery.grandHall.hist4Title">Home at the GEM</h3>
+          <p data-i18n="gallery.grandHall.hist4Body"> After a ten-hour overnight journey through Cairo in 2006, and a decade of restoration at Giza,
+            the colossus was placed in its permanent home — the atrium of the Grand Egyptian Museum.
+            The building itself was designed around the statue, since it could not have fit through any
+            completed door. Today it stands beneath a glass roof, illuminated at equinox by a beam of sunlight
+            that echoes the ancient alignment at Abu Simbel.</p>
+        </div>
+      </article>
+
+      <div class="history-outro">
+        <p data-i18n="gallery.grandHall.histOutro">Spanning 10,000 square metres beneath a translucent alabaster façade,
+            the Grand Hall is the threshold between the Nile Valley and the Giza Plateau —
+            a space where the visitor stands, for a moment, between the world of the kings and the world of today.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="tab-content" id="gallery" role="tabpanel" hidden>
+    <div class="grid grid-gallery">
+      <a href="../artifacts/artifact.html?id=tut1" class="card card-gallery"><img src="imgs/tut1.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=tut2" class="card card-gallery"><img src="imgs/tut2.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=tut3" class="card card-gallery"><img src="imgs/tut3.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=tut4" class="card card-gallery"><img src="imgs/tut4.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=tut5" class="card card-gallery"><img src="imgs/tut5.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=tut6" class="card card-gallery"><img src="imgs/tut6.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=tut7" class="card card-gallery"><img src="imgs/tut7.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=tut8" class="card card-gallery"><img src="imgs/tut8.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=tut9" class="card card-gallery"><img src="imgs/tut9.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=tut10" class="card card-gallery"><img src="imgs/tut10.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=tut11" class="card card-gallery"><img src="imgs/tut11.jpg" alt=""></a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+
+/* TABS */
+const tabs = document.querySelectorAll(".tabs button");
+const contents = document.querySelectorAll(".tab-content");
+const indicator = document.querySelector(".tab-indicator");
+
+function moveIndicator(btn) {
+  if (!indicator) return;
+  indicator.style.width = btn.offsetWidth + "px";
+  indicator.style.left = btn.offsetLeft + "px";
+}
+
+/* Set initial indicator position */
+window.addEventListener("load", () => {
+  const active = document.querySelector(".tabs button.active");
+  if (active) moveIndicator(active);
+});
+
+/* Re-align on resize */
+window.addEventListener("resize", () => {
+  const active = document.querySelector(".tabs button.active");
+  if (active) moveIndicator(active);
+});
+
+tabs.forEach(btn => {
+  btn.addEventListener("click", () => {
+    tabs.forEach(b => {
+      b.classList.remove("active");
+      b.setAttribute("aria-selected", "false");
+    });
+    btn.classList.add("active");
+    btn.setAttribute("aria-selected", "true");
+
+    moveIndicator(btn);
+
+    const tab = btn.dataset.tab;
+    contents.forEach(c => {
+      c.classList.remove("active");
+      c.setAttribute("hidden", "");
+    });
+    const target = document.getElementById(tab);
+    target.classList.add("active");
+    target.removeAttribute("hidden");
+
+    /* Stop audio if user leaves history tab */
+    if (tab !== "history") stopNarration();
+  });
+});
+
+/* ============================================
+   AUDIO NARRATION — HTML5 audio element
+   ============================================ */
+const audio = document.getElementById("audioElement");
+const audioBtn = document.getElementById("audioBtn");
+const audioIcon = document.getElementById("audioIcon");
+const audioPlayer = document.getElementById("audioPlayer");
+const audioCurrent = document.getElementById("audioCurrent");
+const audioDuration = document.getElementById("audioDuration");
+const audioProgress = document.getElementById("audioProgress");
+const audioProgressFill = document.getElementById("audioProgressFill");
+const audioProgressThumb = document.getElementById("audioProgressThumb");
+
+/* Format seconds as m:ss */
+function formatTime(seconds) {
+  if (!isFinite(seconds) || seconds < 0) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+/* Show duration once metadata loads */
+audio.addEventListener("loadedmetadata", () => {
+  audioDuration.textContent = formatTime(audio.duration);
+});
+
+/* Update progress bar as audio plays */
+audio.addEventListener("timeupdate", () => {
+  const percent = (audio.currentTime / audio.duration) * 100 || 0;
+  audioProgressFill.style.width = percent + "%";
+  audioProgressThumb.style.left = percent + "%";
+  audioCurrent.textContent = formatTime(audio.currentTime);
+});
+
+/* Update UI when playing/paused/ended */
+audio.addEventListener("play", () => {
+  audioIcon.className = "fa-solid fa-pause";
+  audioBtn.setAttribute("aria-label", "Pause narration");
+  audioPlayer.classList.add("playing");
+  audioPlayer.classList.remove("paused");
+});
+
+audio.addEventListener("pause", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioBtn.setAttribute("aria-label", "Play narration");
+  audioPlayer.classList.add("paused");
+  audioPlayer.classList.remove("playing");
+});
+
+audio.addEventListener("ended", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioBtn.setAttribute("aria-label", "Play narration");
+  audioPlayer.classList.remove("playing", "paused");
+  audio.currentTime = 0;
+});
+
+audio.addEventListener("error", () => {
+  audioPlayer.classList.add("error");
+  audioDuration.textContent = "unavailable";
+});
+
+/* Play / pause button */
+audioBtn.addEventListener("click", () => {
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+});
+
+/* Seek by clicking the progress bar */
+audioProgress.addEventListener("click", (e) => {
+  const rect = audioProgress.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+  if (isFinite(audio.duration)) {
+    audio.currentTime = percent * audio.duration;
+  }
+});
+
+/* Stop audio when leaving history tab */
+function stopNarration() {
+  if (!audio.paused) {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+}
+
+/* Stop narration if user navigates away */
+window.addEventListener("beforeunload", stopNarration);
+
+</script>
+<script src="../../shared/nav-footer.js"></script>
+<script src="../../shared/i18n.js"></script>
+
+</body>
+</html>

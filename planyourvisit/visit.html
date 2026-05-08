@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+  <title data-i18n="visit.pageTitle">Plan Your Visit — Grand Egyptian Museum</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="visit.css">
+  <link rel="stylesheet" href="../shared/nav-footer.css">
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1 data-i18n="visit.heroTitle">Plan Your Visit</h1>
+    <p data-i18n="visit.heroSub">Everything you need to explore ancient history</p>
+    <div>
+      <a href="../ticket/booking.html"><button class="btn" data-i18n="visit.bookBtn">Book Now</button></a>
+      <a href="#location"><button class="btn" data-i18n="visit.directionsBtn">Get Directions</button></a>
+    </div>
+  </section>
+
+  <!-- OPENING HOURS -->
+  <section>
+    <h2 data-i18n="visit.hoursTitle">Opening Hours</h2>
+    <div class="cards">
+      <div class="card">
+        <h3 data-i18n="visit.hoursDay1">Daily</h3>
+        <p data-i18n="visit.hoursTime1">9:00 AM – 6:00 PM</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="visit.hoursDay2">Sun, Mon, Tue, Thur, Fri</h3>
+        <p data-i18n="visit.hoursTime2">GEM Complex: 8:30 AM – 7:00 PM | Galleries: 9:00 AM – 6:00 PM</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="visit.hoursDay3">Sat, Wed</h3>
+        <p data-i18n="visit.hoursTime3">GEM Complex: 8:30 AM – 10:00 PM | Galleries: 9:00 AM – 9:00 PM</p>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- LOCATION -->
+  <section id="location">
+    <h2 data-i18n="visit.locationTitle">Location</h2>
+    <p data-i18n="visit.locationValue">Cairo, Egypt</p>
+
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3455.520806886495!2d31.12444090000001!3d29.993198599999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14584534984a8ad1%3A0x45764c5bc4ec261a!2sThe%20Grand%20Egyptian%20Museum!5e0!3m2!1sen!2seg!4v1776951668729!5m2!1sen!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </section>
+
+  <!-- HOW TO GET THERE -->
+  <section>
+    <h2 data-i18n="visit.howTitle">How to Get There</h2>
+    <div class="cards">
+      <div class="card">
+        <h3 data-i18n="visit.metro">Metro</h3>
+        <p data-i18n="visit.metroDesc">Nearest station: Sadat</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="visit.taxi">Taxi</h3>
+        <p data-i18n="visit.taxiDesc">Available anytime</p>
+      </div>
+      <div class="card">
+        <h3 data-i18n="visit.car">Car</h3>
+        <p data-i18n="visit.carDesc">Exit onto Cairo/Alex Desert Rd, head towards El Remayah Sq., and enter Gate 2</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <h2 data-i18n="visit.faqTitle">FAQ</h2>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <span data-i18n="visit.faq1Q">Do I need to book in advance?</span>
+      <div class="faq-answer" data-i18n="visit.faq1A">Not required, but recommended.</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+      <span data-i18n="visit.faq2Q">Are guided tours available?</span>
+      <div class="faq-answer" data-i18n="visit.faq2A">Yes, daily guided tours available.</div>
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2 data-i18n="visit.ctaTitle">Ready to explore history?</h2>
+    <a href="../ticket/booking.html"><button class="btn" data-i18n="visit.ctaBtn">Book Your Visit</button></a>
+  </section>
+
+  <!-- JS -->
+  <script src="../shared/nav-footer.js"></script>
+  <script src="../shared/i18n.js"></script>
+  <script src="visit.Js"></script>
+
+</body>
+</html>

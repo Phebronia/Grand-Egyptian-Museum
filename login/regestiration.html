@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>regestiration</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="regestiration.css">
+  
+
+  <!-- Prevent FOUC for Arabic RTL -->
+  <script>
+    (function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();
+  </script>
+
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+  <!-- Facebook SDK (fbAsyncInit must be defined before the SDK loads) -->
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId:   'YOUR_FACEBOOK_APP_ID',   // ← replace with your Facebook App ID
+        cookie:  true,
+        xfbml:   true,
+        version: 'v19.0'
+      });
+    };
+  </script>
+  <script async defer crossorigin="anonymous"
+          src="https://connect.facebook.net/en_US/sdk.js"></script>
+</head>
+
+<body>
+
+  <div class="card-wrapper" id="cardWrapper">
+
+    <!-- SLIDING IMAGE PANEL -->
+    <div class="slider-panel">
+
+      <!-- LOGIN version (shown when on login) -->
+      <div class="slider-content login-slider">
+        <div class="left-img-placeholder">𓂀</div>
+        <p class="left-title" data-i18n="login.sliderTitle">Welcome to the Kingdom</p>
+        <p class="left-sub" data-i18n="login.sliderSub">Enter the gates of history</p>
+        <div class="divider-ornament">
+          <span></span><em>✦</em><span></span>
+        </div>
+        <button class="btn-switch" id="toSignup" data-i18n="login.toSignup">Sign Up</button>
+      </div>
+
+      <!-- SIGNUP version (shown when on signup) -->
+      <div class="slider-content signup-slider hidden">
+        <div class="left-img-placeholder">𓋹</div>
+        <p class="left-title" data-i18n="login.sliderTitle2">Already a traveler of the kingdom</p>
+        <p class="left-sub" data-i18n="login.sliderSub">Enter the gates of history</p>
+        <div class="divider-ornament">
+          <span></span><em>✦</em><span></span>
+        </div>
+        <button class="btn-switch" id="toLogin" data-i18n="login.toLogin">Login</button>
+      </div>
+
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form class="form-container login-form" autocomplete="off" id="loginForm">
+      <p class="form-title" data-i18n="login.loginHeading">Welcome Back</p>
+
+      <div class="field">
+        <input type="email" name="login_email_123" autocomplete="new-password" id="loginEmail" data-i18n-placeholder="login.emailLabel" placeholder="Email" required />
+      </div>
+
+      <div class="field">
+        <input type="password" name="login_pass_123" autocomplete="new-password" id="loginPassword" data-i18n-placeholder="login.passwordLabel" placeholder="Password" required />
+      </div>
+
+      <p class="forgot" data-i18n="login.forgotPassword">Forgot password?</p>
+      <p class="form-error" id="loginError" style="color:#c0392b;font-size:13px;margin:4px 0;display:none;"></p>
+
+      <button class="btn-submit" type="submit" data-i18n="login.loginBtn">Login</button>
+
+      <div class="or-row">
+        <div class="or-line"></div>
+        <span class="or-text" data-i18n="login.orLoginWith">Or login with</span>
+        <div class="or-line"></div>
+      </div>
+
+      <div class="social-row">
+        <button class="social-btn google-btn" type="button" id="loginGoogleBtn" title="Continue with Google">
+          <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+        </button>
+        <button class="social-btn facebook-btn" type="button" id="loginFacebookBtn" title="Continue with Facebook">
+          <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </button>
+      </div>
+
+      <a class="back-home" href="../home/home.html" data-i18n="login.backHome">← Back to Home</a>
+    </form>
+
+    <!-- SIGNUP FORM -->
+    <form class="form-container signup-form" id="signupForm">
+      <p class="form-title" data-i18n="login.signupHeading">Create Account</p>
+
+      <div class="field">
+        <input type="text" autocomplete="new-password" id="signupName" data-i18n-placeholder="login.fullNameLabel" placeholder="Full Name" required />
+      </div>
+
+      <div class="field">
+        <input type="email" autocomplete="new-password" id="signupEmail" data-i18n-placeholder="login.emailLabel" placeholder="Email" required />
+      </div>
+
+      <div class="field">
+        <input type="password" autocomplete="new-password" id="signupPassword" data-i18n-placeholder="login.passwordLabel" placeholder="Password" required />
+      </div>
+
+      <div class="field">
+        <input type="password" autocomplete="new-password" id="signupConfirm" data-i18n-placeholder="login.confirmPasswordLabel" placeholder="Confirm Password" required />
+      </div>
+
+      <div class="terms-row">
+        <input type="checkbox" autocomplete="off" id="terms" name="terms" required />
+        <label for="terms"><span data-i18n="login.termsText">By using our site, you're agreeing to our</span> <a href="#" data-i18n="login.termsLink">Terms and Conditions</a>.</label>
+      </div>
+
+      <p class="form-error" id="signupError" style="color:#c0392b;font-size:13px;margin:4px 0;display:none;"></p>
+
+      <button class="btn-submit" type="submit" style="margin-top: 8px;" data-i18n="login.signupBtn">Sign Up</button>
+
+      <div class="or-row">
+        <div class="or-line"></div>
+        <span class="or-text" data-i18n="login.orSignupWith">Or sign up with</span>
+        <div class="or-line"></div>
+      </div>
+
+      <div class="social-row">
+        <button class="social-btn google-btn" type="button" id="signupGoogleBtn" title="Continue with Google">
+          <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/>
+            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+          </svg>
+        </button>
+        <button class="social-btn facebook-btn" type="button" id="signupFacebookBtn" title="Continue with Facebook">
+          <svg viewBox="0 0 24 24" width="20" height="20" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+        </button>
+      </div>
+
+      <a class="back-home" href="../home/home.html" data-i18n="login.backHome">← Back to Home</a>
+    </form>
+
+  </div>
+
+  <script>
+    const DJANGO = 'http://127.0.0.1:8000';
+
+    // ── Session helper ─────────────────────────────────────────────────────
+    // isNewUser = true  → wipe gem_profile (fresh start)
+    // isNewUser = false → restore this user's saved profile if it exists
+    function applyUserSession(user, isNewUser) {
+      localStorage.setItem('gem_user', JSON.stringify(user));
+      if (isNewUser) {
+        localStorage.removeItem('gem_profile');
+        localStorage.removeItem('gem_favorites');
+      } else {
+        const savedProfile = localStorage.getItem('gem_profile_' + user.email);
+        if (savedProfile) localStorage.setItem('gem_profile',   savedProfile);
+        else               localStorage.removeItem('gem_profile');
+
+        const savedFavs = localStorage.getItem('gem_favorites_' + user.email);
+        if (savedFavs) localStorage.setItem('gem_favorites', savedFavs);
+        else           localStorage.removeItem('gem_favorites');
+      }
+      window.location.href = '../home/home.html';
+    }
+
+    // ── Slider toggle ──────────────────────────────────────────────────────
+    const wrapper = document.getElementById('cardWrapper');
+    const loginSlider = document.querySelector('.login-slider');
+    const signupSlider = document.querySelector('.signup-slider');
+
+    document.getElementById('toSignup').addEventListener('click', () => {
+      wrapper.classList.add('signup-active');
+      setTimeout(() => { loginSlider.classList.add('hidden'); signupSlider.classList.remove('hidden'); }, 450);
+    });
+    document.getElementById('toLogin').addEventListener('click', () => {
+      wrapper.classList.remove('signup-active');
+      setTimeout(() => { signupSlider.classList.add('hidden'); loginSlider.classList.remove('hidden'); }, 450);
+    });
+
+    // ── Login ──────────────────────────────────────────────────────────────
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errEl = document.getElementById('loginError');
+      errEl.style.display = 'none';
+
+      const email    = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      try {
+        const res = await fetch(`${DJANGO}/api/login/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ email, password }),
+        });
+        const data = await res.json();
+        if (data.ok) {
+          applyUserSession(data.user, false);
+        } else {
+          errEl.textContent = data.error;
+          errEl.style.display = 'block';
+        }
+      } catch {
+        errEl.textContent = 'Cannot reach server. Make sure Django is running on port 8000.';
+        errEl.style.display = 'block';
+      }
+    });
+
+    // ── Sign Up ────────────────────────────────────────────────────────────
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const errEl = document.getElementById('signupError');
+      errEl.style.display = 'none';
+
+      const name     = document.getElementById('signupName').value.trim();
+      const email    = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value;
+      const confirm  = document.getElementById('signupConfirm').value;
+
+      try {
+        const res = await fetch(`${DJANGO}/api/signup/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ name, email, password, confirm }),
+        });
+        const data = await res.json();
+        if (data.ok) {
+          applyUserSession(data.user, true);
+        } else {
+          errEl.textContent = data.error;
+          errEl.style.display = 'block';
+        }
+      } catch {
+        errEl.textContent = 'Cannot reach server. Make sure Django is running on port 8000.';
+        errEl.style.display = 'block';
+      }
+    });
+    // ── Google OAuth ───────────────────────────────────────────────────────
+    const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com'; // ← replace
+
+    let googleTokenClient = null;
+
+    function initGoogleClient() {
+      if (!window.google?.accounts?.oauth2) return;
+      googleTokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: GOOGLE_CLIENT_ID,
+        scope: 'openid email profile',
+        callback: async (tokenResponse) => {
+          if (!tokenResponse.access_token) return;
+          try {
+            const res  = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+              headers: { Authorization: 'Bearer ' + tokenResponse.access_token }
+            });
+            const info = await res.json();
+            applyUserSession({ name: info.name, email: info.email }, false);
+          } catch (e) {
+            alert('Google sign-in failed. Please try again.');
+          }
+        }
+      });
+    }
+
+    // Initialise once the GSI library has loaded
+    window.addEventListener('load', initGoogleClient);
+
+    function handleGoogleClick() {
+      if (!googleTokenClient) initGoogleClient();
+      if (!googleTokenClient) {
+        alert('Google Sign-In is still loading — please wait a moment and try again.');
+        return;
+      }
+      googleTokenClient.requestAccessToken({ prompt: '' });
+    }
+
+    document.getElementById('loginGoogleBtn').addEventListener('click', handleGoogleClick);
+    document.getElementById('signupGoogleBtn').addEventListener('click', handleGoogleClick);
+
+    // ── Facebook OAuth ─────────────────────────────────────────────────────
+    function handleFacebookClick() {
+      if (typeof FB === 'undefined') {
+        alert('Facebook SDK is still loading — please wait a moment and try again.');
+        return;
+      }
+      FB.login(function (response) {
+        if (response.authResponse) {
+          FB.api('/me', { fields: 'name,email' }, function (userInfo) {
+            if (userInfo && userInfo.email) {
+              applyUserSession({ name: userInfo.name, email: userInfo.email }, false);
+            } else {
+              alert('Could not retrieve your email from Facebook.\nMake sure your Facebook account has a verified email address.');
+            }
+          });
+        }
+      }, { scope: 'public_profile,email' });
+    }
+
+    document.getElementById('loginFacebookBtn').addEventListener('click', handleFacebookClick);
+    document.getElementById('signupFacebookBtn').addEventListener('click', handleFacebookClick);
+  </script>
+  <script src="../shared/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hieroglyphs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="ph-name.css">
+    <link rel="stylesheet" href="../shared/nav-footer.css">
+</head>
+<body>
+
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+
+
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-tag">INTERACTIVE EXPERIENCE</p>
+            <h1 class="hero-title">Write your name in hieroglyphs</h1>
+            <p class="hero-sub">Discover your identity in ancient Egyptian symbols</p>
+            <a href="#translator" class="hero-btn">Start Translating</a>
+        </div>
+    </section>
+
+    <!-- MAIN -->
+    <main class="main-content" id="translator">
+
+        <div class="layout">
+
+            <!-- LEFT SIDE -->
+            <div class="left">
+                <div class="card input-card">
+                    <p>ENTER YOUR NAME</p>
+                    <input type="text" placeholder="Name">
+                    <div>
+                        <button id="translateBtn">Reveal Your Name</button>
+                        <button id="downloadBtn" disabled>Download as Image</button>
+                    </div>
+                    
+                </div>
+
+                <div class="styles">
+                    <div class="style-box active" data-style="horizontal">Horizontal</div>
+                    <div class="style-box" data-style="vertical">Vertical</div>
+                    <div class="style-box" data-style="circle">Circle</div>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE -->
+            <div class="card output-card">
+                <p class="your">YOUR NAME IN HIEROGLYPHS</p>
+                <p class="hiero-text"></p>
+            </div>
+
+        </div>
+    </main>
+
+
+    <script src="../shared/nav-footer.js"></script>
+    <script src="../shared/i18n.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="ph-name.js"></script>
+</body>
+</html>

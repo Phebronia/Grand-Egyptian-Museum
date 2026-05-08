@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 🔑 Inline script: set lang/dir before first paint (prevents FOUC) -->
+<script>
+    (function () { 
+        var lang = localStorage.getItem('lang');
+        if (!lang) {
+            lang = (navigator.language || 'en').toLowerCase().startsWith('ar') ? 'ar' : 'en';
+            localStorage.setItem('lang', lang);
+        }
+        document.documentElement.lang = lang;
+        document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
+    })();
+</script>
+
+    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Infant:ital@1&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title data-i18n="pageTitle">Grand Egyptian Museum</title>
+</head>
+<body>
+    <nav class="nav">
+        <a href="../home/home.html" class="nav-brand">
+            <div class="nav-logo">
+                <img src="imgs/logo.png" alt="GEM logo">
+            </div>
+            <span class="nav-brand-name" data-i18n="[html]hero.titleLine0"></span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="../GEM/home.html" class="active" data-i18n="nav.home">HOME</a></li>
+            <li><a href="../explore/explore.htm" data-i18n="nav.explore">EXPLORE</a></li>
+            <li><a href="../planyourvisit/visit.html" data-i18n="nav.plan">PLAN YOUR VISIT</a></li>
+            <li><a href="../About/about.html" data-i18n="nav.about">ABOUT US</a></li>
+            <li class="moree">
+                <a href="#"><span data-i18n="nav.more">MORE</span> <i class="fa-solid fa-chevron-down"></i></a>
+                <div class="con">
+                    <ul>
+                        <li><a href="../pharaonic%20name/ph-name.html" data-i18n="nav.pharaonicNames"></a></li>
+                        <li><a href="../Program plan/plan.html" data-i18n="nav.programPlan"></a></li>
+                        <li><a href="../contact us/contact.html" data-i18n="nav.contact"></a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+        <div class="nav-right">
+            <button class="menu-btn" aria-label="Open menu">
+                <span class="menu-line"></span>
+                <span class="menu-line menu-line-short"></span>
+                <span class="menu-line"></span>
+            </button>
+
+            <div class="icons">
+                <div class="lang-dropdown">
+                    <button class="icon-btn" aria-label="Change language">
+                        <i class="fa-solid fa-globe"></i>
+                        <span class="current-lang" id="currentLang">EN</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <div data-lang="en">English</div>
+                        <div data-lang="ar">العربية</div>
+                    </div>
+                </div>
+                <div class="nav-divider"></div>
+                <!-- User icon: guest → login page | logged-in → dropdown -->
+                <div class="user-nav-wrapper" id="userNavWrapper">
+                    <button class="icon-btn" id="userIconBtn" aria-label="Account">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="user-dd-menu" id="userDdMenu">
+                        <a href="../user profile/profile.html" class="user-dd-item">
+                            <i class="fa-regular fa-user"></i>
+                            <span data-i18n="nav.profile">Profile</span>
+                        </a>
+                        <div class="user-dd-divider"></div>
+                        <button class="user-dd-item user-dd-logout" id="ddLogoutBtn">
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            <span data-i18n="nav.logout">Logout</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <a href="../ticket/booking.html"><button class="buy-btn" data-i18n="nav.buyTicket">BUY TICKET</button></a>
+        </div>
+    </nav>
+
+    <!-- Secondary / side panel -->
+    <div class="side-secondary">
+        <div class="side-auth-guest">
+            <a href="../login/login.html" class="side-auth-btn side-signin">
+                <i class="fa-solid fa-right-to-bracket"></i>
+                <span data-i18n="nav.signIn">SIGN IN</span>
+            </a>
+            <a href="../login/regestiration.html" class="side-auth-btn side-signup">
+                <i class="fa-solid fa-user-plus"></i>
+                <span data-i18n="nav.signUp">SIGN UP</span>
+            </a>
+        </div>
+
+        <a href="../profile/profile.html" class="side-profile" style="display: none;">
+            <div class="side-profile-avatar">
+                <span class="profile-initials">U</span>
+            </div>
+            <div class="side-profile-info">
+                <div class="profile-name">User Name</div>
+                <div class="profile-email">user@example.com</div>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+        </a>
+
+        <a href="#" class="side-lang">
+            <i class="fa-solid fa-globe"></i>
+            <span data-i18n="nav.language">LANGUAGE</span>
+            <span class="lang-val" id="sideLangVal">English <i class="fa-solid fa-caret-right"></i></span>
+        </a>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-slides">
+            <div class="hero-slide active" style="background-image: url('imgs/hero1.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('imgs/hero2.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('imgs/hero3.jfif');"></div>
+        </div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <span class="hero-eyebrow" data-i18n="hero.eyebrow">⟡ GIZA · EGYPT ⟡</span>
+            <h1>
+                <span data-i18n="hero.titleLine1">Grand Egyptian</span><br>
+                <em data-i18n="hero.titleLine2">Museum</em>
+            </h1>
+            <p data-i18n="hero.subtitle">Where 7,000 years of civilization await your discovery</p>
+            <button class="start">
+                <a href="../explore/explore.htm" data-i18n="hero.cta">EXPLORE THE MUSEUM</a>
+            </button>
+        </div>
+
+        <div id="dots">
+            <button class="dot active" aria-label="Go to slide 1"></button>
+            <button class="dot" aria-label="Go to slide 2"></button>
+            <button class="dot" aria-label="Go to slide 3"></button>
+        </div>
+    </div>
+
+    <!-- VISITOR / STATS -->
+    <section class="visitor">
+        <section class="cards">
+            <div class="stat-card">
+                <div class="stat-num" data-target="100000">0</div>
+                <div class="stat-label" data-i18n="stats.artifacts">Artifacts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" data-target="12">0</div>
+                <div class="stat-label" data-i18n="stats.mainHalls">Main Halls</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num" data-target="5" data-suffix="M">0</div>
+                <div class="stat-label" data-i18n="stats.visitors">Visitors Annually</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-num stat-text" data-i18n="stats.locationValue">Giza, Egypt</div>
+                <div class="stat-label" data-i18n="stats.location">Location</div>
+            </div>
+        </section>
+
+        <div class="visitor-tour">
+            <img src="imgs/tour.jpg" alt="Virtual Tour">
+            <div class="visitor-tour-overlay"></div>
+            <button class="play-trigger" aria-label="Play virtual tour">
+                <div class="play-frame">
+                    <span class="frame-corner frame-tl"></span>
+                    <span class="frame-corner frame-tr"></span>
+                    <span class="frame-corner frame-bl"></span>
+                    <span class="frame-corner frame-br"></span>
+                    <div class="play-content">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                        <span class="play-label" data-i18n="tour.label">Experience</span>
+                    </div>
+                </div>
+                <span class="play-subtitle" data-i18n="tour.subtitle">A journey through history</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- FEATURED ARTIFACTS -->
+    <section class="featured">
+        <div class="section-heading">
+            <h2 data-i18n="featured.heading">Featured Artifacts</h2>
+            <p data-i18n="featured.subheading">Discover some of the most iconic treasures of ancient Egypt</p>
+        </div>
+
+        <div class="featured-grid">
+            <a href="../explore/artifacts/tutankhamun.html" class="artifact-card">
+                <img src="imgs/tutankhamun2.png" alt="Mask of Tutankhamun" loading="lazy">
+                <div class="artifact-overlay"></div>
+                <span class="artifact-tag" data-i18n="featured.items.tutankhamun.tag">Dynasty XVIII</span>
+                <div class="artifact-info">
+                    <div class="artifact-divider"></div>
+                    <h3 data-i18n="featured.items.tutankhamun.title">Mask of Tutankhamun</h3>
+                    <span class="artifact-link" data-i18n="featured.viewArtifact">View artifact →</span>
+                </div>
+            </a>
+
+            <a href="../explore/artifacts/khufu-boat.html" class="artifact-card">
+                <img src="imgs/khufo boat.jpg" alt="Khufu's Solar Boat" loading="lazy">
+                <div class="artifact-overlay"></div>
+                <span class="artifact-tag" data-i18n="featured.items.khufuBoat.tag">Dynasty IV</span>
+                <div class="artifact-info">
+                    <div class="artifact-divider"></div>
+                    <h3 data-i18n="featured.items.khufuBoat.title">Khufu's Solar Boat</h3>
+                    <span class="artifact-link" data-i18n="featured.viewArtifact">View artifact →</span>
+                </div>
+            </a>
+
+            <a href="../explore/artifacts/hanging-obelisk.html" class="artifact-card">
+                <img src="imgs/hanging oplistic.jpg" alt="Hanging Obelisk" loading="lazy">
+                <div class="artifact-overlay"></div>
+                <span class="artifact-tag" data-i18n="featured.items.obelisk.tag">Modern</span>
+                <div class="artifact-info">
+                    <div class="artifact-divider"></div>
+                    <h3 data-i18n="featured.items.obelisk.title">Hanging Obelisk</h3>
+                    <span class="artifact-link" data-i18n="featured.viewArtifact">View artifact →</span>
+                </div>
+            </a>
+
+            <a href="../explore/artifacts/ramses.html" class="artifact-card">
+                <img src="imgs/ramses1.png" alt="Statue of Ramses II" loading="lazy">
+                <div class="artifact-overlay"></div>
+                <span class="artifact-tag" data-i18n="featured.items.ramses.tag">Dynasty XIX</span>
+                <div class="artifact-info">
+                    <div class="artifact-divider"></div>
+                    <h3 data-i18n="featured.items.ramses.title">Statue of Ramses II</h3>
+                    <span class="artifact-link" data-i18n="featured.viewArtifact">View artifact →</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- MEMBERSHIP -->
+    <section class="membership">
+        <div class="membership-card">
+            <div class="membership-image">
+                <img src="imgs/GEM.png" alt="Grand Egyptian Museum" loading="lazy">
+            </div>
+
+            <div class="membership-content">
+                <span class="membership-label" data-i18n="membership.label">BECOME A MEMBER</span>
+                <h2 data-i18n="membership.heading">Unlock exclusive benefits</h2>
+                <p data-i18n="membership.description">Join the GEM family and enjoy year-round access to extraordinary experiences.</p>
+
+                <ul class="membership-benefits">
+                    <li>
+                        <span class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <strong data-i18n="membership.benefits.admission.title">Unlock Exclusive Access</strong>
+
+                        </div>
+                    </li>
+                    <li>
+                        <span class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <strong data-i18n="membership.benefits.tours.title">Join the GEM Experience</strong>
+
+                        </div>
+                    </li>
+                    <li>
+                        <span class="benefit-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </span>
+                        <div>
+                            <strong data-i18n="membership.benefits.previews.title">Step into History</strong>
+
+                        </div>
+                    </li>
+                </ul>
+
+                <a href="../login/regestiration.html"><button class="membership-btn" data-i18n="membership.joinNow">JOIN NOW</button></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top-accent"></div>
+
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="imgs/logo.png" alt="GEM logo">
+                    <div class="footer-brand-name" data-i18n="[html]hero.titleLine1">Grand Egyptian<br>Museum</div>
+                </div>
+                <p data-i18n="footer.tagline">Preserving 7,000 years of history. Home to the world's largest collection of pharaonic artifacts.</p>
+                <div class="footer-socials">
+                    <a href="https://www.facebook.com/GrandEgyptianMuseum" blank aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/grandegyptianmuseum/" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/@GrandEgyptianMuseum" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-i18n="footer.explore.heading">Explore</h4>
+                <ul>
+                    <li><a href="#" data-i18n="footer.explore.collections">Collections</a></li>
+                    <li><a href="#" data-i18n="footer.explore.exhibitions">Exhibitions</a></li>
+                    <li><a href="#" data-i18n="footer.explore.events">Events</a></li>
+                    <li><a href="#" data-i18n="footer.explore.education">Educational Programs</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4 data-i18n="footer.visit.heading">Visit</h4>
+                <ul>
+                    <li><a href="../about/about.html" data-i18n="footer.visit.about">About Us</a></li>
+                    <li><a href="../planyourvisit/visit.html" data-i18n="footer.visit.plan">Plan Your Visit</a></li>
+                    <li><a href="../contact us/contact.html" data-i18n="footer.visit.contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span data-i18n="footer.copyright">© 2024 Grand Egyptian Museum. All rights reserved.</span>
+            <div class="footer-legal">
+                <a href="#" data-i18n="footer.privacy">Privacy Policy</a>
+                <a href="#" data-i18n="footer.terms">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- VIDEO MODAL -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" aria-label="Close video">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <video id="tourVideo" controls preload="none">
+                <source src="imgs/Explore.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script src="../shared/i18n.js"></script>
+    <script src="home.js"></script>
+</body>
+</html>

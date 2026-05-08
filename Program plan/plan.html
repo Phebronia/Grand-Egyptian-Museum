@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="plan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../shared/nav-footer.css">
+    <title>plan your visit</title>
+</head>
+<body>
+    
+
+    <div class="all">
+
+    <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <section class="plan-section">
+ 
+        <!-- Title -->
+        <h2 class="section-title">Plan Your Visit</h2>
+        <p class="section-sub">Customize your visit experience</p>
+        <div class="title-divider"></div>
+        
+        <!-- Steps indicator -->
+        <div class="steps-row">
+            <div class="step">
+                <div class="step-circle active" id="circle-1">
+                    <span class="step-num">1</span>
+                    <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 7L5.5 10.5L12 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="step-label" id="label-1">Visitor Type</span>
+            </div>
+            <div class="step-line" id="line-1"></div>
+            <div class="step">
+                <div class="step-circle inactive" id="circle-2">
+                    <span class="step-num">2</span>
+                    <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 7L5.5 10.5L12 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="step-label" id="label-2">Duration</span>
+            </div>
+            <div class="step-line" id="line-2"></div>
+            <div class="step">
+                <div class="step-circle inactive" id="circle-3">
+                    <span class="step-num">3</span>
+                    <svg class="check-icon" width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 7L5.5 10.5L12 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <span class="step-label" id="label-3">Your Plan</span>
+            </div>
+        </div>
+        
+        <div class="full-divider"></div>
+        
+        <!-- ── STEP 1 ── -->
+        <div id="step1-block">
+            <p class="section-label">Select Visitor Type</p>
+            <div class="visitor-grid"> 
+        
+            <div class="visitor-card " onclick="selectVisitor(this)">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <defs><linearGradient id="gs" x1="20" y1="0" x2="20" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#C47A2C"/><stop offset="1" stop-color="#BE8447"/></linearGradient></defs>
+                    <circle cx="20" cy="13" r="7" fill="url(#gs)"/>
+                    <path d="M6 37c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="url(#gs)" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span>Solo</span>
+            </div>
+        
+            <div class="visitor-card" onclick="selectVisitor(this)">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <defs><linearGradient id="gg" x1="20" y1="0" x2="20" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#C47A2C"/><stop offset="1" stop-color="#BE8447"/></linearGradient></defs>
+                    <circle cx="14" cy="12" r="6" fill="url(#gg)"/>
+                    <circle cx="26" cy="12" r="6" fill="url(#gg)"/>
+                    <path d="M2 37c0-6.627 5.373-12 12-12h12c6.627 0 12 5.373 12 12" stroke="url(#gg)" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <span>Group</span>
+            </div>
+        
+            <div class="visitor-card" onclick="selectVisitor(this)">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <defs><linearGradient id="ge" x1="20" y1="0" x2="20" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#C47A2C"/><stop offset="1" stop-color="#BE8447"/></linearGradient></defs>
+                    <rect x="5" y="8" width="30" height="20" rx="3" stroke="url(#ge)" stroke-width="2.5"/>
+                    <path d="M13 28v5M27 28v5M9 33h22" stroke="url(#ge)" stroke-width="2.5" stroke-linecap="round"/>
+                    <circle cx="20" cy="18" r="4" fill="url(#ge)"/>
+                </svg>
+                <span>Educational</span>
+            </div>
+        
+            <div class="visitor-card" onclick="selectVisitor(this)">
+                <svg viewBox="0 0 40 40" fill="none">
+                    <defs><linearGradient id="gt" x1="20" y1="0" x2="20" y2="40" gradientUnits="userSpaceOnUse"><stop stop-color="#C47A2C"/><stop offset="1" stop-color="#BE8447"/></linearGradient></defs>
+                    <circle cx="20" cy="20" r="14" stroke="url(#gt)" stroke-width="2.5"/>
+                    <path d="M20 6v14l8 8" stroke="url(#gt)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>Tour / Trip</span>
+            </div>
+        
+            </div>
+            <div class="full-divider"></div>
+            <button class="create-btn" onclick="completeStep1()">Next &rarr;</button>
+            <p class="option-message" id="visitor-message">choose your option</p>
+            <div class="full-divider"></div>
+        </div>
+        
+        <!-- ── STEP 2 ── -->
+        <div id="step2-block" style="display:none;">
+            <p class="section-label">Select Duration</p>
+            <div class="duration-row">
+                <button class="dur-btn" onclick="selectDur(this)">1 Hour</button>
+                <button class="dur-btn" onclick="selectDur(this)">2 Hours</button>
+                <button class="dur-btn" onclick="selectDur(this)">4 Hours</button>
+                <button class="dur-btn" onclick="selectDur(this)">Full Day</button>
+            </div>
+            <div class="full-divider"></div>
+            <button class="create-btn" onclick="completeStep2()">Create My Plan</button>
+            <p class="option-message" id="duration-message">choose your option</p>
+            <div class="full-divider"></div>
+        </div>
+        
+        <!-- ── STEP 3 ── -->
+        <div id="step3-block" style="display:none;">
+            <p class="section-label">Your Plan Preview</p>
+            <div class="plan-list">
+            <div class="plan-item">
+                <div class="plan-dot large"></div>
+                <span class="plan-name">Ramesses II Statue</span>
+                <span class="plan-time">10 min</span>
+            </div>
+            <div class="plan-item">
+                <div class="plan-dot"></div>
+                <span class="plan-name">Grand Staircase</span>
+                <span class="plan-time">20 min</span>
+            </div>
+            <div class="plan-item">
+                <div class="plan-dot"></div>
+                <span class="plan-name">Royal Artifacts Hall</span>
+                <span class="plan-time">15 min</span>
+            </div>
+            </div>
+            <div class="full-divider"></div>
+            <button class="create-btn" onclick="resetAll()">Start Over</button>
+            <div class="full-divider"></div>
+        </div>
+ 
+    </section>
+
+    <script src="../shared/nav-footer.js"></script>
+    <script src="../shared/i18n.js"></script>
+    <script src="plan.js"></script>
+</body>
+</html>

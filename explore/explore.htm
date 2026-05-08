@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+  (function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';
+  localStorage.setItem('lang', l);
+  document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();
+</script>
+<title data-i18n="explore.pageTitle">Explore — Grand Egyptian Museum</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="explore.css">
+<link rel="stylesheet" href="../shared/nav-footer.css">
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-eyebrow" data-i18n="explore.heroEyebrow">The Grand Egyptian Museum</span>
+    <h1 data-i18n="explore.heroTitle">Explore Ancient Egypt</h1>
+    <p data-i18n="explore.heroSub">Walk through 5,000 years of civilization — arranged by era and theme</p>
+    <a href="#halls" class="hero-cta">
+      <span data-i18n="explore.heroCta">Start Exploring</span>
+      <i class="fa-solid fa-arrow-down"></i>
+    </a>
+  </div>
+  <div class="hero-scroll">
+    <span></span>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section class="section featured">
+  <div class="section-title">
+    <span class="eyebrow" data-i18n="explore.featuredEyebrow">Iconic treasures</span>
+    <h2 data-i18n="explore.featuredTitle">Featured Highlights</h2>
+  </div>
+
+  <div class="cards">
+    <a href="../explore/gallaries/tut-collection.html" class="card card-feature">
+      <img src="imgs/musk_of _tutankhamun.png" alt="Mask of Tutankhamun">
+      <div class="card-body">
+        <span class="card-tag" data-i18n="explore.feat1Tag">New Kingdom</span>
+        <h3 data-i18n="explore.feat1Title">Tutankhamun</h3>
+        <p data-i18n="explore.feat1Desc">The boy king's golden legacy</p>
+      </div>
+    </a>
+    <a href="../explore/gallaries/grand-hall.html" class="card">
+      <img src="imgs/grand-hall.jpeg" alt="Ramses II">
+      <div class="card-body">
+        <span class="card-tag" data-i18n="explore.feat2Tag">The Grand Egyptian Museum</span>
+        <h3 data-i18n="explore.feat2Title">The Grand Hall</h3>
+      </div>
+    </a>
+    <a href="../explore/gallaries/grand stairs/grandstaircase.html" class="card">
+      <img src="imgs/grand stairs1.jpg" alt="Grand Staircase">
+      <div class="card-body">
+        <span class="card-tag" data-i18n="explore.feat3Tag">Museum</span>
+        <h3 data-i18n="explore.feat3Title">Grand Staircase</h3>
+      </div>
+    </a>
+    <a href="../explore/artifacts/khufu-boat.html" class="card">
+      <img src="imgs/khufo boat.jpg" alt="Khufu Solar Boat">
+      <div class="card-body">
+        <span class="card-tag" data-i18n="explore.feat4Tag">Old Kingdom</span>
+        <h3 data-i18n="explore.feat4Title">Solar Boat</h3>
+      </div>
+    </a>
+    <a href="../explore/artifacts/hanging-obelisk.html" class="card">
+      <img src="imgs/hanging oblisk.jpg" alt="Hanging Obelisk">
+      <div class="card-body">
+        <span class="card-tag" data-i18n="explore.feat5Tag">New Kingdom</span>
+        <h3 data-i18n="explore.feat5Title">Hanging Obelisk</h3>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- HALLS -->
+<section id="halls" class="section-halls">
+
+  <div class="section-title">
+    <span class="eyebrow" data-i18n="explore.hallsEyebrow">Browse the collection</span>
+    <h2 data-i18n="explore.hallsTitle">Museum Halls</h2>
+    <p class="subtitle" data-i18n="explore.hallsSub">Every era, three perspectives. Filter by theme to focus your journey.</p>
+  </div>
+
+  <div class="filters halls-filter">
+    <button class="active" data-theme="all">
+      <i class="fa-solid fa-border-all"></i> <span data-i18n="explore.filterAll">All Themes</span>
+    </button>
+    <button data-theme="society">
+      <i class="fa-solid fa-users"></i> <span data-i18n="explore.filterSociety">Society</span>
+    </button>
+    <button data-theme="kingship">
+      <i class="fa-solid fa-crown"></i> <span data-i18n="explore.filterKingship">Kingship</span>
+    </button>
+    <button data-theme="beliefs">
+      <i class="fa-solid fa-sun"></i> <span data-i18n="explore.filterBeliefs">Beliefs</span>
+    </button>
+  </div>
+
+  <div class="matrix">
+
+    <!-- Sticky column headers -->
+    <div class="matrix-header">
+      <div class="era-spacer"></div>
+      <div class="col-head" data-col="society">
+        <i class="fa-solid fa-users"></i>
+        <span data-i18n="explore.colSociety">Society</span>
+      </div>
+      <div class="col-head" data-col="kingship">
+        <i class="fa-solid fa-crown"></i>
+        <span data-i18n="explore.colKingship">Kingship</span>
+      </div>
+      <div class="col-head" data-col="beliefs">
+        <i class="fa-solid fa-sun"></i>
+        <span data-i18n="explore.colBeliefs">Beliefs</span>
+      </div>
+    </div>
+
+    <!-- Row: Late Era -->
+    <div class="era-row">
+      <div class="era-label">
+        <h4 data-i18n="explore.era1Name">Late & Ptolemaic</h4>
+        <span class="era-dates" data-i18n="explore.era1Dates">664 BC – 30 BC</span>
+        <span class="era-periods" data-i18n="explore.era1Periods">Third Intermediate · Late · Graeco-Roman</span>
+      </div>
+      <a href="#" class="hall-card" data-theme="society">
+        <img src="imgs/hall 12.jpg" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 12</h3>
+          <p data-i18n="explore.hall12Desc">Markets, crafts, and families under foreign rule.</p>
+          <span class="hall-count" data-i18n="explore.hall12Count">47 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="#" class="hall-card" data-theme="kingship">
+        <img src="imgs/hall 11.jpg" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 11</h3>
+          <p data-i18n="explore.hall11Desc">Merchant dynasties and Mediterranean influence.</p>
+          <span class="hall-count" data-i18n="explore.hall11Count">32 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="#" class="hall-card" data-theme="beliefs">
+        <img src="imgs/hall 10.jpg" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 10</h3>
+          <p data-i18n="explore.hall10Desc">Temples that survived empires.</p>
+          <span class="hall-count" data-i18n="explore.hall10Count">28 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Row: New Kingdom -->
+    <div class="era-row">
+      <div class="era-label">
+        <h4 data-i18n="explore.era2Name">New Kingdom</h4>
+        <span class="era-dates" data-i18n="explore.era2Dates">1550 – 1069 BC</span>
+        <span class="era-periods" data-i18n="explore.era2Periods">The Golden Age of Egypt</span>
+      </div>
+      <a href="#" class="hall-card" data-theme="society">
+        <img src="imgs/hall 7.jpg" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 07</h3>
+          <p data-i18n="explore.hall07Desc">Scribes, soldiers, artisans at the empire's peak.</p>
+          <span class="hall-count" data-i18n="explore.hall07Count">62 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="../explore/gallaries/Hall08.html" class="hall-card" data-theme="kingship">
+        <img src="imgs/hall 8.jpg" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 08</h3>
+          <p data-i18n="explore.hall08Desc">Thutmose, Ramses, and the conquering kings.</p>
+          <span class="hall-count" data-i18n="explore.hall08Count">84 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="#" class="hall-card" data-theme="beliefs">
+        <img src="imgs/hall 9.jpg" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 09</h3>
+          <p data-i18n="explore.hall09Desc">Karnak, Luxor, and the solar theology.</p>
+          <span class="hall-count" data-i18n="explore.hall09Count">71 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Row: Middle Kingdom -->
+    <div class="era-row">
+      <div class="era-label">
+        <h4 data-i18n="explore.era3Name">Middle Kingdom</h4>
+        <span class="era-dates" data-i18n="explore.era3Dates">2055 – 1550 BC</span>
+        <span class="era-periods" data-i18n="explore.era3Periods">Middle Kingdom · Second Intermediate</span>
+      </div>
+      <a href="#" class="hall-card" data-theme="society">
+        <img src="imgs/hall 6.jpg" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 06</h3>
+          <p data-i18n="explore.hall06Desc">Coffin texts and the democratization of the hereafter.</p>
+          <span class="hall-count" data-i18n="explore.hall06Count">39 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="#" class="hall-card" data-theme="kingship">
+        <img src="imgs/hall 5.jpg" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 05</h3>
+          <p data-i18n="explore.hall05Desc">The divine authority of Mentuhotep's line.</p>
+          <span class="hall-count" data-i18n="explore.hall05Count">45 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="#" class="hall-card" data-theme="beliefs">
+        <img src="imgs/hall 4.jpg" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 04</h3>
+          <p data-i18n="explore.hall04Desc">Sacred architecture of the revival period.</p>
+          <span class="hall-count" data-i18n="explore.hall04Count">33 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Row: Old Kingdom -->
+    <div class="era-row">
+      <div class="era-label">
+        <h4 data-i18n="explore.era4Name">Old Kingdom</h4>
+        <span class="era-dates" data-i18n="explore.era4Dates">3100 – 2181 BC</span>
+        <span class="era-periods" data-i18n="explore.era4Periods">Prehistoric · Predynastic · Early Dynastic · First Intermediate</span>
+      </div>
+      <a href="#" class="hall-card" data-theme="society">
+        <img src="imgs/hall 3.jpg" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 03</h3>
+          <p data-i18n="explore.hall03Desc">The first cities along the Nile.</p>
+          <span class="hall-count" data-i18n="explore.hall03Count">51 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="../../explore/gallaries/tut-collection.html" class="hall-card" data-theme="kingship">
+        <img src="imgs/musk_of _tutankhamun.png" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 02</h3>
+          <p data-i18n="explore.hall02Desc">Khufu, Khafre, and the god-kings of Giza.</p>
+          <span class="hall-count" data-i18n="explore.hall02Count">68 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+      <a href="../../explore/gallaries/tut-collection.html" class="hall-card" data-theme="beliefs">
+        <img src="imgs/musk_of _tutankhamun.png" alt="">
+        <div class="hall-overlay">
+          <h3>Hall 01</h3>
+          <p data-i18n="explore.hall01Desc">The earliest religious writings in human history.</p>
+          <span class="hall-count" data-i18n="explore.hall01Count">29 artifacts</span>
+          <span class="hall-enter"><span data-i18n="explore.enterHall">Enter Hall</span> <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+
+/* FILTER HALLS - highlights column instead of hiding */
+const btns = document.querySelectorAll(".halls-filter button");
+const matrix = document.querySelector(".matrix");
+const cards = document.querySelectorAll(".hall-card");
+const colHeads = document.querySelectorAll(".col-head");
+
+btns.forEach(btn => {
+  btn.onclick = () => {
+    btns.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    const theme = btn.dataset.theme;
+
+    if (theme === "all") {
+      matrix.classList.remove("filtered");
+      cards.forEach(c => c.classList.remove("dimmed", "focused"));
+      colHeads.forEach(h => h.classList.remove("dimmed", "focused"));
+    } else {
+      matrix.classList.add("filtered");
+      cards.forEach(c => {
+        if (c.dataset.theme === theme) {
+          c.classList.add("focused");
+          c.classList.remove("dimmed");
+        } else {
+          c.classList.add("dimmed");
+          c.classList.remove("focused");
+        }
+      });
+      colHeads.forEach(h => {
+        if (h.dataset.col === theme) {
+          h.classList.add("focused");
+          h.classList.remove("dimmed");
+        } else {
+          h.classList.add("dimmed");
+          h.classList.remove("focused");
+        }
+      });
+    }
+  };
+});
+
+</script>
+<script src="../shared/i18n.js"></script>
+<script src="../shared/nav-footer.js"></script>
+
+</body>
+</html>

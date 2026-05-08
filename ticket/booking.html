@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+    <title data-i18n="booking.pageTitle">Book Tickets — Grand Egyptian Museum</title>
+    <link rel="stylesheet" href="booking.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../shared/nav-footer.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- STEPPER -->
+    <nav class="stepper">
+        <div class="step active" data-step="1"><span>1</span> <span data-i18n="booking.step1">Date &amp; Tickets</span></div>
+        <div class="step" data-step="2"><span>2</span> <span data-i18n="booking.step2">Add-Ons</span></div>
+        <div class="step" data-step="3"><span>3</span> <span data-i18n="booking.step3">Contact Details</span></div>
+        <div class="step" data-step="4"><span>4</span> <span data-i18n="booking.step4">Review &amp; Pay</span></div>
+    </nav>
+
+    <!-- MAIN LAYOUT -->
+    <div class="main-layout">
+
+        <!-- LEFT: step panels -->
+        <main class="content-area">
+
+            <!-- ========= STEP 1: DATE & TICKETS ========= -->
+            <section class="panel active" id="panel-1">
+                <h2 style="font-family: cinzel;" data-i18n="booking.panelTitle">Date, Time &amp; Tickets</h2>
+
+                <div class="grid-2">
+
+                    <!-- LEFT COLUMN: Calendar + Time -->
+                    <div>
+
+                        <h3 class="section-title" data-i18n="booking.ticketType">Ticket Type</h3>
+                        <div class="btn-group" id="ticketType">
+                            <button class="active" data-value="Admission" data-i18n="booking.admission">Admission</button>
+                            <button data-value="Guided Tour" data-i18n="booking.guidedTour">Guided Tour</button>
+                        </div>
+
+                        <h3 class="section-title" data-i18n="booking.selectDate">Select Date</h3>
+                        <div class="calendar">
+                            <div class="month">
+                                <button class="nav-arrow">‹</button>
+                                <span id="monthLabel">April 2026</span>
+                                <button class="nav-arrow">›</button>
+                            </div>
+                            <div class="days">
+                                <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span>
+                                <span>Thu</span><span>Fri</span><span>Sat</span>
+                            </div>
+                            <div class="dates" id="dates"></div>
+                        </div>
+
+                        <div class="admission-only" hidden>
+                            <h3 class="section-title" data-i18n="booking.selectTime">Select Entry Time Slot</h3>
+                            <div class="times">
+                                <button class="time">08:30 AM - 11:00 AM</button>
+                                <button class="time">11:00 AM - 1:00 PM</button>
+                                <button class="time">1:00 PM - 3:00 PM</button>
+                                <button class="time">3:00 PM - 5:00 PM</button>
+                            </div>
+                        </div>
+
+                        <div class="guided-only" hidden>
+                            <h3 class="section-title" data-i18n="booking.tourLanguage">Select Tour Language</h3>
+                            <div class="btn-group">
+                                <button data-value="Arabic" data-i18n="booking.arabic">Arabic</button>
+                                <button data-value="English" data-i18n="booking.english">English</button>
+                            </div>
+
+                            <h3 class="section-title" data-i18n="booking.tourTime">Select Tour Time</h3>
+                            <div class="times">
+                                <button class="time">10:15 AM</button>
+                                <button class="time">12:15 PM</button>
+                                <button class="time">2:15 PM</button>
+                                <button class="time">4:15 PM</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Nationality + Counters -->
+                    <div>
+
+                        <h3 class="section-title" style="margin-top:25px;" data-i18n="booking.nationality">Nationality</h3>
+                        <div class="tags">
+                            <span class="tag" data-value="Egyptian" data-i18n="booking.egyptian">Egyptian</span>
+                            <span class="tag" data-value="Arab" data-i18n="booking.arab">Arab</span>
+                            <span class="tag" data-value="Foreigner" data-i18n="booking.foreigner">Foreigner</span>
+                        </div>
+
+                        <div class="nationality-ticket" hidden>
+                            <div class="ticket-row">
+                                <div>
+                                    <strong data-i18n="booking.adult">Adult</strong>
+                                    <div class="muted"><span data-i18n="booking.adultDesc">Above 25 years old</span> · <span class="row-price" data-row="adult">—</span> EGP</div>
+                                </div>
+                                <div class="counter">
+                                    <button onclick="change('adult',-1)">−</button>
+                                    <span id="adult">0</span>
+                                    <button onclick="change('adult',1)">+</button>
+                                </div>
+                            </div>
+
+                            <div class="ticket-row">
+                                <div>
+                                    <strong data-i18n="booking.child">Child</strong>
+                                    <div class="muted"><span data-i18n="booking.childDesc">6 – 12 years old</span> · <span class="row-price" data-row="child">—</span> EGP</div>
+                                </div>
+                                <div class="counter">
+                                    <button onclick="change('child',-1)">−</button>
+                                    <span id="child">0</span>
+                                    <button onclick="change('child',1)">+</button>
+                                </div>
+                            </div>
+
+                            <div class="ticket-row">
+                                <div>
+                                    <strong data-i18n="booking.student">Student</strong>
+                                    <div class="muted"><span data-i18n="booking.studentDesc">13 - 25 years old, With valid ID</span> · <span class="row-price" data-row="student">—</span> EGP</div>
+                                </div>
+                                <div class="counter">
+                                    <button onclick="change('student',-1)">−</button>
+                                    <span id="student">0</span>
+                                    <button onclick="change('student',1)">+</button>
+                                </div>
+                            </div>
+
+                            <div class="ticket-row">
+                                <div>
+                                    <strong data-i18n="booking.senior">Senior</strong>
+                                    <div class="muted"><span data-i18n="booking.seniorDesc">60+ years old</span> · <span class="row-price" data-row="senior">—</span> EGP</div>
+                                </div>
+                                <div class="counter">
+                                    <button onclick="change('senior',-1)">−</button>
+                                    <span id="senior">0</span>
+                                    <button onclick="change('senior',1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="panel-footer">
+                    <button class="btn-primary" onclick="goToStep(2)" data-i18n="booking.continueAddons">Continue to Add-Ons →</button>
+                </div>
+            </section>
+
+
+
+            <!-- ========= STEP 2: ADD-ONS ========= -->
+            <section class="panel" id="panel-2">
+                <div class="panel-header">
+                    <h2 data-i18n="booking.step2Heading">Enhance your visit (Optional)</h2>
+                    <p data-i18n="booking.step2Sub">Optional experiences you can add to your ticket.</p>
+                </div>
+
+                <div class="addons">
+
+                    <article class="addon-card" data-addon="child-museum" data-price="150">
+                        <div class="addon-img">
+                            <img src="childMuseum.jpg" alt="Children's Museum">
+                        </div>
+                        <div class="addon-body">
+                            <div class="addon-tag" data-i18n="booking.childs.tag">Family Favourite</div>
+                            <h3 data-i18n="booking.child.title">Children's Museum</h3>
+                            <p data-i18n="booking.child.desc1">Calling all young explorers for an exciting ancient Egyptian adventure at the GEM Children's Museum.</p>
+                            <p data-i18n="booking.child.desc2">This dedicated space is designed to spark curiosity and imagination through hands-on learning experiences tailored specifically for young minds. Children can discover the wonders of ancient Egyptian civilisation in a fun, engaging, and interactive environment.</p>
+
+                            <div class="item">
+                                <span class="link" onclick="toggleText(0)" data-i18n="booking.child.hours">Opening Hours</span>
+                                <div class="content"><ul>
+                                    <li data-i18n="booking.child.hours1">Sunday to Thursday: 1:00 PM – 5:00 PM</li>
+                                    <li data-i18n="booking.child.hours2">Friday &amp; Saturday: 10:00 AM – 5:00 PM</li>
+                                </ul></div>
+                            </div>
+                            <div class="item">
+                                <span class="link" onclick="toggleText(1)" data-i18n="booking.child.info">Important Information</span>
+                                <div class="content"><ul>
+                                    <li data-i18n="booking.child.info1">Hands-on activities designed for children aged 6–12</li>
+                                    <li data-i18n="booking.child.info2">Interactive zones introducing ancient Egypt through play</li>
+                                    <li data-i18n="booking.child.info3">An interactive guidebook is available to enhance the experience</li>
+                                    <li data-i18n="booking.child.info4">Children must be accompanied by an adult at all times</li>
+                                </ul></div>
+                            </div>
+                            <div class="item">
+                                <span class="link" onclick="toggleText(2)" data-i18n="booking.child.why">Why Visit</span>
+                                <div class="content"><ul>
+                                    <li data-i18n="booking.child.why1">Fun and educational experience for kids</li>
+                                    <li data-i18n="booking.child.why2">Encourages creativity and curiosity</li>
+                                    <li data-i18n="booking.child.why3">Safe and engaging environment</li>
+                                    <li data-i18n="booking.child.why4">Perfect for families</li>
+                                </ul></div>
+                            </div>
+
+                            <div class="addon-footer">
+                                <span class="addon-price">EGP 150 <small data-i18n="booking.perPerson">/ person</small></span>
+                                <div class="counter">
+                                    <button type="button" onclick="changeAddon('child-museum',-1)">−</button>
+                                    <span id="child-museum-count">0</span>
+                                    <button type="button" onclick="changeAddon('child-museum',1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="addon-card" data-addon="discovery" data-price="125">
+                        <div class="addon-img">
+                            <img src="discovery-challenge.jpg" alt="GEM Discovery Challenge">
+                        </div>
+                        <div class="addon-body">
+                            <div class="addon-tag" data-i18n="booking.discovery.tag">Most Popular</div>
+                            <h3 data-i18n="booking.discovery.title">GEM Discovery Challenge</h3>
+                            <p data-i18n="booking.discovery.desc1">Make your visit to the Grand Egyptian Museum unforgettable by joining the GEM Discovery Challenge with your friends and family.</p>
+                            <p data-i18n="booking.discovery.desc2">Explore a selection of fascinating artifacts through a fun and interactive experience. Follow clues, solve puzzles, and uncover the hidden treasure key. Winners of the challenge will receive a special souvenir to remember their adventure.</p>
+
+                            <div class="item">
+                                <span class="link" onclick="toggleText(3)" data-i18n="booking.discovery.schedule">Game Schedule</span>
+                                <div class="content"><ul>
+                                    <li data-i18n="booking.discovery.schedule1">The game is offered daily at 12 PM, 2 PM, 4 PM</li>
+                                    <li data-i18n="booking.discovery.schedule2">Additional slot: 6:00 PM (Wednesdays &amp; Saturdays)</li>
+                                </ul></div>
+                            </div>
+                            <div class="item">
+                                <span class="link" onclick="toggleText(4)" data-i18n="booking.discovery.info">Important Information</span>
+                                <div class="content"><ul>
+                                    <li data-i18n="booking.discovery.info1">Each participant must have their own ticket</li>
+                                    <li data-i18n="booking.discovery.info2">The challenge can take up to 1 hour</li>
+                                    <li data-i18n="booking.discovery.info3">Suitable for all ages</li>
+                                    <li data-i18n="booking.discovery.info4">Children under 12 must be accompanied by someone aged 16+ or an adult</li>
+                                    <li data-i18n="booking.discovery.info5">A smartphone is required to participate</li>
+                                </ul></div>
+                            </div>
+                            <div class="item">
+                                <span class="link" onclick="toggleText(5)" data-i18n="booking.discovery.why">Why You'll Love It</span>
+                                <div class="content"><ul>
+                                    <li data-i18n="booking.discovery.why1">Fun and interactive experience</li>
+                                    <li data-i18n="booking.discovery.why2">Perfect for friends and families</li>
+                                    <li data-i18n="booking.discovery.why3">Discover ancient Egyptian artifacts in an exciting way</li>
+                                    <li data-i18n="booking.discovery.why4">Chance to win a souvenir</li>
+                                </ul></div>
+                            </div>
+
+                            <div class="addon-footer">
+                                <span class="addon-price">EGP 125 <small data-i18n="booking.perPerson">/ person</small></span>
+                                <div class="counter">
+                                    <button type="button" onclick="changeAddon('discovery',-1)">−</button>
+                                    <span id="discovery-count">0</span>
+                                    <button type="button" onclick="changeAddon('discovery',1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="panel-footer">
+                    <button class="btn-secondary" onclick="goToStep(1)" data-i18n="booking.backBtn">← Back</button>
+                    <button class="btn-primary" onclick="goToStep(3)" data-i18n="booking.continueBtn">Continue →</button>
+                </div>
+            </section>
+
+
+
+            <!-- ========= STEP 3: CONTACT DETAILS ========= -->
+            <section class="panel" id="panel-3">
+                <div class="panel-header">
+                    <h2 data-i18n="booking.step3Heading">Contact details</h2>
+                    <p data-i18n="booking.step3Sub">We'll send your booking confirmation and tickets to these details.</p>
+                </div>
+
+                <form class="contact-form" onsubmit="event.preventDefault(); goToStep(4);">
+
+                    <div class="input-group">
+                        <label data-i18n="booking.fullNameLabel">Full name</label>
+                        <input type="text" id="f-name" autocomplete="new-password" data-i18n-placeholder="booking.fullNamePh" placeholder="Name as it appears on ID" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label data-i18n="booking.emailLabel">Email address</label>
+                        <input type="email" id="f-email" autocomplete="new-password" placeholder="you@example.com" required>
+                    </div>
+
+                    <div class="row-inputs">
+                        <div class="input-group country-code">
+                            <label data-i18n="booking.mobileLabel">Mobile number</label>
+                            <div class="mobile-input">
+                                <span class="flag-icon">🇪🇬</span>
+                                <span class="code-text">+20</span>
+                                <input type="tel" id="f-mobile" autocomplete="off" placeholder="100 123 4567">
+                            </div>
+                        </div>
+
+                        <div class="input-group nationality-select">
+                            <label data-i18n="booking.natLabel">Nationality</label>
+                            <select id="f-nat">
+                                <option value="" disabled selected data-i18n="booking.natPlaceholder">Select your nationality</option>
+                                <option value="Egyptian">Egypt</option>
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="France">France</option>
+                                <option value="Germany">Germany</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="panel-footer">
+                        <button type="button" class="btn-secondary" onclick="goToStep(2)" data-i18n="booking.editAddonsBtn">← Edit Add-Ons</button>
+                        <button type="submit" class="btn-primary" data-i18n="booking.nextBtn">Next →</button>
+                    </div>
+                </form>
+            </section>
+
+
+
+            <!-- ========= STEP 4: REVIEW & PAY ========= -->
+            <section class="panel" id="panel-4">
+                <div class="panel-header flex-between">
+                    <div>
+                        <h2 data-i18n="booking.step4Heading">Review your visit before payment</h2>
+                        <p data-i18n="booking.step4Sub">Please confirm that all details are correct before proceeding.</p>
+                    </div>
+                    <button class="edit-btn" onclick="goToStep(3)" data-i18n="booking.editContactBtn">← Edit Contact Details</button>
+                </div>
+
+                <section class="review-section">
+                    <h3 data-i18n="booking.visitSummary">Your visit summary</h3>
+                    <div class="info-grid">
+                        <div class="info-row"><span data-i18n="booking.dateTime">Date &amp; time</span><strong id="r-datetime">—</strong></div>
+                        <div class="info-row"><span data-i18n="booking.ticketTypeSummary">Ticket type</span><strong id="r-type">Admission</strong></div>
+                        <div class="info-row"><span data-i18n="booking.numTickets">Number of tickets</span><strong id="r-count">1</strong></div>
+                        <div class="info-row"><span data-i18n="booking.visitorName">Visitor name</span><strong id="r-name">—</strong></div>
+                        <div class="info-row"><span data-i18n="booking.emailSummary">Email</span><strong id="r-email">—</strong></div>
+                        <div class="info-row"><span data-i18n="booking.mobileSummary">Mobile</span><strong id="r-mobile">—</strong></div>
+                        <div class="info-row"><span data-i18n="booking.natSummary">Nationality</span><strong id="r-nat">—</strong></div>
+                    </div>
+                </section>
+
+                <section class="promo-section">
+                    <label><span data-i18n="booking.promoLabel">Promo code</span> <small data-i18n="booking.promoOptional">(optional)</small></label>
+                    <div class="promo-input-group">
+                        <input type="text" id="promo-input" data-i18n-placeholder="booking.promoPlaceholder" placeholder="Enter code">
+                        <button type="button" id="apply-btn" data-i18n="booking.applyBtn">Apply</button>
+                    </div>
+                    <div id="promo-msg" class="promo-msg"></div>
+                </section>
+
+                <section class="payment-details" id="payment-breakdown">
+                    <!-- filled by JS -->
+                </section>
+
+                <div class="panel-footer">
+                    <button type="button" class="btn-secondary" onclick="goToStep(3)" data-i18n="booking.backBtn">← Back</button>
+                    <button type="button" class="btn-primary proceed-btn" id="proceed-btn" data-i18n="booking.proceedPayBtn">Proceed to payment →</button>
+                    <button type="button" class="btn-primary" id="download-btn" hidden data-i18n="booking.downloadBtn">⬇ Download Ticket</button>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- RIGHT: Persistent summary -->
+        <aside class="selection-sidebar">
+            <div class="sidebar-header">
+                <h3 data-i18n="booking.yourSelection">Your Selection</h3>
+                <span class="badge" id="s-badge">1 ticket selected</span>
+            </div>
+            <div class="sidebar-details">
+                <div class="row"><span data-i18n="booking.dateLabel">Date</span><span id="s-date">—</span></div>
+                <div class="row"><span data-i18n="booking.entryTimeLabel">Entry Time</span><span id="s-time">12:00 PM</span></div>
+                <div class="row"><span data-i18n="booking.ticketLabel">Ticket</span><span id="s-ticket">Admission · Egyptian</span></div>
+                <div class="row"><span data-i18n="booking.ticketsLabel">Tickets</span><span id="s-count">1</span></div>
+                <div class="row" id="s-addons-row" style="display:none;">
+                    <span data-i18n="booking.addonsLabel">Add-ons</span><span id="s-addons">—</span>
+                </div>
+                <div class="row total"><span data-i18n="booking.totalLabel">Total</span><strong id="s-total">200 EGP</strong></div>
+            </div>
+
+            <div class="sidebar-note">
+                <span>🔒</span> <span data-i18n="booking.secureBooking">Secure booking · instant confirmation</span>
+            </div>
+        </aside>
+    </div>
+    <!-- Popup Modal -->
+    <div class="modal-overlay" id="modal-overlay" hidden>
+        <div class="modal">
+            <div class="modal-icon" id="modal-icon">!</div>
+            <h3 class="modal-title" id="modal-title">Heads up</h3>
+            <p class="modal-message" id="modal-message">Something needs your attention.</p>
+            <button class="modal-btn" id="modal-btn">OK</button>
+        </div>
+    </div>
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="../shared/nav-footer.js"></script>
+<script src="../shared/i18n.js"></script>
+<script src="booking.js"></script>
+</body>
+</html>

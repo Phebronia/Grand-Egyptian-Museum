@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="gallery.stairs.pageTitle">Grand Stairs</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="grandstaircase.css">
+<link rel="stylesheet" href="../../../shared/nav-footer.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../../home/home.html" data-i18n="nav.home">Home</a>
+    <i class="fa-solid fa-chevron-right"></i>
+    <a href="../explore.html" data-i18n="nav.explore">Explore</a>
+    <i class="fa-solid fa-chevron-right"></i>
+    <span data-i18n="gallery.stairs.breadcrumb">Grand Stairs</span>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="hall-header">
+    <span class="hall-eyebrow" data-i18n="gallery.stairs.eyebrow">The Grand Egyptian Museum</span>
+    <h1 data-i18n="gallery.stairs.h1">The Grand Staircase</h1>
+    <p class="hall-subtitle" data-i18n="gallery.stairs.subtitle">A vertical gallery of kings, gods, and eternity</p>
+
+    <div class="hall-meta">
+      <div class="meta-item">
+        <span class="meta-num">60+</span>
+        <span class="meta-label" data-i18n="gallery.stairs.meta1">Statues on display</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="meta-num">6</span>
+        <span class="meta-label" data-i18n="gallery.stairs.meta2">Stories tall</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="meta-num">4</span>
+        <span class="meta-label" data-i18n="gallery.stairs.meta3">Thematic sections</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <div class="tabs" role="tablist">
+    <button class="active" data-tab="artifacts" role="tab" aria-selected="true">
+      <i class="fa-solid fa-gem"></i>
+      <span data-i18n="gallery.common.levels">Levels</span>
+      <span class="tab-count">4</span>
+    </button>
+    <button data-tab="history" role="tab" aria-selected="false">
+      <i class="fa-solid fa-scroll"></i>
+      <span data-i18n="gallery.common.history">History</span>
+    </button>
+    <button data-tab="gallery" role="tab" aria-selected="false">
+      <i class="fa-solid fa-images"></i>
+      <span data-i18n="gallery.common.gallery">Gallery</span>
+      <span class="tab-count">8</span>
+    </button>
+    <span class="tab-indicator"></span>
+  </div>
+
+  <!-- ARTIFACTS — 4 levels as horizontal rows (like a staircase) -->
+  <section class="tab-content active" id="artifacts" role="tabpanel">
+    <div class="levels">
+
+      <a href="../grand stairs/levels/level1.html" class="level-row">
+        <div class="level-marker">
+          <span class="level-marker-num">01</span>
+          <span class="level-marker-line"></span>
+        </div>
+        <div class="level-img">
+          <img src="imgs/level1.jpeg" alt="level 1">
+        </div>
+        <div class="level-info">
+          <span class="level-tag tag-royal" data-i18n="level.level1.tag">Royal Image</span>
+          <h3 data-i18n="level.level1.subtitle">How pharaohs chose to be remembered</h3>
+          <p class="level-desc">~15 | <span data-i18n="gallery.common.artifactsInLevel">Artifacts in this level</span></p>
+          <span class="level-link" data-i18n="gallery.common.enterLevel">Enter level <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <a href="../grand stairs/levels/level2.html" class="level-row">
+        <div class="level-marker">
+          <span class="level-marker-num">02</span>
+          <span class="level-marker-line"></span>
+        </div>
+        <div class="level-img">
+          <img src="imgs/level2.jpeg" alt="level 2">
+        </div>
+        <div class="level-info">
+          <span class="level-tag tag-houses" data-i18n="level.level2.tag">Divine Houses</span>
+          <h3 data-i18n="level.level2.subtitle">The temples of Egypt, remembered in stone</h3>
+          <p class="level-desc"> ~12 | <span data-i18n="gallery.common.artifactsInLevel">Artifacts in this level</span></p>
+          <span class="level-link" data-i18n="gallery.common.enterLevel">Enter level <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <a href="../grand stairs/levels/level3.html" class="level-row">
+        <div class="level-marker">
+          <span class="level-marker-num">03</span>
+          <span class="level-marker-line"></span>
+        </div>
+        <div class="level-img">
+          <img src="imgs/level3.jpg" alt="level3">
+        </div>
+        <div class="level-info">
+          <span class="level-tag tag-gods" data-i18n="level.level3.tag">Kings &amp; Gods</span>
+          <h3 data-i18n="level.level3.subtitle">Where the pharaoh meets the divine</h3>
+          <p class="level-desc">~14 | <span data-i18n="gallery.common.artifactsInLevel">Artifacts in this level</span></p>
+          <span class="level-link" data-i18n="gallery.common.enterLevel">Enter level <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <a href="../grand stairs/levels/level4.html" class="level-row level-row-last">
+        <div class="level-marker">
+          <span class="level-marker-num">04</span>
+        </div>
+        <div class="level-img">
+          <img src="imgs/level4.jpg" alt="level4">
+        </div>
+        <div class="level-info">
+          <span class="level-tag tag-eternity" data-i18n="level.level4.tag">Journey to Eternity</span>
+          <h3 data-i18n="level.level4.subtitle">Where the king becomes a star, and the stairs become a horizon</h3>
+          <p class="level-desc">~10 | <span data-i18n="gallery.common.artifactsInLevel">Artifacts in this level</span></p>
+          <span class="level-link" data-i18n="gallery.common.enterLevel">Enter level <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section class="tab-content" id="history" role="tabpanel" hidden>
+    <div class="history">
+
+      <!-- AUDIO NARRATION PLAYER -->
+      <div class="audio-player" id="audioPlayer">
+        <button class="audio-btn" id="audioBtn" aria-label="Play narration">
+          <i class="fa-solid fa-play" id="audioIcon"></i>
+        </button>
+        <div class="audio-info">
+          <div class="audio-top">
+            <span class="audio-label" data-i18n="gallery.common.listenStory">Listen to the story</span>
+            <span class="audio-time"><span id="audioCurrent">0:00</span> / <span id="audioDuration">0:00</span></span>
+          </div>
+          <div class="audio-progress" id="audioProgress">
+            <div class="audio-progress-fill" id="audioProgressFill"></div>
+            <div class="audio-progress-thumb" id="audioProgressThumb"></div>
+          </div>
+        </div>
+        <div class="audio-waves" id="audioWaves" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <audio id="audioElement" preload="metadata" src="audio/grand stairs.mp3"></audio>
+      </div>
+
+      <article class="history-block">
+        <div class="history-year">Level 1</div>
+        <div class="history-body">
+          <h3 data-i18n="level.level1.tag">Royal Image</h3>
+          <p data-i18n="gallery.stairs.hist1Body">The ascent begins with the face of kingship itself. Colossal seated and standing statues of pharaohs —
+            from Senwosret III of the Middle Kingdom to Hatshepsut, Thutmose III, Amenhotep III,
+            and even the Roman emperor Caracalla portrayed as pharaoh — show how each ruler chose to present
+            himself to gods, subjects, and eternity.</p>
+        </div>
+      </article>
+
+      <article class="history-block">
+        <div class="history-year">Level 2</div>
+        <div class="history-body">
+          <h3 data-i18n="level.level2.tag">Divine Houses</h3>
+          <p data-i18n="gallery.stairs.hist2Body">Here the temples themselves come into focus. Obelisk tips, temple lintels,
+            and architectural fragments — including a gilded tip from an obelisk of Hatshepsut —
+            recall the great sanctuaries of Karnak, Luxor, and beyond, where the pharaoh built permanence
+            into stone for the gods.</p>
+        </div>
+      </article>
+
+      <article class="history-block">
+        <div class="history-year">Level 3</div>
+        <div class="history-body">
+          <h3 data-i18n="level.level3.tag">Kings &amp; Gods</h3>
+          <p data-i18n="gallery.stairs.hist3Body">Midway up the staircase, the pharaoh meets the divine. Statues depict kings standing, kneeling,
+            or embracing the gods they served — Sekhmet the lioness goddess of war, Ptah the creator,
+            and Re-Horakhty the morning sun — illustrating the sacred bond between the ruler and the
+            powers of the cosmos.</p>
+        </div>
+      </article>
+
+      <article class="history-block history-highlight">
+        <div class="history-year">Level 4</div>
+        <div class="history-body">
+          <h3 data-i18n="level.level4.tag">Journey to Eternity</h3>
+          <p data-i18n="gallery.stairs.hist4Body">The final ascent is funerary. Stone sarcophagi from across three millennia and a lone pyramidion
+            from an unknown 13th Dynasty king at Saqqara prepare the visitor for the last step — a panoramic
+            window opening onto the Giza Pyramids, the eternal houses of the kings.</p>
+        </div>
+      </article>
+
+      <div class="history-outro">
+        <p data-i18n="gallery.stairs.histOutro">Rising six stories through 6,000 square metres, the Grand Staircase is both architecture and narrative —
+          a climb from the earliest kings to the splendour of the New Kingdom, ending with the pyramids
+          themselves framed in glass.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="tab-content" id="gallery" role="tabpanel" hidden>
+    <div class="grid grid-gallery">
+      <a href="../artifacts/artifact.html?id=stairs1" class="card card-gallery"><img src="imgs/stairs1.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=stairs2" class="card card-gallery"><img src="imgs/stairs2.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=stairs3" class="card card-gallery"><img src="imgs/stairs3.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=stairs4" class="card card-gallery"><img src="imgs/stairs4.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=stairs5" class="card card-gallery"><img src="imgs/stairs5.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=stairs6" class="card card-gallery"><img src="imgs/stairs6.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=stairs7" class="card card-gallery"><img src="imgs/stairs7.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=stairs8" class="card card-gallery"><img src="imgs/stairs8.jpg" alt=""></a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+
+/* TABS */
+const tabs = document.querySelectorAll(".tabs button");
+const contents = document.querySelectorAll(".tab-content");
+const indicator = document.querySelector(".tab-indicator");
+
+function moveIndicator(btn) {
+  if (!indicator) return;
+  indicator.style.width = btn.offsetWidth + "px";
+  indicator.style.left = btn.offsetLeft + "px";
+}
+
+window.addEventListener("load", () => {
+  const active = document.querySelector(".tabs button.active");
+  if (active) moveIndicator(active);
+});
+
+window.addEventListener("resize", () => {
+  const active = document.querySelector(".tabs button.active");
+  if (active) moveIndicator(active);
+});
+
+tabs.forEach(btn => {
+  btn.addEventListener("click", () => {
+    tabs.forEach(b => {
+      b.classList.remove("active");
+      b.setAttribute("aria-selected", "false");
+    });
+    btn.classList.add("active");
+    btn.setAttribute("aria-selected", "true");
+
+    moveIndicator(btn);
+
+    const tab = btn.dataset.tab;
+    contents.forEach(c => {
+      c.classList.remove("active");
+      c.setAttribute("hidden", "");
+    });
+    const target = document.getElementById(tab);
+    target.classList.add("active");
+    target.removeAttribute("hidden");
+
+    if (tab !== "history") stopNarration();
+  });
+});
+
+/* AUDIO NARRATION */
+const audio = document.getElementById("audioElement");
+const audioBtn = document.getElementById("audioBtn");
+const audioIcon = document.getElementById("audioIcon");
+const audioPlayer = document.getElementById("audioPlayer");
+const audioCurrent = document.getElementById("audioCurrent");
+const audioDuration = document.getElementById("audioDuration");
+const audioProgress = document.getElementById("audioProgress");
+const audioProgressFill = document.getElementById("audioProgressFill");
+const audioProgressThumb = document.getElementById("audioProgressThumb");
+
+function formatTime(seconds) {
+  if (!isFinite(seconds) || seconds < 0) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+audio.addEventListener("loadedmetadata", () => {
+  audioDuration.textContent = formatTime(audio.duration);
+});
+
+audio.addEventListener("timeupdate", () => {
+  const percent = (audio.currentTime / audio.duration) * 100 || 0;
+  audioProgressFill.style.width = percent + "%";
+  audioProgressThumb.style.left = percent + "%";
+  audioCurrent.textContent = formatTime(audio.currentTime);
+});
+
+audio.addEventListener("play", () => {
+  audioIcon.className = "fa-solid fa-pause";
+  audioBtn.setAttribute("aria-label", "Pause narration");
+  audioPlayer.classList.add("playing");
+  audioPlayer.classList.remove("paused");
+});
+
+audio.addEventListener("pause", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioBtn.setAttribute("aria-label", "Play narration");
+  audioPlayer.classList.add("paused");
+  audioPlayer.classList.remove("playing");
+});
+
+audio.addEventListener("ended", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioBtn.setAttribute("aria-label", "Play narration");
+  audioPlayer.classList.remove("playing", "paused");
+  audio.currentTime = 0;
+});
+
+audio.addEventListener("error", () => {
+  audioPlayer.classList.add("error");
+  audioDuration.textContent = "unavailable";
+});
+
+audioBtn.addEventListener("click", () => {
+  if (audio.paused) audio.play();
+  else audio.pause();
+});
+
+audioProgress.addEventListener("click", (e) => {
+  const rect = audioProgress.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+  if (isFinite(audio.duration)) {
+    audio.currentTime = percent * audio.duration;
+  }
+});
+
+function stopNarration() {
+  if (!audio.paused) {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+}
+
+window.addEventListener("beforeunload", stopNarration);
+
+</script>
+<script src="../../../shared/nav-footer.js"></script>
+<script src="../../../shared/i18n.js"></script>
+
+</body>
+</html>

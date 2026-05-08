@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="artifact.column.pageTitle">Column of King Merenptah</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="artifactiembeded.css">
+<link rel="stylesheet" href="../../shared/nav-footer.css">
+</head>
+
+<body>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../home/home.html" data-i18n="nav.home">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <a href="../../explore/explore.htm" data-i18n="nav.explore">Explore</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <a href="../../explore/gallaries/grand-hall.html" data-i18n="gallery.grandHall.h1">Grand Hall</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span data-i18n="artifact.column.breadcrumb">Merenptah Column</span>
+</nav>
+
+<!-- EXHIBIT HERO -->
+<section class="exhibit">
+
+  <div class="exhibit-visual">
+    <div class="view-tabs" role="tablist">
+      <button class="view-tab active" data-view="3d" role="tab" aria-selected="true">
+        <i class="fa-solid fa-cube"></i> <span data-i18n="artifact.common.view3d">3D view</span>
+      </button>
+      <button class="view-tab" data-view="photo" role="tab" aria-selected="false">
+        <i class="fa-solid fa-image"></i> <span data-i18n="artifact.common.photo">Photo</span>
+      </button>
+    </div>
+
+    <div class="view-panel active" data-view="3d">
+        <iframe
+            class="sketchfab-iframe"
+            title="Giant column of the Great Hypostyle Hall"
+            frameborder="0"
+            allowfullscreen
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            src="https://sketchfab.com/models/03a3e293d62941e685b9ef055f29ac67/embed?autostart=1&ui_theme=dark">
+        </iframe>
+    </div>
+
+    <div class="view-panel" data-view="photo">
+      <img src="imgs/king.jpeg" alt="Column of King Merenptah">
+    </div>
+
+    <div class="visual-hint">
+      <i class="fa-solid fa-hand-pointer"></i>
+      <span data-i18n="artifact.common.dragHint">Drag to rotate · Scroll to zoom</span>
+    </div>
+  </div>
+
+  <div class="exhibit-info">
+
+    <span class="artifact-eyebrow" data-i18n="artifact.column.eyebrow">New Kingdom · Dynasty XIX</span>
+    <h1 data-i18n="artifact.column.h1">Victory Column <em>of King Merenptah</em></h1>
+    <p class="artifact-subtitle" data-i18n="artifact.column.subtitle">A pharaoh's war record carved in red granite — "writing for eternity"</p>
+
+    <div class="artifact-actions">
+
+      <div class="audio-player" id="audioPlayer">
+        <button class="audio-btn" id="audioBtn" aria-label="Play narration">
+          <i class="fa-solid fa-play" id="audioIcon"></i>
+        </button>
+        <div class="audio-info">
+          <div class="audio-top">
+            <span class="audio-label" data-i18n="artifact.common.listen">Listen</span>
+            <span class="audio-time"><span id="audioCurrent">0:00</span> / <span id="audioDuration">0:00</span></span>
+          </div>
+          <div class="audio-progress" id="audioProgress">
+            <div class="audio-progress-fill" id="audioProgressFill"></div>
+            <div class="audio-progress-thumb" id="audioProgressThumb"></div>
+          </div>
+        </div>
+        <audio id="audioElement" preload="metadata" src="audio/column.mp3"></audio>
+      </div>
+
+      <button class="fav-btn" id="favBtn" aria-label="Add to favorites" aria-pressed="false">
+        <i class="fa-regular fa-heart" id="favIcon"></i>
+        <span class="fav-label" data-i18n="artifact.common.save">Save</span>
+      </button>
+
+    </div>
+
+    <dl class="artifact-meta">
+        <div class="meta-item"><dt data-i18n="artifact.common.era">Era</dt><dd>New Kingdom</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.reign">Reign</dt><dd>Merenptah (1213–1203 BC)</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.material">Material</dt><dd>Red Granite</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.height">Height</dt><dd>5.6 m</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.weight">Weight</dt><dd>17 tons</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.discovered">Discovered</dt><dd>1970 · Heliopolis</dd></div>
+    </dl>
+
+  </div>
+
+</section>
+
+<!-- DESCRIPTION -->
+<section class="artifact-body">
+  <div class="body-content">
+    <h2 data-i18n="artifact.common.aboutArtifact">About the artifact</h2>
+
+    <p class="lead" data-i18n="artifact.column.lead">Carved from red granite on a limestone base, this 5.6-metre column commemorates the military
+        victories of King Merenptah — the thirteenth son and eventual successor of Ramses II — and the moment the
+        name "Israel" first appears in world history.</p>
+
+    <p data-i18n="[html]artifact.column.body1">By the time he took the throne in 1213 BC, Merenptah was already elderly,
+        having outlived most of his brothers during his father's 66-year reign. His own decade of rule was
+        short but turbulent: Egypt's western frontier was under attack from Libyan tribes allied with the
+        mysterious <em>Sea Peoples</em>, and unrest was spreading across the Levant. This column records his
+        victories over them.</p>
+
+    <p data-i18n="[html]artifact.column.body2">Four sides of the shaft are covered in scenes of royal power. Merenptah is shown receiving a mace from the
+        warrior goddess <em>Anath</em>, and the sword of victory from <strong>Amun</strong>,
+        <strong>Re-Horakhty</strong>, <strong>Seth</strong>, <strong>Montu</strong>, and the lioness goddess
+        <strong>Sekhmet</strong>. Bearded captives are bound with ropes just above the base, and the inscription
+        records the spoils of battle — gold, silver, horses, goats, bows and arrows — taken from those who had
+        "transgressed the borders of Egypt."</p>
+
+    <p data-i18n="[html]artifact.column.body3">The column originally stood at a temple Merenptah built at <strong>Heliopolis</strong> —
+        the ancient City of the Sun, today buried beneath the Cairo suburb of Matariya. Discovered in 1970,
+        it was taken to Cairo's Salaheddin Citadel in 2008 for a decade of conservation, as rising groundwater was
+        threatening the surrounding area. In 2018 it was transported to its permanent home in the atrium of
+        the Grand Egyptian Museum, where it stands today among the colossi of Ramses II and the Ptolemaic kings.</p>
+
+    <blockquote class="quote">
+        <p data-i18n="artifact.column.quote">Take your mace so that you may kill the rebels.</p>
+        <cite data-i18n="artifact.column.cite">— The goddess Anath, addressing Merenptah</cite>
+    </blockquote>
+</section>
+
+<script>
+const viewTabs = document.querySelectorAll(".view-tab");
+const viewPanels = document.querySelectorAll(".view-panel");
+viewTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    viewTabs.forEach(t => { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
+    tab.classList.add("active");
+    tab.setAttribute("aria-selected", "true");
+    const view = tab.dataset.view;
+    viewPanels.forEach(p => { p.classList.toggle("active", p.dataset.view === view); });
+  });
+});
+
+const audio = document.getElementById("audioElement");
+const audioBtn = document.getElementById("audioBtn");
+const audioIcon = document.getElementById("audioIcon");
+const audioPlayer = document.getElementById("audioPlayer");
+const audioCurrent = document.getElementById("audioCurrent");
+const audioDuration = document.getElementById("audioDuration");
+const audioProgress = document.getElementById("audioProgress");
+const audioProgressFill = document.getElementById("audioProgressFill");
+const audioProgressThumb = document.getElementById("audioProgressThumb");
+
+function formatTime(seconds) {
+  if (!isFinite(seconds) || seconds < 0) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+audio.addEventListener("loadedmetadata", () => { audioDuration.textContent = formatTime(audio.duration); });
+audio.addEventListener("timeupdate", () => {
+  const percent = (audio.currentTime / audio.duration) * 100 || 0;
+  audioProgressFill.style.width = percent + "%";
+  audioProgressThumb.style.left = percent + "%";
+  audioCurrent.textContent = formatTime(audio.currentTime);
+});
+audio.addEventListener("play", () => {
+  audioIcon.className = "fa-solid fa-pause";
+  audioBtn.setAttribute("aria-label", "Pause narration");
+  audioPlayer.classList.add("playing");
+});
+audio.addEventListener("pause", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioBtn.setAttribute("aria-label", "Play narration");
+  audioPlayer.classList.remove("playing");
+});
+audio.addEventListener("ended", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioPlayer.classList.remove("playing");
+  audio.currentTime = 0;
+});
+audio.addEventListener("error", () => {
+  audioPlayer.classList.add("error");
+  audioDuration.textContent = "unavailable";
+});
+audioBtn.addEventListener("click", () => { if (audio.paused) audio.play(); else audio.pause(); });
+audioProgress.addEventListener("click", (e) => {
+  const rect = audioProgress.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+  if (isFinite(audio.duration)) { audio.currentTime = percent * audio.duration; }
+});
+window.addEventListener("beforeunload", () => { if (!audio.paused) audio.pause(); });
+
+window.GEM_ARTIFACT = { id: 'merenptah-column', title: 'Victory Column of King Merenptah', era: 'New Kingdom · Dynasty XIX', img: 'imgs/king.jpeg', link: 'column.html' };
+</script>
+<script src="gem-favorites.js"></script>
+<script src="../../shared/nav-footer.js"></script>
+<script src="../../shared/i18n.js"></script>
+
+</body>
+</html>

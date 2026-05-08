@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="artifact.tutMask.pageTitle">Golden Mask of Tutankhamun</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="artifact.css">
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+
+<link rel="stylesheet" href="../../shared/nav-footer.css">
+
+</head>
+
+<body>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../home/home.html" data-i18n="nav.home">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <a href="../explore.html" data-i18n="nav.explore">Explore</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <a href="../gallaries/tut-collection.html" data-i18n="gallery.tut.h1">Tutankhamun</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span data-i18n="artifact.tutMask.breadcrumb">Golden Mask</span>
+</nav>
+
+<!-- EXHIBIT HERO -->
+<section class="exhibit">
+
+  <div class="exhibit-visual">
+    <div class="view-tabs" role="tablist">
+      <button class="view-tab active" data-view="3d" role="tab" aria-selected="true">
+        <i class="fa-solid fa-cube"></i> <span data-i18n="artifact.common.view3d">3D view</span>
+      </button>
+      <button class="view-tab" data-view="photo" role="tab" aria-selected="false">
+        <i class="fa-solid fa-image"></i> <span data-i18n="artifact.common.photo">Photo</span>
+      </button>
+    </div>
+
+    <div class="view-panel active" data-view="3d">
+      <model-viewer
+        src="models/tut.glb"
+        alt="3D model of the Golden Mask of Tutankhamun"
+        auto-rotate
+        camera-controls
+        shadow-intensity="1"
+        exposure="0.9"
+        ar
+        ar-modes="webxr scene-viewer quick-look">
+        <div class="model-loading" slot="poster">
+          <i class="fa-solid fa-cube fa-spin"></i>
+          <span>Loading 3D model…</span>
+        </div>
+        <button slot="ar-button" class="ar-btn">
+          <i class="fa-solid fa-expand"></i> View in AR
+        </button>
+      </model-viewer>
+    </div>
+
+    <div class="view-panel" data-view="photo">
+      <img src="imgs/tutankhamun.jpg" alt="Golden Mask of Tutankhamun">
+    </div>
+
+    <div class="visual-hint">
+      <i class="fa-solid fa-hand-pointer"></i>
+      <span data-i18n="artifact.common.dragHint">Drag to rotate · Scroll to zoom</span>
+    </div>
+  </div>
+
+  <div class="exhibit-info">
+
+    <span class="artifact-eyebrow" data-i18n="artifact.tutMask.eyebrow">New Kingdom · Dynasty XVIII</span>
+    <h1 data-i18n="artifact.tutMask.h1">Golden Mask <em>of Tutankhamun</em></h1>
+    <p class="artifact-subtitle" data-i18n="artifact.tutMask.subtitle">The burial mask that became the face of ancient Egypt</p>
+
+    <div class="artifact-actions">
+
+      <div class="audio-player" id="audioPlayer">
+        <button class="audio-btn" id="audioBtn" aria-label="Play narration">
+          <i class="fa-solid fa-play" id="audioIcon"></i>
+        </button>
+        <div class="audio-info">
+          <div class="audio-top">
+            <span class="audio-label" data-i18n="artifact.common.listen">Listen</span>
+            <span class="audio-time"><span id="audioCurrent">0:00</span> / <span id="audioDuration">0:00</span></span>
+          </div>
+          <div class="audio-progress" id="audioProgress">
+            <div class="audio-progress-fill" id="audioProgressFill"></div>
+            <div class="audio-progress-thumb" id="audioProgressThumb"></div>
+          </div>
+        </div>
+        <audio id="audioElement" preload="metadata" src="audio/tut-mask.mp3"></audio>
+      </div>
+
+      <button class="fav-btn" id="favBtn" aria-label="Add to favorites" aria-pressed="false">
+        <i class="fa-regular fa-heart" id="favIcon"></i>
+        <span class="fav-label" data-i18n="artifact.common.save">Save</span>
+      </button>
+
+    </div>
+
+    <dl class="artifact-meta">
+      <div class="meta-item"><dt data-i18n="artifact.common.era">Era</dt><dd>New Kingdom</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.discovered">Discovered</dt><dd>1922</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.discoveredBy">Discovered by</dt><dd>Howard Carter</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.materials">Materials</dt><dd>Gold, Glass, Lapis Lazuli</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.weight">Weight</dt><dd>10.23 kg</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.height">Height</dt><dd>54 cm</dd></div>
+    </dl>
+
+  </div>
+
+</section>
+
+<!-- DESCRIPTION -->
+<section class="artifact-body">
+  <div class="body-content">
+    <h2 data-i18n="artifact.common.aboutArtifact">About the artifact</h2>
+    <p class="lead" data-i18n="artifact.tutMask.lead">This mask of solid gold is one of the most famous objects in the world — the death mask of the boy king Tutankhamun, who ruled Egypt over 3,300 years ago.</p>
+    <p data-i18n="artifact.tutMask.body1">Crafted from two layers of high-karat gold and inlaid with lapis lazuli, carnelian, obsidian, and coloured glass, the mask was placed directly over the face of the king's mummified body. Its weight of more than 10 kilograms of gold speaks to the wealth of the New Kingdom at the height of its power.</p>
+    <p data-i18n="[html]artifact.tutMask.body2">The headdress is the striped <em>nemes</em> worn only by pharaohs, flanked by a vulture goddess Nekhbet and a cobra goddess Wadjet — the protective deities of Upper and Lower Egypt. The false beard, braided and curled, symbolizes the king's divine status, while the broad collar is composed of twelve rows of semi-precious stones.</p>
+    <p data-i18n="artifact.tutMask.body3">Discovered by British archaeologist Howard Carter in 1922 inside the nearly untouched tomb KV62 in the Valley of the Kings, the mask has since become the most recognizable artifact from ancient Egypt — a symbol of pharaonic power, craftsmanship, and the timeless mystery of Tutankhamun himself.</p>
+    <blockquote class="quote">
+      <p data-i18n="artifact.tutMask.quote">Everywhere the glint of gold.</p>
+      <cite data-i18n="artifact.tutMask.cite">— Howard Carter, on entering the tomb, 1922</cite>
+    </blockquote>
+  </div>
+</section>
+
+<script>
+const viewTabs = document.querySelectorAll(".view-tab");
+const viewPanels = document.querySelectorAll(".view-panel");
+viewTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    viewTabs.forEach(t => { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
+    tab.classList.add("active");
+    tab.setAttribute("aria-selected", "true");
+    const view = tab.dataset.view;
+    viewPanels.forEach(p => { p.classList.toggle("active", p.dataset.view === view); });
+  });
+});
+
+const audio = document.getElementById("audioElement");
+const audioBtn = document.getElementById("audioBtn");
+const audioIcon = document.getElementById("audioIcon");
+const audioPlayer = document.getElementById("audioPlayer");
+const audioCurrent = document.getElementById("audioCurrent");
+const audioDuration = document.getElementById("audioDuration");
+const audioProgress = document.getElementById("audioProgress");
+const audioProgressFill = document.getElementById("audioProgressFill");
+const audioProgressThumb = document.getElementById("audioProgressThumb");
+
+function formatTime(seconds) {
+  if (!isFinite(seconds) || seconds < 0) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+audio.addEventListener("loadedmetadata", () => { audioDuration.textContent = formatTime(audio.duration); });
+audio.addEventListener("timeupdate", () => {
+  const percent = (audio.currentTime / audio.duration) * 100 || 0;
+  audioProgressFill.style.width = percent + "%";
+  audioProgressThumb.style.left = percent + "%";
+  audioCurrent.textContent = formatTime(audio.currentTime);
+});
+audio.addEventListener("play", () => {
+  audioIcon.className = "fa-solid fa-pause";
+  audioBtn.setAttribute("aria-label", "Pause narration");
+  audioPlayer.classList.add("playing");
+});
+audio.addEventListener("pause", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioBtn.setAttribute("aria-label", "Play narration");
+  audioPlayer.classList.remove("playing");
+});
+audio.addEventListener("ended", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioPlayer.classList.remove("playing");
+  audio.currentTime = 0;
+});
+audio.addEventListener("error", () => {
+  audioPlayer.classList.add("error");
+  audioDuration.textContent = "unavailable";
+});
+audioBtn.addEventListener("click", () => { if (audio.paused) audio.play(); else audio.pause(); });
+audioProgress.addEventListener("click", (e) => {
+  const rect = audioProgress.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+  if (isFinite(audio.duration)) { audio.currentTime = percent * audio.duration; }
+});
+window.addEventListener("beforeunload", () => { if (!audio.paused) audio.pause(); });
+
+window.GEM_ARTIFACT = { id: 'tut-golden-mask', title: 'Golden Mask of Tutankhamun', era: 'New Kingdom · Dynasty XVIII', img: 'imgs/tutankhamun.jpg', link: 'tutankhamun.html' };
+</script>
+<script src="gem-favorites.js"></script>
+<script src="../../shared/nav-footer.js"></script>
+
+</body>
+</html>

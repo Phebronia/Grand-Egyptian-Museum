@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="artifact.king.pageTitle">Colossus of a Ptolemaic King</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="artifactiembeded.css">
+<link rel="stylesheet" href="../../shared/nav-footer.css">
+</head>
+
+<body>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="../../home/home.html" data-i18n="nav.home">Home</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <a href="../../explore/explore.htm" data-i18n="nav.explore">Explore</a>
+  <i class="fa-solid fa-chevron-right"></i>
+  <span data-i18n="artifact.king.breadcrumb">Colossus of a Ptolemaic King</span>
+</nav>
+
+<!-- EXHIBIT HERO -->
+<section class="exhibit">
+
+  <div class="exhibit-visual">
+    <div class="view-tabs" role="tablist">
+      <button class="view-tab active" data-view="3d" role="tab" aria-selected="true">
+        <i class="fa-solid fa-cube"></i> <span data-i18n="artifact.common.view3d">3D view</span>
+      </button>
+      <button class="view-tab" data-view="photo" role="tab" aria-selected="false">
+        <i class="fa-solid fa-image"></i> <span data-i18n="artifact.common.photo">Photo</span>
+      </button>
+    </div>
+
+    <div class="view-panel active" data-view="3d">
+        <iframe
+            class="sketchfab-iframe"
+            title="Colossus of a Ptolemaic King"
+            frameborder="0"
+            allowfullscreen
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
+            allow="autoplay; fullscreen; xr-spatial-tracking"
+            src="https://sketchfab.com/models/4630333d2b9645679417b551421ea4a7/embed?autostart=1&ui_theme=dark">
+        </iframe>
+    </div>
+
+    <div class="view-panel" data-view="photo">
+      <img src="imgs/king.jpeg" alt="Colossus of a Ptolemaic King">
+    </div>
+
+    <div class="visual-hint">
+      <i class="fa-solid fa-hand-pointer"></i>
+      <span data-i18n="artifact.common.dragHint">Drag to rotate · Scroll to zoom</span>
+    </div>
+  </div>
+
+  <div class="exhibit-info">
+
+    <span class="artifact-eyebrow" data-i18n="artifact.king.eyebrow">Ptolemaic Period · c. 3rd century BC</span>
+    <h1 data-i18n="artifact.king.h1">Colossus <em>of a Ptolemaic King</em></h1>
+    <p class="artifact-subtitle" data-i18n="artifact.king.subtitle">Raised from the seabed after
+        more than a thousand years beneath the Mediterranean</p>
+
+    <div class="artifact-actions">
+
+      <div class="audio-player" id="audioPlayer">
+        <button class="audio-btn" id="audioBtn" aria-label="Play narration">
+          <i class="fa-solid fa-play" id="audioIcon"></i>
+        </button>
+        <div class="audio-info">
+          <div class="audio-top">
+            <span class="audio-label" data-i18n="artifact.common.listen">Listen</span>
+            <span class="audio-time"><span id="audioCurrent">0:00</span> / <span id="audioDuration">0:00</span></span>
+          </div>
+          <div class="audio-progress" id="audioProgress">
+            <div class="audio-progress-fill" id="audioProgressFill"></div>
+            <div class="audio-progress-thumb" id="audioProgressThumb"></div>
+          </div>
+        </div>
+        <audio id="audioElement" preload="metadata" src="audio/king.mp3"></audio>
+      </div>
+
+      <button class="fav-btn" id="favBtn" aria-label="Add to favorites" aria-pressed="false">
+        <i class="fa-regular fa-heart" id="favIcon"></i>
+        <span class="fav-label" data-i18n="artifact.common.save">Save</span>
+      </button>
+
+    </div>
+
+    <dl class="artifact-meta">
+        <div class="meta-item"><dt data-i18n="artifact.common.era">Era</dt><dd>Ptolemaic Period</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.likelyKing">Likely king</dt><dd>Ptolemy II Philadelphus</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.material">Material</dt><dd>Red Granite</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.height">Height</dt><dd>5 m</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.originalSite">Original site</dt><dd>Thonis-Heracleion</dd></div>
+        <div class="meta-item"><dt data-i18n="artifact.common.discovered">Discovered</dt><dd>2000 (underwater)</dd></div>
+    </dl>
+
+  </div>
+
+</section>
+
+<!-- DESCRIPTION -->
+<section class="artifact-body">
+  <div class="body-content">
+    <h2 data-i18n="artifact.common.aboutArtifact">About the artifact</h2>
+
+    <p class="lead" data-i18n="[html]artifact.king.lead">Carved from red granite and standing five metres tall, this colossus depicts a Ptolemaic
+        king in the traditional Egyptian style — a Greek-born ruler portrayed with the full iconography of a
+        pharaoh, wearing the double crown of Upper and Lower Egypt and the royal <em>shendyt</em> kilt.</p>
+
+    <p data-i18n="[html]artifact.king.body1">The king stands with his left leg advanced, arms held firmly at his sides, his right fist gripping a
+        small cylindrical object — a convention inherited from Old Kingdom royal statuary more than
+        two millennia earlier. Though the inscriptions have not survived, the scale, style, and provenance
+        of the statue point most strongly to <em>Ptolemy II Philadelphus</em>, who ruled Egypt between 285
+        and 246 BC.</p>
+
+    <p data-i18n="[html]artifact.king.body2">The colossus originally stood outside a temple of <em>Amun-Gereb</em> at <strong>Thonis-Heracleion</strong>,
+        the legendary port city that was Egypt's main gateway to the Mediterranean for centuries.
+        Then, around the 8th century AD, earthquakes and rising sea levels sent the entire city sinking beneath
+        the waters of Abu Qir Bay off the coast of Alexandria — and the colossus went with it.</p>
+
+    <p data-i18n="[html]artifact.king.body3">In the year 2000, a joint mission led by the European Institute for Underwater Archaeology
+        rediscovered the sunken city. Divers found the colossus lying on the seabed more than 6 kilometres offshore,
+        together with its companion statue of a Ptolemaic queen — likely <strong>Arsinoe II</strong>,
+        portrayed as the goddess Isis. The two statues toured Europe and the United States as part of the
+        <em>"Sunken Cities"</em> exhibition before taking their permanent place in the atrium of the Grand
+        Egyptian Museum.</p>
+
+    <blockquote class="quote">
+    <p data-i18n="artifact.king.quote">A Greek king in pharaoh's clothing — and a city the sea tried to keep.</p>
+    <cite data-i18n="artifact.king.cite">— On the Ptolemaic colossi of Thonis-Heracleion</cite>
+    </blockquote>
+</section>
+
+<script>
+const viewTabs = document.querySelectorAll(".view-tab");
+const viewPanels = document.querySelectorAll(".view-panel");
+viewTabs.forEach(tab => {
+  tab.addEventListener("click", () => {
+    viewTabs.forEach(t => { t.classList.remove("active"); t.setAttribute("aria-selected", "false"); });
+    tab.classList.add("active");
+    tab.setAttribute("aria-selected", "true");
+    const view = tab.dataset.view;
+    viewPanels.forEach(p => { p.classList.toggle("active", p.dataset.view === view); });
+  });
+});
+
+const audio = document.getElementById("audioElement");
+const audioBtn = document.getElementById("audioBtn");
+const audioIcon = document.getElementById("audioIcon");
+const audioPlayer = document.getElementById("audioPlayer");
+const audioCurrent = document.getElementById("audioCurrent");
+const audioDuration = document.getElementById("audioDuration");
+const audioProgress = document.getElementById("audioProgress");
+const audioProgressFill = document.getElementById("audioProgressFill");
+const audioProgressThumb = document.getElementById("audioProgressThumb");
+
+function formatTime(seconds) {
+  if (!isFinite(seconds) || seconds < 0) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+audio.addEventListener("loadedmetadata", () => { audioDuration.textContent = formatTime(audio.duration); });
+audio.addEventListener("timeupdate", () => {
+  const percent = (audio.currentTime / audio.duration) * 100 || 0;
+  audioProgressFill.style.width = percent + "%";
+  audioProgressThumb.style.left = percent + "%";
+  audioCurrent.textContent = formatTime(audio.currentTime);
+});
+audio.addEventListener("play", () => {
+  audioIcon.className = "fa-solid fa-pause";
+  audioBtn.setAttribute("aria-label", "Pause narration");
+  audioPlayer.classList.add("playing");
+});
+audio.addEventListener("pause", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioBtn.setAttribute("aria-label", "Play narration");
+  audioPlayer.classList.remove("playing");
+});
+audio.addEventListener("ended", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioPlayer.classList.remove("playing");
+  audio.currentTime = 0;
+});
+audio.addEventListener("error", () => {
+  audioPlayer.classList.add("error");
+  audioDuration.textContent = "unavailable";
+});
+audioBtn.addEventListener("click", () => { if (audio.paused) audio.play(); else audio.pause(); });
+audioProgress.addEventListener("click", (e) => {
+  const rect = audioProgress.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+  if (isFinite(audio.duration)) { audio.currentTime = percent * audio.duration; }
+});
+window.addEventListener("beforeunload", () => { if (!audio.paused) audio.pause(); });
+
+window.GEM_ARTIFACT = { id: 'Colossus-of-a-Ptolemaic-King', title: 'Colossus of a Ptolemaic King', era: 'Ptolemaic Period · c. 3rd century BC', img: 'imgs/king.jpeg', link: 'king.html' };
+</script>
+<script src="gem-favorites.js"></script>
+<script src="../../shared/nav-footer.js"></script>
+<script src="../../shared/i18n.js"></script>
+
+</body>
+</html>

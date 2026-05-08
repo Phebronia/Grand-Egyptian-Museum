@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Image — Grand Staircase</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="level.css">
+<link rel="stylesheet" href="../../../../shared/nav-footer.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- BREADCRUMB -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../../home/home.html">Home</a>
+    <i class="fa-solid fa-chevron-right"></i>
+    <a href="../explore.html">Explore</a>
+    <i class="fa-solid fa-chevron-right"></i>
+    <a href="grand-stairs.html">Grand Stairs</a>
+    <i class="fa-solid fa-chevron-right"></i>
+    <span>Royal Image</span>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="hall-header level-header level-header-royal">
+    <span class="hall-eyebrow">Level 1 · The Grand Staircase</span>
+    <h1>Royal Image</h1>
+    <p class="hall-subtitle">How pharaohs chose to be remembered</p>
+
+    <div class="hall-meta">
+      <div class="meta-item">
+        <span class="meta-num">~15</span>
+        <span class="meta-label">Artifacts in this level</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="meta-num">2000</span>
+        <span class="meta-label">Years spanned</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="meta-item">
+        <span class="meta-num">8</span>
+        <span class="meta-label">Pharaohs represented</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <p class="level-intro">
+    The ascent begins here, at the face of kingship itself. Every pharaoh commissioned statues
+    to shape how he — or she — would be remembered: as a warrior, a god on earth, or a guardian of Ma'at.
+    This level gathers the most striking portraits from three millennia of royal self-presentation.
+  </p>
+
+  <!-- TABS -->
+  <div class="tabs" role="tablist">
+    <button class="active" data-tab="artifacts" role="tab" aria-selected="true">
+      <i class="fa-solid fa-gem"></i>
+      <span>Artifacts</span>
+      <span class="tab-count">1</span>
+    </button>
+    <button data-tab="history" role="tab" aria-selected="false">
+      <i class="fa-solid fa-scroll"></i>
+      <span>History</span>
+    </button>
+    <button data-tab="gallery" role="tab" aria-selected="false">
+      <i class="fa-solid fa-images"></i>
+      <span>Gallery</span>
+      <span class="tab-count">6</span>
+    </button>
+    <span class="tab-indicator"></span>
+  </div>
+
+  <!-- ARTIFACTS — individual artifacts in this level -->
+  <section class="tab-content active" id="artifacts" role="tabpanel">
+    <div class="grid grid-artifacts">
+
+      <a href="../artifacts/senwosret.html" class="card">
+        <div class="card-img"><img src="imgs/thutmose iii.jpeg" alt="Colossus of Senwosret III"></div>
+        <div class="card-content">
+          <span class="card-tag">Middle Kingdom</span>
+          <h3>Colossus of Senwosret III</h3>
+          <span class="card-link">View artifact <i class="fa-solid fa-arrow-right"></i></span>
+        </div>
+      </a>
+
+      <a > </a>
+      <a > </a>
+
+    </div>
+  </section>
+
+  <!-- HISTORY -->
+  <section class="tab-content" id="history" role="tabpanel" hidden>
+    <div class="history">
+
+      <!-- AUDIO NARRATION PLAYER -->
+      <div class="audio-player" id="audioPlayer">
+        <button class="audio-btn" id="audioBtn" aria-label="Play narration">
+          <i class="fa-solid fa-play" id="audioIcon"></i>
+        </button>
+        <div class="audio-info">
+          <div class="audio-top">
+            <span class="audio-label">Listen to the story</span>
+            <span class="audio-time"><span id="audioCurrent">0:00</span> / <span id="audioDuration">0:00</span></span>
+          </div>
+          <div class="audio-progress" id="audioProgress">
+            <div class="audio-progress-fill" id="audioProgressFill"></div>
+            <div class="audio-progress-thumb" id="audioProgressThumb"></div>
+          </div>
+        </div>
+        <div class="audio-waves" id="audioWaves" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <audio id="audioElement" preload="metadata" src="audio/royal-image.mp3"></audio>
+      </div>
+
+      <article class="history-block">
+        <div class="history-year">Middle Kingdom</div>
+        <div class="history-body">
+          <h3>The Weary King</h3>
+          <p>Royal portraiture in the Middle Kingdom broke from tradition. Where Old Kingdom pharaohs
+            had been shown as ageless, divine, and serene, <strong>Senwosret III</strong> was carved
+            with heavy-lidded eyes, furrowed brow, and downturned mouth — the face of a ruler who felt
+            the weight of kingship. It was one of the first honest portraits in history.</p>
+        </div>
+      </article>
+
+      <article class="history-block">
+        <div class="history-year">18th Dynasty</div>
+        <div class="history-body">
+          <h3>The Golden Age of Image</h3>
+          <p>Under the Thutmosides and <strong>Amenhotep III</strong>, royal sculpture reached a peak of
+            refined idealism. <strong>Hatshepsut</strong>, ruling as pharaoh, had herself depicted with
+            the traditional false beard and royal kilt — a woman performing the role of king in stone.
+            After her death, her nephew Thutmose III defaced her monuments and claimed many for himself.</p>
+        </div>
+      </article>
+
+      <article class="history-block">
+        <div class="history-year">Amarna Period</div>
+        <div class="history-body">
+          <h3>Akhenaten's Revolution</h3>
+          <p>Then came the strangest king in Egypt's history. <strong>Akhenaten</strong> abandoned the
+            old gods, moved the capital, and commissioned statues of himself with an elongated skull,
+            narrow slanting eyes, a long face, and swollen hips. Whether stylized or medically literal,
+            these images shattered a thousand years of idealized royal portraiture.</p>
+        </div>
+      </article>
+
+      <article class="history-block">
+        <div class="history-year">Ramesside &amp; Beyond</div>
+        <div class="history-body">
+          <h3>From Empire to Echo</h3>
+          <p>The Ramessides returned to tradition — monumental, triumphal, warrior-kings carved at vast scale.
+            A millennium later, the Roman emperor <strong>Caracalla</strong> dressed himself in pharaonic
+            regalia for propaganda: a Roman conqueror claiming the old gods' sanction. The staircase closes
+            the circle — from Senwosret's honest face to Caracalla's borrowed crown.</p>
+        </div>
+      </article>
+
+      <div class="history-outro">
+        <p>Every pharaoh, from the weary Middle Kingdom realist to the Roman emperor in Egyptian clothes,
+          made the same decision: how would stone remember them? The answers line this level of the staircase.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="tab-content" id="gallery" role="tabpanel" hidden>
+    <div class="grid grid-gallery">
+      <a href="../artifacts/artifact.html?id=royal1" class="card card-gallery"><img src="imgs/royal1.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=royal2" class="card card-gallery"><img src="imgs/royal2.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=royal3" class="card card-gallery"><img src="imgs/royal3.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=royal4" class="card card-gallery"><img src="imgs/royal4.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=royal5" class="card card-gallery"><img src="imgs/royal5.jpg" alt=""></a>
+      <a href="../artifacts/artifact.html?id=royal6" class="card card-gallery"><img src="imgs/royal6.jpg" alt=""></a>
+    </div>
+  </section>
+
+</div>
+
+<script>
+
+/* TABS */
+const tabs = document.querySelectorAll(".tabs button");
+const contents = document.querySelectorAll(".tab-content");
+const indicator = document.querySelector(".tab-indicator");
+
+function moveIndicator(btn) {
+  if (!indicator) return;
+  indicator.style.width = btn.offsetWidth + "px";
+  indicator.style.left = btn.offsetLeft + "px";
+}
+
+window.addEventListener("load", () => {
+  const active = document.querySelector(".tabs button.active");
+  if (active) moveIndicator(active);
+});
+
+window.addEventListener("resize", () => {
+  const active = document.querySelector(".tabs button.active");
+  if (active) moveIndicator(active);
+});
+
+tabs.forEach(btn => {
+  btn.addEventListener("click", () => {
+    tabs.forEach(b => {
+      b.classList.remove("active");
+      b.setAttribute("aria-selected", "false");
+    });
+    btn.classList.add("active");
+    btn.setAttribute("aria-selected", "true");
+
+    moveIndicator(btn);
+
+    const tab = btn.dataset.tab;
+    contents.forEach(c => {
+      c.classList.remove("active");
+      c.setAttribute("hidden", "");
+    });
+    const target = document.getElementById(tab);
+    target.classList.add("active");
+    target.removeAttribute("hidden");
+
+    if (tab !== "history") stopNarration();
+  });
+});
+
+/* AUDIO NARRATION */
+const audio = document.getElementById("audioElement");
+const audioBtn = document.getElementById("audioBtn");
+const audioIcon = document.getElementById("audioIcon");
+const audioPlayer = document.getElementById("audioPlayer");
+const audioCurrent = document.getElementById("audioCurrent");
+const audioDuration = document.getElementById("audioDuration");
+const audioProgress = document.getElementById("audioProgress");
+const audioProgressFill = document.getElementById("audioProgressFill");
+const audioProgressThumb = document.getElementById("audioProgressThumb");
+
+function formatTime(seconds) {
+  if (!isFinite(seconds) || seconds < 0) return "0:00";
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return m + ":" + (s < 10 ? "0" : "") + s;
+}
+
+audio.addEventListener("loadedmetadata", () => {
+  audioDuration.textContent = formatTime(audio.duration);
+});
+
+audio.addEventListener("timeupdate", () => {
+  const percent = (audio.currentTime / audio.duration) * 100 || 0;
+  audioProgressFill.style.width = percent + "%";
+  audioProgressThumb.style.left = percent + "%";
+  audioCurrent.textContent = formatTime(audio.currentTime);
+});
+
+audio.addEventListener("play", () => {
+  audioIcon.className = "fa-solid fa-pause";
+  audioBtn.setAttribute("aria-label", "Pause narration");
+  audioPlayer.classList.add("playing");
+  audioPlayer.classList.remove("paused");
+});
+
+audio.addEventListener("pause", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioBtn.setAttribute("aria-label", "Play narration");
+  audioPlayer.classList.add("paused");
+  audioPlayer.classList.remove("playing");
+});
+
+audio.addEventListener("ended", () => {
+  audioIcon.className = "fa-solid fa-play";
+  audioBtn.setAttribute("aria-label", "Play narration");
+  audioPlayer.classList.remove("playing", "paused");
+  audio.currentTime = 0;
+});
+
+audio.addEventListener("error", () => {
+  audioPlayer.classList.add("error");
+  audioDuration.textContent = "unavailable";
+});
+
+audioBtn.addEventListener("click", () => {
+  if (audio.paused) audio.play();
+  else audio.pause();
+});
+
+audioProgress.addEventListener("click", (e) => {
+  const rect = audioProgress.getBoundingClientRect();
+  const percent = (e.clientX - rect.left) / rect.width;
+  if (isFinite(audio.duration)) {
+    audio.currentTime = percent * audio.duration;
+  }
+});
+
+function stopNarration() {
+  if (!audio.paused) {
+    audio.pause();
+    audio.currentTime = 0;
+  }
+}
+
+window.addEventListener("beforeunload", stopNarration);
+
+</script>
+<script src="../../../../shared/nav-footer.js"></script>
+<script src="../../../../shared/i18n.js"></script>
+
+</body>
+</html>

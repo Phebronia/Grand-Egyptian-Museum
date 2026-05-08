@@ -1,0 +1,57 @@
+{
+  "nav": {
+    "home": "HOME",
+    "explore": "EXPLORE",
+    "plan": "PLAN YOUR VISIT",
+    "about": "ABOUT US",
+    "more": "MORE",
+    "pharaonicNames": "Pharaonic Names",
+    "programPlan": "Make Your Program",
+    "contact": "Contact Us",
+    "childrensMuseum": "Children's Museum",
+    "buyTicket": "BUY TICKET",
+    "signIn": "SIGN IN",
+    "signUp": "SIGN UP",
+    "language": "LANGUAGE"
+  },
+  "hero": {
+    "eyebrow": "⟡ GIZA · EGYPT ⟡",
+    "titleLine1": "Grand Egyptian Museum",
+    "titleLine2": "Museum",
+    "subtitle": "Where 7,000 years of civilization await your discovery",
+    "cta": "EXPLORE THE MUSEUM"
+  },
+  "stats": {
+    "artifacts": "Artifacts",
+    "mainHalls": "Main Halls",
+    "visitors": "Visitors Annually",
+    "location": "Location",
+    "locationValue": "Giza, Egypt"
+  },
+  "tour": {
+    "label": "Experience",
+    "subtitle": "A journey through history"
+  },
+  "featured": {
+    "heading": "Featured Artifacts",
+    "subheading": "Discover some of the most iconic treasures of ancient Egypt",
+    "viewArtifact": "View artifact →",
+    "items": {
+      "tutankhamun": { "title": "Mask of Tutankhamun", "tag": "Dynasty XVIII" },
+      "khufuBoat":   { "title": "Khufu's Solar Boat",  "tag": "Dynasty IV" },
+      "obelisk":     { "title": "Hanging Obelisk",     "tag": "Modern" },
+      "ramses":      { "title": "Statue of Ramses II", "tag": "Dynasty XIX" }
+    }
+  },
+  "membership": {
+    "label": "BECOME A MEMBER",
+    "heading": "Unlock exclusive benefits",
+    "description": "Join the GEM family and enjoy year-round access to extraordinary experiences.",
+    "benefits": {
+      "admission": { "title": "Unlock Exclusive Access" },
+      "tours":     { "title": "Join the GEM Experience" },
+      "previews":  { "title": "Step into History" }
+    },
+    "joinNow": "JOIN NOW"
+  }
+}

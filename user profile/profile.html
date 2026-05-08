@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+<title data-i18n="profile.pageTitle">Profile — Grand Egyptian Museum</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="profile.css">
+<link rel="stylesheet" href="../shared/nav-footer.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ── AVATAR UPLOAD ── */
+.avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+  margin-top: calc(var(--avatar-pull) * -1);
+}
+.avatar-wrap .avatar {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+.avatar-overlay {
+  display: none;
+  position: absolute;
+  top: 4px; left: 4px; right: 4px; bottom: 4px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.52);
+  color: #fff;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--body);
+  transition: background 0.2s;
+}
+.avatar-overlay:hover { background: rgba(0, 0, 0, 0.68); }
+body.body-editing .avatar-overlay { display: flex; }
+
+/* ── DOB CALENDAR PICKER ── */
+.dob-picker {
+  position: relative;
+  max-width: 360px;
+  justify-self: end;
+  width: 100%;
+}
+/* hide/show with the panel editing state (mirrors .field-input behaviour) */
+.panel .dob-picker[data-mode="edit"]         { display: none; }
+.panel.editing .dob-picker[data-mode="edit"] { display: block; }
+
+.dob-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text-faint);
+  font-family: var(--body);
+  transition: border-color 0.25s, background 0.25s;
+  user-select: none;
+  width: 100%;
+}
+.dob-trigger:hover { background: var(--bg-input-hi); border-color: var(--accent); }
+.dob-trigger.has-value { color: var(--text); }
+.dob-trigger-icon { font-size: 0.9rem; opacity: 0.55; flex-shrink: 0; }
+
+.dob-cal {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 200;
+  width: 280px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.55);
+  font-family: var(--body);
+}
+.dob-cal.open { display: block; }
+
+.dob-cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+  gap: 6px;
+}
+
+.dob-nav {
+  background: var(--accent-dim);
+  border: 1px solid var(--border-strong);
+  color: var(--accent);
+  border-radius: var(--radius);
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+  line-height: 1;
+  padding: 0;
+}
+.dob-nav:hover { background: rgba(216,138,63,0.22); }
+
+.dob-selects { display: flex; gap: 6px; flex: 1; }
+
+.dob-selects select {
+  flex: 1;
+  background: var(--bg-input);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--text);
+  padding: 4px 6px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  outline: none;
+}
+.dob-selects select:focus { border-color: var(--accent); }
+.dob-selects select option { background: var(--bg-card); }
+
+.dob-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-size: 0.7rem;
+  color: #d4af37;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.dob-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+}
+
+.dob-cell {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  color: #ccc;
+  transition: background 0.15s, color 0.15s;
+}
+.dob-cell:hover { background: rgba(212,175,55,0.15); color: #fff; }
+.dob-cell.selected {
+  background: #d4af37;
+  color: #000;
+  font-weight: 700;
+}
+.dob-cell.empty { cursor: default; }
+.dob-cell.empty:hover { background: none; }
+</style>
+</head>
+<body>
+
+
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-hidden="true">
+  <div class="hero-image"></div>
+  <div class="hero-band"></div>
+  <div class="hero-tag">Member Since MMXXVI</div>
+</section>
+
+<!-- ============ PROFILE HEADER ============ -->
+<div class="profile-header">
+  <div class="container">
+    <div class="profile-header-inner">
+      <div class="avatar-wrap">
+        <div class="avatar" id="avatar-el" aria-label="Profile photo"></div>
+        <label class="avatar-overlay" for="avatar-input" title="Change photo">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/>
+            <circle cx="12" cy="13" r="4"/>
+          </svg>
+          <span>Change</span>
+        </label>
+        <input type="file" id="avatar-input" accept="image/*" style="display:none">
+      </div>
+      <div class="profile-header-info">
+        <div class="profile-eyebrow" data-i18n="profile.eyebrow">Visitor Profile</div>
+        <h1 class="profile-name" id="display-name">Your Name Here</h1>
+        <div class="profile-username" id="display-username">username</div>
+      </div>
+      <button class="btn-edit" id="header-edit-btn" data-i18n="profile.editBtn">Edit Profile</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ CONTENT ============ -->
+<div class="content">
+  <div class="container">
+    <div class="content-grid">
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar" aria-label="Account sections">
+        <div class="sidebar-heading" data-i18n="profile.yourAccount">Your Account</div>
+        <button class="sidebar-item active" data-target="profile">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+          <span data-i18n="profile.sideProfile">Profile</span>
+        </button>
+        <button class="sidebar-item" data-target="settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33h0a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51h0a1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82v0a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          <span data-i18n="profile.sideSettings">Settings</span>
+        </button>
+        <button class="sidebar-item" data-target="favorites">
+          <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 00-7.8 7.8l1 1.1L12 21l7.8-7.8 1-1.1a5.5 5.5 0 000-7.5z"/></svg>
+          <span data-i18n="profile.sideFavorites">Favorites</span>
+        </button>
+      </aside>
+
+      <!-- MAIN PANELS -->
+      <div class="main">
+
+        <!-- PROFILE -->
+        <section class="panel active" id="panel-profile">
+          <h2 class="panel-title" data-i18n="profile.personalInfo">Personal Information</h2>
+
+          <div class="field-row">
+            <div class="field-label" data-i18n="profile.fullName">Full name</div>
+            <div class="field-value" data-mode="view" data-field="fullName">my name is ...</div>
+            <input class="field-input" data-mode="edit" data-field="fullName" placeholder="Enter your full name" value="" />
+          </div>
+
+          <div class="field-row">
+            <div class="field-label" data-i18n="profile.dob">Date of birth</div>
+            <div class="field-value" data-mode="view" data-field="dob">—</div>
+            <div class="dob-picker" data-mode="edit">
+              <div class="dob-trigger" id="dobTrigger">
+                <span id="dobDisplay">Select date of birth</span>
+                <span class="dob-trigger-icon">&#128197;</span>
+              </div>
+              <input type="hidden" id="dobHidden" data-mode="edit" data-field="dob" />
+              <div class="dob-cal" id="dobCal">
+                <div class="dob-cal-header">
+                  <button type="button" class="dob-nav" id="dobPrev">&#8249;</button>
+                  <div class="dob-selects">
+                    <select id="dobMonthSel"></select>
+                    <select id="dobYearSel"></select>
+                  </div>
+                  <button type="button" class="dob-nav" id="dobNext">&#8250;</button>
+                </div>
+                <div class="dob-weekdays">
+                  <span>Su</span><span>Mo</span><span>Tu</span>
+                  <span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+                </div>
+                <div class="dob-grid" id="dobGrid"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field-label" data-i18n="profile.gender">Gender</div>
+            <div class="field-value" data-mode="view" data-field="gender">—</div>
+            <select class="field-input" data-mode="edit" data-field="gender">
+              <option value="" disabled selected>Select gender</option>
+              <option value="Female">Female</option>
+              <option value="Male">Male</option>
+              <option value="Other">Other</option>
+              <option value="Prefer not to say">Prefer not to say</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <div class="field-label" data-i18n="profile.phone">Phone number</div>
+            <div class="field-value" data-mode="view" data-field="phone">—</div>
+            <input class="field-input" data-mode="edit" data-field="phone" type="tel" placeholder="+20 100 123 456" />
+          </div>
+
+          <div class="field-row">
+            <div class="field-label" data-i18n="profile.nationality">Nationality</div>
+            <div class="field-value" data-mode="view" data-field="nationality">—</div>
+            <select class="field-input" data-mode="edit" data-field="nationality">
+              <option value="" disabled selected>Select nationality</option>
+              <option>Egyptian</option>
+              <option>American</option>
+              <option>British</option>
+              <option>French</option>
+              <option>German</option>
+              <option>Italian</option>
+              <option>Spanish</option>
+              <option>Chinese</option>
+              <option>Japanese</option>
+              <option>Indian</option>
+              <option>Brazilian</option>
+              <option>Canadian</option>
+              <option>Australian</option>
+              <option>Russian</option>
+              <option>Saudi Arabian</option>
+              <option>Emirati</option>
+              <option>Jordanian</option>
+              <option>Lebanese</option>
+              <option>Syrian</option>
+              <option>Libyan</option>
+              <option>Tunisian</option>
+              <option>Moroccan</option>
+              <option>Algerian</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="edit-actions" data-mode="edit">
+            <button class="btn btn-ghost" id="cancel-btn" data-i18n="profile.cancelBtn">Cancel</button>
+            <button class="btn btn-primary" id="save-btn" data-i18n="profile.saveBtn">Save Changes</button>
+          </div>
+        </section>
+
+        <!-- SETTINGS -->
+        <section class="panel" id="panel-settings">
+          <h2 class="panel-title" data-i18n="profile.settings">Account Settings</h2>
+
+          <div class="setting-row">
+            <div class="setting-desc">
+              <h4 data-i18n="profile.emailHeading">Email address</h4>
+              <p data-i18n="profile.emailDesc">Change the email tied to your account. You'll need to verify the new address before it takes effect.</p>
+            </div>
+            <form class="settings-form" onsubmit="saveEmail(event)">
+              <div class="input-stack">
+                <label data-i18n="profile.currentEmailLabel">Current email</label>
+                <input type="email" id="current-email-input" value="" disabled style="opacity:0.5;" />
+              </div>
+              <div class="input-stack">
+                <label data-i18n="profile.newEmailLabel">New email</label>
+                <input type="email" data-i18n-placeholder="profile.newEmailPlaceholder" placeholder="you@example.com" required />
+              </div>
+              <div style="text-align:right; margin-top: 4px;">
+                <button type="submit" class="btn btn-primary" data-i18n="profile.updateEmailBtn">Update Email</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-desc">
+              <h4 data-i18n="profile.passwordHeading">Change password</h4>
+              <p data-i18n="profile.passwordDesc">Use at least 8 characters with a mix of letters and numbers for better security.</p>
+            </div>
+            <form class="settings-form" onsubmit="savePassword(event)">
+              <div class="input-stack">
+                <label data-i18n="profile.currentPasswordLabel">Current password</label>
+                <input type="password" data-i18n-placeholder="profile.currentPasswordPh" placeholder="Enter current password" required />
+              </div>
+              <div class="input-stack">
+                <label data-i18n="profile.newPasswordLabel">New password</label>
+                <input type="password" data-i18n-placeholder="profile.newPasswordPh" placeholder="At least 8 characters" required />
+              </div>
+              <div class="input-stack">
+                <label data-i18n="profile.confirmPasswordLabel">Confirm new password</label>
+                <input type="password" data-i18n-placeholder="profile.confirmPasswordPh" placeholder="Repeat new password" required />
+              </div>
+              <div style="text-align:right; margin-top: 4px;">
+                <button type="submit" class="btn btn-primary" data-i18n="profile.updatePasswordBtn">Update Password</button>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <!-- FAVORITES -->
+        <section class="panel" id="panel-favorites">
+          <h2 class="panel-title" data-i18n="profile.favoritesTitle">My Favorites</h2>
+          <div class="fav-grid" id="fav-grid"></div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="toast" id="toast">Saved</div>
+
+<script src="../shared/i18n.js"></script>
+<script>
+  const DJANGO = 'http://127.0.0.1:8000';
+
+  function applyProfileData(profile = {}) {
+    const user = (() => {
+      try { return JSON.parse(localStorage.getItem('gem_user') || '{}'); }
+      catch { return {}; }
+    })();
+
+    const name = profile.fullName || user.name || '';
+    const email = user.email || '';
+
+    if (name) {
+      document.getElementById('display-name').textContent = name;
+      const fullNameView  = document.querySelector('[data-mode="view"][data-field="fullName"]');
+      const fullNameInput = document.querySelector('[data-mode="edit"][data-field="fullName"]');
+      if (fullNameView)  fullNameView.textContent = name;
+      if (fullNameInput) fullNameInput.value = name;
+    }
+
+    if (email) {
+      document.getElementById('display-username').textContent = email.split('@')[0];
+      const emailInput = document.getElementById('current-email-input');
+      if (emailInput) emailInput.value = email;
+    }
+
+    ['dob', 'gender', 'phone', 'nationality'].forEach(field => {
+      const val = profile[field];
+      const view  = document.querySelector(`[data-mode="view"][data-field="${field}"]`);
+      const input = document.querySelector(`[data-mode="edit"][data-field="${field}"]`);
+      if (input && val !== undefined) input.value = val || '';
+      if (!view) return;
+      if (!val) {
+        view.textContent = '—';
+      } else if (field === 'dob') {
+        const d = new Date(val);
+        if (!isNaN(d)) {
+          view.textContent =
+            String(d.getDate()).padStart(2,'0') + '/' +
+            String(d.getMonth()+1).padStart(2,'0') + '/' +
+            d.getFullYear();
+        }
+      } else {
+        view.textContent = val;
+      }
+    });
+
+    if (profile.avatar) {
+      document.getElementById('avatar-el').style.backgroundImage = `url(${profile.avatar})`;
+    }
+  }
+
+  function persistProfile(profileData = {}) {
+    try {
+      const existing = JSON.parse(localStorage.getItem('gem_profile') || '{}');
+      const merged = { ...existing, ...profileData };
+      localStorage.setItem('gem_profile', JSON.stringify(merged));
+      const u = JSON.parse(localStorage.getItem('gem_user') || '{}');
+      if (u.email) localStorage.setItem('gem_profile_' + u.email, JSON.stringify(merged));
+      if (profileData.fullName) {
+        u.name = profileData.fullName;
+        localStorage.setItem('gem_user', JSON.stringify(u));
+      }
+      return merged;
+    } catch(e) {
+      localStorage.setItem('gem_profile', JSON.stringify(profileData));
+      return profileData;
+    }
+  }
+
+  async function syncProfileFromBackend() {
+    try {
+      const res = await fetch(`${DJANGO}/api/profile/`, { credentials: 'include' });
+      const data = await res.json();
+      if (!data.ok || !data.profile) return;
+      const merged = persistProfile(data.profile);
+      applyProfileData(merged);
+    } catch(e) {}
+  }
+
+  // ---------- LOAD USER FROM STORAGE ----------
+  (function() {
+    try {
+      const user    = JSON.parse(localStorage.getItem('gem_user')    || '{}');
+      const profile = JSON.parse(localStorage.getItem('gem_profile') || '{}');
+      applyProfileData({
+        fullName: profile.fullName || user.name || '',
+        dob: profile.dob || '',
+        gender: profile.gender || '',
+        phone: profile.phone || '',
+        nationality: profile.nationality || '',
+        avatar: profile.avatar || '',
+      });
+    } catch(e) {}
+  })();
+  syncProfileFromBackend();
+
+  // ---------- NAV ----------
+  const sidebarItems = document.querySelectorAll('.sidebar-item');
+  const panels = document.querySelectorAll('.panel');
+  const headerEditBtn = document.getElementById('header-edit-btn');
+
+  sidebarItems.forEach(item => {
+    item.addEventListener('click', () => {
+      sidebarItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      const target = item.dataset.target;
+      panels.forEach(p => p.classList.toggle('active', p.id === 'panel-' + target));
+      headerEditBtn.style.display = target === 'profile' ? '' : 'none';
+    });
+  });
+
+  // ---------- PROFILE EDIT ----------
+  const profilePanel = document.getElementById('panel-profile');
+  const saveBtn = document.getElementById('save-btn');
+  const cancelBtn = document.getElementById('cancel-btn');
+
+  let snapshot = {};
+
+  function enterEditMode() {
+    snapshot = {};
+    profilePanel.querySelectorAll('[data-mode="edit"][data-field]').forEach(el => {
+      const field = el.dataset.field;
+      const view = profilePanel.querySelector(`[data-mode="view"][data-field="${field}"]`);
+      if (el.tagName === 'SELECT') {
+        snapshot[field] = el.value;
+      } else if (el.type === 'date') {
+        snapshot[field] = el.value;
+      } else {
+        const viewText = view ? view.textContent.trim() : '';
+        const isPlaceholder = ['my name is ...', 'dd/mm/yyyy', '—'].includes(viewText);
+        if (!el.value && !isPlaceholder) el.value = viewText;
+        snapshot[field] = el.value;
+      }
+    });
+    profilePanel.classList.add('editing');
+    document.body.classList.add('body-editing');
+    sidebarItems.forEach(i => i.classList.toggle('active', i.dataset.target === 'profile'));
+    panels.forEach(p => p.classList.toggle('active', p.id === 'panel-profile'));
+    headerEditBtn.style.display = 'none';
+    window.scrollTo({top: document.querySelector('.content').offsetTop - 20, behavior: 'smooth'});
+  }
+
+  headerEditBtn.addEventListener('click', enterEditMode);
+
+  cancelBtn.addEventListener('click', () => {
+    Object.entries(snapshot).forEach(([field, value]) => {
+      const input = profilePanel.querySelector(`[data-mode="edit"][data-field="${field}"]`);
+      if (input) input.value = value;
+    });
+    profilePanel.classList.remove('editing');
+    document.body.classList.remove('body-editing');
+    headerEditBtn.style.display = '';
+  });
+
+  saveBtn.addEventListener('click', async () => {
+    const profileData = {};
+
+    profilePanel.querySelectorAll('[data-mode="edit"][data-field]').forEach(input => {
+      if (input.tagName === 'DIV') return; // skip the .dob-picker wrapper
+      const field = input.dataset.field;
+      const view  = profilePanel.querySelector(`[data-mode="view"][data-field="${field}"]`);
+      const val   = (input.value || '').trim();
+
+      profileData[field] = val;
+
+      if (!view) return;
+      let display = val;
+      if (!display) {
+        display = '—';
+      } else if (field === 'dob') {
+        const d  = new Date(val);
+        const dd = String(d.getDate()).padStart(2,'0');
+        const mm = String(d.getMonth()+1).padStart(2,'0');
+        display  = `${dd}/${mm}/${d.getFullYear()}`;
+      }
+      view.textContent = display;
+
+      if (field === 'fullName' && val) {
+        document.getElementById('display-name').textContent = val;
+      }
+    });
+
+    // Persist to localStorage — merge so fields like avatar are not lost
+    let merged = persistProfile(profileData);
+    try {
+      const res = await fetch(`${DJANGO}/api/profile/`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(profileData),
+      });
+      const data = await res.json();
+      if (data.ok && data.profile) {
+        merged = persistProfile(data.profile);
+        applyProfileData(merged);
+      }
+    } catch(e) {}
+
+    profilePanel.classList.remove('editing');
+    document.body.classList.remove('body-editing');
+    headerEditBtn.style.display = '';
+    showToast('Profile updated successfully');
+  });
+
+  // ---------- SETTINGS ----------
+  function saveEmail(e) {
+    e.preventDefault();
+    showToast('Verification email sent');
+    e.target.reset();
+  }
+  function savePassword(e) {
+    e.preventDefault();
+    const form = e.target;
+    const inputs = form.querySelectorAll('input[type="password"]');
+    if (inputs[1].value !== inputs[2].value) {
+      showToast('Passwords do not match');
+      return;
+    }
+    showToast('Password updated');
+    form.reset();
+  }
+  function subscribeNewsletter(e) {
+    e.preventDefault();
+    showToast('Thanks for subscribing');
+    e.target.reset();
+  }
+
+  // ---------- TOAST ----------
+  const toast = document.getElementById('toast');
+  let toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+
+  // ---------- FAVORITES ----------
+  const FAV_KEY  = 'gem_favorites';
+  const FAV_BASE = '../explore/artifacts/';
+  const favGrid  = document.getElementById('fav-grid');
+
+  function getFavs() {
+    try { return JSON.parse(localStorage.getItem(FAV_KEY) || '[]'); }
+    catch { return []; }
+  }
+
+  function renderFavorites() {
+    const list = getFavs();
+    if (list.length === 0) {
+      const noFavMsg = (window.I18n && window.I18n.t('profile.noFavorites')) || 'No favorites yet. Explore the collection to start saving.';
+      favGrid.innerHTML = `<div class="empty" style="grid-column:1/-1;text-align:center;color:#888;padding:2rem;">${noFavMsg}</div>`;
+      return;
+    }
+    favGrid.innerHTML = list.map(a => `
+      <div class="fav-card" data-id="${a.id}">
+        <a href="${FAV_BASE}${a.link}" style="text-decoration:none;color:inherit;">
+          <div class="fav-img" style="background-image: linear-gradient(135deg, rgba(216,138,63,0.15), rgba(20,17,15,0.5)), url('${FAV_BASE}${a.img}');">
+            <button class="fav-heart" data-id="${a.id}" aria-label="Remove from favorites" onclick="event.preventDefault();event.stopPropagation();">
+              <svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 00-7.8 7.8l1 1.1L12 21l7.8-7.8 1-1.1a5.5 5.5 0 000-7.5z"/></svg>
+            </button>
+          </div>
+          <div class="fav-body">
+            <div class="fav-title">${a.title}</div>
+            <div class="fav-meta">
+              <span class="era">${a.era}</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    `).join('');
+
+    favGrid.querySelectorAll('.fav-heart').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const id = btn.dataset.id;
+        const updated = getFavs().filter(a => a.id !== id);
+        localStorage.setItem(FAV_KEY, JSON.stringify(updated));
+        try {
+          const email = JSON.parse(localStorage.getItem('gem_user') || '{}').email;
+          if (email) localStorage.setItem(FAV_KEY + '_' + email, JSON.stringify(updated));
+        } catch(e) {}
+        renderFavorites();
+        showToast('Removed from favorites');
+      });
+    });
+  }
+
+  renderFavorites();
+
+  // ---------- DOB CALENDAR ----------
+  (function() {
+    const trigger  = document.getElementById('dobTrigger');
+    const display  = document.getElementById('dobDisplay');
+    const hidden   = document.getElementById('dobHidden');
+    const cal      = document.getElementById('dobCal');
+    const grid     = document.getElementById('dobGrid');
+    const monthSel = document.getElementById('dobMonthSel');
+    const yearSel  = document.getElementById('dobYearSel');
+    const prevBtn  = document.getElementById('dobPrev');
+    const nextBtn  = document.getElementById('dobNext');
+
+    const MONTHS = ['January','February','March','April','May','June',
+                    'July','August','September','October','November','December'];
+
+    const now = new Date();
+    let viewYear  = now.getFullYear() - 20;
+    let viewMonth = now.getMonth();
+    let selYear = null, selMonth = null, selDay = null;
+
+    // Populate month dropdown
+    MONTHS.forEach((m, i) => {
+      const o = document.createElement('option');
+      o.value = i; o.textContent = m;
+      monthSel.appendChild(o);
+    });
+
+    // Populate year dropdown (current year down to 1920)
+    for (let y = now.getFullYear(); y >= 1920; y--) {
+      const o = document.createElement('option');
+      o.value = y; o.textContent = y;
+      yearSel.appendChild(o);
+    }
+
+    function fmt2(n) { return String(n).padStart(2, '0'); }
+
+    function setDate(y, m, d) {
+      selYear = y; selMonth = m; selDay = d;
+      const iso = `${y}-${fmt2(m+1)}-${fmt2(d)}`;
+      hidden.value = iso;
+      display.textContent = `${fmt2(d)}/${fmt2(m+1)}/${y}`;
+      trigger.classList.add('has-value');
+    }
+
+    function buildGrid() {
+      monthSel.value = viewMonth;
+      yearSel.value  = viewYear;
+      grid.innerHTML = '';
+
+      const firstDay    = new Date(viewYear, viewMonth, 1).getDay();
+      const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+      for (let i = 0; i < firstDay; i++) {
+        const blank = document.createElement('span');
+        blank.className = 'dob-cell empty';
+        grid.appendChild(blank);
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const cell = document.createElement('span');
+        cell.className = 'dob-cell';
+        cell.textContent = d;
+        if (selYear === viewYear && selMonth === viewMonth && selDay === d)
+          cell.classList.add('selected');
+        cell.addEventListener('click', () => {
+          setDate(viewYear, viewMonth, d);
+          cal.classList.remove('open');
+          buildGrid();
+        });
+        grid.appendChild(cell);
+      }
+    }
+
+    function updateDobDisplay() {
+      if (!hidden.value) return;
+      const d = new Date(hidden.value);
+      if (isNaN(d)) return;
+      setDate(d.getFullYear(), d.getMonth(), d.getDate());
+      viewYear  = d.getFullYear();
+      viewMonth = d.getMonth();
+    }
+
+    // Open / close
+    trigger.addEventListener('click', e => {
+      e.stopPropagation();
+      cal.classList.toggle('open');
+      buildGrid();
+    });
+
+    // Close on outside click
+    document.addEventListener('click', e => {
+      if (!trigger.closest('.dob-picker').contains(e.target))
+        cal.classList.remove('open');
+    });
+
+    // Navigation
+    prevBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (--viewMonth < 0) { viewMonth = 11; viewYear--; }
+      buildGrid();
+    });
+    nextBtn.addEventListener('click', e => {
+      e.stopPropagation();
+      if (++viewMonth > 11) { viewMonth = 0; viewYear++; }
+      buildGrid();
+    });
+    monthSel.addEventListener('change', () => { viewMonth = +monthSel.value; buildGrid(); });
+    yearSel.addEventListener('change',  () => { viewYear  = +yearSel.value;  buildGrid(); });
+
+    // Cancel btn: sync display back to snapshot value
+    cancelBtn.addEventListener('click', updateDobDisplay, { capture: true });
+
+    // Init from storage on load
+    if (hidden.value) updateDobDisplay();
+
+    buildGrid();
+  })();
+
+  // ---------- AVATAR UPLOAD ----------
+  document.getElementById('avatar-input').addEventListener('change', function() {
+    const file = this.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const dataUrl = e.target.result;
+      document.getElementById('avatar-el').style.backgroundImage = `url(${dataUrl})`;
+      try {
+        const p = JSON.parse(localStorage.getItem('gem_profile') || '{}');
+        p.avatar = dataUrl;
+        localStorage.setItem('gem_profile', JSON.stringify(p));
+        const u = JSON.parse(localStorage.getItem('gem_user') || '{}');
+        if (u.email) localStorage.setItem('gem_profile_' + u.email, JSON.stringify(p));
+      } catch(ex) {}
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+<script src="../shared/nav-footer.js"></script>
+<script src="../shared/i18n.js"></script>
+</body>
+</html>

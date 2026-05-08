@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(html|htm\\)$\")",
+      "Bash(start \"\" \"c:\\\\Users\\\\win10\\\\Desktop\\\\Grand Egyptian Museum\\\\home\\\\home.html\")",
+      "Bash(python manage.py migrate)",
+      "Bash(python -c \"from museum.models import CustomUser; print\\('superusers:', CustomUser.objects.filter\\(is_superuser=True\\).count\\(\\)\\)\")",
+      "Bash(python manage.py shell -c \"from museum.models import CustomUser; print\\('superusers:', CustomUser.objects.filter\\(is_superuser=True\\).count\\(\\)\\)\")",
+      "Bash(start cmd *)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/)",
+      "Bash(python manage.py runserver)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/admin/)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://127.0.0.1:8000/api/logout/ -X POST)",
+      "Bash(start \"\" \"http://127.0.0.1:8000/admin/\")",
+      "Bash(start \"\" \"c:\\\\Users\\\\win10\\\\Desktop\\\\Grand Egyptian Museum\\\\admin\\\\dash.html\")",
+      "Bash(python manage.py shell -c \"from museum.models import CustomUser; users = CustomUser.objects.filter\\(is_superuser=True\\); [print\\(f'Username: {u.username} | Email: {u.email}'\\) for u in users]\")",
+      "Bash(python manage.py shell -c \"from museum.models import CustomUser; u = CustomUser.objects.get\\(username='admin'\\); u.set_password\\('admin1234'\\); u.save\\(\\); print\\('Password updated!'\\)\")",
+      "Bash(start \"\" \"c:\\\\Users\\\\win10\\\\Desktop\\\\Grand Egyptian Museum\\\\explore\\\\artifacts\\\\tutankhamun.html\")",
+      "Bash(start \"\" \"c:\\\\Users\\\\win10\\\\Desktop\\\\Grand Egyptian Museum\\\\user profile\\\\profile.html\")",
+      "Bash(start \"\" \"c:\\\\Users\\\\win10\\\\Desktop\\\\Grand Egyptian Museum\\\\contact us\\\\contact.html\")",
+      "Bash(netstat -ano)",
+      "Bash(findstr :8000)",
+      "Bash(git -C \"c:\\\\Users\\\\win10\\\\Desktop\\\\Grand Egyptian Museum\" status)",
+      "Bash(gh auth *)"
+    ]
+  }
+}

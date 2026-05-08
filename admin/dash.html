@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEM Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dash.css">
+</head>
+<body>
+
+<!-- ══════════════════ SIDEBAR ══════════════════ -->
+<nav class="sidebar" id="sidebar">
+  <div class="logo"><i class="fas fa-ankh"></i><span>GEM Admin</span></div>
+
+  <a class="nav-link active" data-section="overview">  <i class="fas fa-th-large"></i><span>Dashboard</span></a>
+  <a class="nav-link" data-section="artifacts">        <i class="fas fa-monument"></i><span>Artifacts</span></a>
+  <a class="nav-link" data-section="halls">            <i class="fas fa-dungeon"></i><span>Halls</span></a>
+  <a class="nav-link" data-section="messages">         <i class="fas fa-envelope"></i><span>Messages</span>
+    <span class="badge" id="unreadBadge" style="display:none"></span></a>
+  <a class="nav-link" data-section="users">            <i class="fas fa-users"></i><span>Users</span></a>
+  <a class="nav-link" data-section="bookings">         <i class="fas fa-ticket-alt"></i><span>Bookings</span></a>
+  <a class="nav-link" data-section="exhibitions">     <i class="fas fa-calendar-alt"></i><span>Exhibitions</span></a>
+  <a class="nav-link" data-section="tickets">         <i class="fas fa-tag"></i><span>Ticket Prices</span></a>
+  <a class="nav-link" data-section="addons">          <i class="fas fa-puzzle-piece"></i><span>Add-ons</span></a>
+
+  <div class="sidebar-footer">
+    <button class="btn-logout" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Logout</span></button>
+  </div>
+</nav>
+
+<!-- ══════════════════ MAIN ══════════════════ -->
+<main class="main-content">
+
+  <!-- TOP BAR -->
+  <header class="top-header">
+    <h1 id="pageTitle">Dashboard</h1>
+    <div class="header-actions" id="headerActions"></div>
+  </header>
+
+  <!-- ── OVERVIEW ── -->
+  <section id="section-overview" class="section active">
+    <div class="stats-grid">
+      <div class="stat-card" data-goto="artifacts">
+        <div class="stat-icon"><i class="fas fa-monument"></i></div>
+        <div class="stat-body"><div class="stat-value" id="sArtifacts">—</div><div class="stat-label">Artifacts</div></div>
+      </div>
+      <div class="stat-card" data-goto="halls">
+        <div class="stat-icon"><i class="fas fa-dungeon"></i></div>
+        <div class="stat-body"><div class="stat-value" id="sHalls">—</div><div class="stat-label">Halls</div></div>
+      </div>
+      <div class="stat-card" data-goto="exhibitions">
+        <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+        <div class="stat-body"><div class="stat-value" id="sExhibitions">—</div><div class="stat-label">Exhibitions</div></div>
+      </div>
+      <div class="stat-card" data-goto="users">
+        <div class="stat-icon"><i class="fas fa-users"></i></div>
+        <div class="stat-body"><div class="stat-value" id="sUsers">—</div><div class="stat-label">Users</div></div>
+      </div>
+      <div class="stat-card" data-goto="bookings">
+        <div class="stat-icon"><i class="fas fa-ticket-alt"></i></div>
+        <div class="stat-body"><div class="stat-value" id="sBookings">—</div><div class="stat-label">Bookings</div></div>
+      </div>
+      <div class="stat-card" data-goto="messages">
+        <div class="stat-icon"><i class="fas fa-envelope-open-text"></i></div>
+        <div class="stat-body"><div class="stat-value" id="sMessages">—</div><div class="stat-label">Unread Messages</div></div>
+      </div>
+    </div>
+
+    <div class="overview-chart-card">
+      <div class="chart-card-head">
+        <div>
+          <p class="chart-kicker">Dashboard Graph</p>
+          <h2 class="chart-title">User Nationalities</h2>
+        </div>
+        <div class="chart-legend" aria-label="Chart legend">
+          <span><i class="legend-swatch users"></i>Users</span>
+        </div>
+      </div>
+      <p class="chart-subtitle">Distribution of registered users by nationality.</p>
+      <div class="activity-chart" id="activityChart" role="img" aria-label="User nationality graph">
+        <div class="chart-empty">Loading nationality graph...</div>
+      </div>
+      <div class="chart-summary" id="activitySummary">Preparing chart...</div>
+    </div>
+
+  </section>
+
+  <!-- ── ARTIFACTS ── -->
+  <section id="section-artifacts" class="section">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Image</th><th>Name</th><th>Hall</th><th>Category</th><th>Era</th><th>Featured</th><th>Actions</th></tr></thead>
+        <tbody id="artifactsBody"><tr><td colspan="7" class="empty-cell">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── HALLS ── -->
+  <section id="section-halls" class="section">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Name</th><th>Era</th><th>Theme</th><th>Sub-Theme</th><th>Artifacts</th><th>Actions</th></tr></thead>
+        <tbody id="hallsBody"><tr><td colspan="6" class="empty-cell">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── MESSAGES ── -->
+  <section id="section-messages" class="section">
+    <p class="view-only-note"><i class="fas fa-lock"></i> View-only — messages cannot be edited or deleted.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Sender</th><th>Email</th><th>Subject</th><th>Rating</th><th>Date</th><th>Status</th><th>Read</th></tr></thead>
+        <tbody id="messagesBody"><tr><td colspan="7" class="empty-cell">Loading…</td></tr></tbody>
+      </table>
+    </div>
+    <!-- Message detail panel -->
+    <div class="msg-detail" id="msgDetail" style="display:none">
+      <div class="msg-detail-header">
+        <span id="mdSender"></span>
+        <button onclick="document.getElementById('msgDetail').style.display='none'"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="msg-detail-subject" id="mdSubject"></div>
+      <div class="msg-detail-body" id="mdBody"></div>
+    </div>
+  </section>
+
+  <!-- ── USERS ── -->
+  <section id="section-users" class="section">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Name</th><th>Email</th><th>Nationality</th><th>Joined</th><th>Status</th></tr></thead>
+        <tbody id="usersBody"><tr><td colspan="5" class="empty-cell">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── BOOKINGS ── -->
+  <section id="section-bookings" class="section">
+    <p class="view-only-note"><i class="fas fa-lock"></i> View-only — bookings are created by visitors through the ticket page.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Mobile</th><th>Visit Date</th><th>Time</th><th>Language</th><th>Total</th><th>Status</th></tr></thead>
+        <tbody id="bookingsBody"><tr><td colspan="9" class="empty-cell">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── EXHIBITIONS ── -->
+  <section id="section-exhibitions" class="section">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Image</th><th>Name</th><th>Location</th><th>Start</th><th>End</th><th>Status</th><th>Featured</th><th>Actions</th></tr></thead>
+        <tbody id="exhibitionsBody"><tr><td colspan="8" class="empty-cell">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── TICKET PRICES ── -->
+  <section id="section-tickets" class="section">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Name</th><th>Nationality</th><th>Visitor Type</th><th>Price (EGP)</th><th>Description</th><th>Active</th><th>Actions</th></tr></thead>
+        <tbody id="ticketsBody"><tr><td colspan="7" class="empty-cell">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── ADD-ONS ── -->
+  <section id="section-addons" class="section">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Name</th><th>Description</th><th>Price (EGP)</th><th>Active</th><th>Actions</th></tr></thead>
+        <tbody id="addonsBody"><tr><td colspan="5" class="empty-cell">Loading…</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- AUTH OVERLAY -->
+  <div class="auth-overlay" id="authOverlay">
+    <div class="auth-box">
+      <i class="fas fa-shield-alt"></i>
+      <h2>Staff Access Required</h2>
+      <p>Login with a staff account to access the dashboard.</p>
+      <a href="http://127.0.0.1:8000/admin/" class="btn-primary" style="margin-top:1rem;display:inline-block;padding:.7rem 1.5rem;border-radius:6px;text-decoration:none">Login via Django Admin</a>
+    </div>
+  </div>
+</main>
+
+<!-- ══════════════════ ARTIFACT MODAL ══════════════════ -->
+<div class="modal-overlay" id="artifactModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="artifactModalTitle">Add Artifact</h3>
+      <button class="modal-close" data-close="artifactModal"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="artifactForm" enctype="multipart/form-data">
+        <input type="hidden" id="aId">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Name *</label>
+            <input type="text" id="aName" required placeholder="Artifact name">
+          </div>
+          <div class="form-group">
+            <label>Hall</label>
+            <select id="aHall"><option value="">— No Hall —</option></select>
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="aCategory">
+              <option value="royal">Royal Artifact</option>
+              <option value="sculpture">Sculpture</option>
+              <option value="inscription">Inscription</option>
+              <option value="manuscript">Manuscript</option>
+              <option value="monument">Monument</option>
+              <option value="jewelry">Jewelry</option>
+              <option value="tool">Tool</option>
+              <option value="pottery">Pottery</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Era</label>
+            <input type="text" id="aEra" placeholder="e.g. New Kingdom">
+          </div>
+          <div class="form-group">
+            <label>Date Label</label>
+            <input type="text" id="aDateLabel" placeholder="e.g. 1323 BCE">
+          </div>
+          <div class="form-group">
+            <label>Year Discovered</label>
+            <input type="number" id="aYear" placeholder="e.g. 1922">
+          </div>
+          <div class="form-group">
+            <label>Discovered By</label>
+            <input type="text" id="aDiscoveredBy" placeholder="e.g. Howard Carter">
+          </div>
+          <div class="form-group">
+            <label>Material</label>
+            <input type="text" id="aMaterial" placeholder="e.g. Gold, Lapis Lazuli">
+          </div>
+          <div class="form-group full">
+            <label>Description</label>
+            <textarea id="aDescription" rows="4" placeholder="Artifact description…"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Main Image</label>
+            <input type="file" id="aImage" accept="image/*">
+            <img id="aImagePreview" src="" alt="" style="display:none;margin-top:8px;max-height:120px;border-radius:8px;object-fit:cover">
+          </div>
+          <div class="form-group" style="display:flex;align-items:center;gap:10px;padding-top:24px">
+            <input type="checkbox" id="aFeatured" style="width:18px;height:18px;accent-color:#d4af37">
+            <label for="aFeatured" style="margin:0;cursor:pointer">Featured Artifact</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="artifactModal">Cancel</button>
+      <button class="btn-primary" id="saveArtifactBtn">Save Artifact</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ HALL MODAL ══════════════════ -->
+<div class="modal-overlay" id="hallModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="hallModalTitle">Add Hall</h3>
+      <button class="modal-close" data-close="hallModal"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="hallForm">
+        <input type="hidden" id="hId">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Hall Name *</label>
+            <input type="text" id="hName" required placeholder="Hall name">
+          </div>
+          <div class="form-group">
+            <label>Era</label>
+            <select id="hEra">
+              <option value="old">Old Kingdom</option>
+              <option value="middle">Middle Kingdom</option>
+              <option value="new">New Kingdom</option>
+              <option value="late">Late Period</option>
+              <option value="roman">Roman Period</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Theme</label>
+            <select id="hTheme">
+              <option value="society">Society</option>
+              <option value="royalty">Royalty</option>
+              <option value="beliefs">Beliefs</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Sub-Theme</label>
+            <input type="text" id="hSubTheme" placeholder="e.g. Life, Trade, Pharaohs">
+          </div>
+          <div class="form-group full">
+            <label>Description</label>
+            <textarea id="hDescription" rows="3" placeholder="Hall description…"></textarea>
+          </div>
+          <div class="form-group full">
+            <label>History Text</label>
+            <textarea id="hHistory" rows="4" placeholder="Detailed history…"></textarea>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="hallModal">Cancel</button>
+      <button class="btn-primary" id="saveHallBtn">Save Hall</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ EXHIBITION MODAL ══════════════════ -->
+<div class="modal-overlay" id="exhibitionModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="exhibitionModalTitle">Add Exhibition</h3>
+      <button class="modal-close" data-close="exhibitionModal"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="exhibitionForm" enctype="multipart/form-data">
+        <input type="hidden" id="exId">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Name *</label>
+            <input type="text" id="exName" required placeholder="Exhibition name">
+          </div>
+          <div class="form-group">
+            <label>Start Date *</label>
+            <input type="date" id="exStartDate" required>
+          </div>
+          <div class="form-group">
+            <label>End Date *</label>
+            <input type="date" id="exEndDate" required>
+          </div>
+          <div class="form-group full">
+            <label>Location in Museum</label>
+            <input type="text" id="exLocation" placeholder="e.g. Ground Floor, East Wing">
+          </div>
+          <div class="form-group full">
+            <label>Description</label>
+            <textarea id="exDescription" rows="3" placeholder="Exhibition description…"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Cover Image</label>
+            <input type="file" id="exImage" accept="image/*">
+            <img id="exImagePreview" src="" alt="" style="display:none;margin-top:8px;max-height:120px;border-radius:8px;object-fit:cover">
+          </div>
+          <div class="form-group" style="display:flex;align-items:center;gap:10px;padding-top:24px">
+            <input type="checkbox" id="exFeatured" style="width:18px;height:18px;accent-color:#d4af37">
+            <label for="exFeatured" style="margin:0;cursor:pointer">Featured Exhibition</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="exhibitionModal">Cancel</button>
+      <button class="btn-primary" id="saveExhibitionBtn">Save Exhibition</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TICKET MODAL ══════════════════ -->
+<div class="modal-overlay" id="ticketModal">
+  <div class="modal" style="max-width:500px">
+    <div class="modal-header">
+      <h3 id="ticketModalTitle">Add Ticket Type</h3>
+      <button class="modal-close" data-close="ticketModal"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="ticketForm">
+        <input type="hidden" id="tkId">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Name *</label>
+            <input type="text" id="tkName" required placeholder="e.g. Egyptian Adult">
+          </div>
+          <div class="form-group">
+            <label>Nationality</label>
+            <select id="tkNationality">
+              <option value="egyptian">Egyptian</option>
+              <option value="foreign">Foreign</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Visitor Type</label>
+            <select id="tkVisitor">
+              <option value="adult">Adult</option>
+              <option value="student">Student</option>
+              <option value="child">Child</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Price (EGP) *</label>
+            <input type="number" id="tkPrice" required min="0" step="0.01" placeholder="0.00">
+          </div>
+          <div class="form-group full">
+            <label>Description</label>
+            <input type="text" id="tkDescription" placeholder="Optional short description">
+          </div>
+          <div class="form-group" style="display:flex;align-items:center;gap:10px;padding-top:24px">
+            <input type="checkbox" id="tkActive" checked style="width:18px;height:18px;accent-color:#d4af37">
+            <label for="tkActive" style="margin:0;cursor:pointer">Active (shown on booking page)</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="ticketModal">Cancel</button>
+      <button class="btn-primary" id="saveTicketBtn">Save Ticket</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ ADD-ON MODAL ══════════════════ -->
+<div class="modal-overlay" id="addonModal">
+  <div class="modal" style="max-width:480px">
+    <div class="modal-header">
+      <h3 id="addonModalTitle">Add Add-on</h3>
+      <button class="modal-close" data-close="addonModal"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <form id="addonForm">
+        <input type="hidden" id="adId">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label>Name *</label>
+            <input type="text" id="adName" required placeholder="e.g. Arabic Audio Guide">
+          </div>
+          <div class="form-group">
+            <label>Price (EGP) *</label>
+            <input type="number" id="adPrice" required min="0" step="0.01" placeholder="0.00">
+          </div>
+          <div class="form-group full">
+            <label>Description</label>
+            <textarea id="adDescription" rows="3" placeholder="Add-on description…"></textarea>
+          </div>
+          <div class="form-group" style="display:flex;align-items:center;gap:10px;padding-top:24px">
+            <input type="checkbox" id="adActive" checked style="width:18px;height:18px;accent-color:#d4af37">
+            <label for="adActive" style="margin:0;cursor:pointer">Active (shown on booking page)</label>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="addonModal">Cancel</button>
+      <button class="btn-primary" id="saveAddonBtn">Save Add-on</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ DELETE CONFIRM ══════════════════ -->
+<div class="modal-overlay" id="deleteModal">
+  <div class="modal" style="max-width:420px">
+    <div class="modal-header">
+      <h3>Confirm Delete</h3>
+      <button class="modal-close" data-close="deleteModal"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="modal-body">
+      <p id="deleteMsg" style="color:#ccc;line-height:1.6"></p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" data-close="deleteModal">Cancel</button>
+      <button class="btn-danger" id="confirmDeleteBtn">Delete</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ TOAST ══════════════════ -->
+<div class="toast" id="toast"></div>
+
+<script>
+const DJANGO = 'http://127.0.0.1:8000';
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function fmtDate(iso) {
+  if (!iso) return '—';
+  return new Date(iso).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+}
+function stars(n) {
+  if (!n) return '<span style="color:#555">—</span>';
+  return [1,2,3,4,5].map(i => `<i class="fas fa-star" style="color:${i<=n?'#d4af37':'#333'};font-size:.7rem"></i>`).join('');
+}
+function toast(msg, ok=true) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'toast ' + (ok ? 'toast-ok' : 'toast-err') + ' show';
+  setTimeout(() => el.classList.remove('show'), 3000);
+}
+async function api(url, opts={}) {
+  const res = await fetch(DJANGO + url, { credentials:'include', ...opts });
+  return res.json();
+}
+
+// ── Modals ───────────────────────────────────────────────────────────────────
+function openModal(id)  { document.getElementById(id).classList.add('open'); }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+document.querySelectorAll('[data-close]').forEach(btn =>
+  btn.addEventListener('click', () => closeModal(btn.dataset.close))
+);
+document.querySelectorAll('.modal-overlay').forEach(ov =>
+  ov.addEventListener('click', e => { if (e.target === ov) closeModal(ov.id); })
+);
+
+// ── Sidebar navigation ────────────────────────────────────────────────────────
+const TITLES = {
+  overview:'Dashboard', artifacts:'Artifacts', halls:'Halls',
+  messages:'Messages', users:'Users', bookings:'Bookings',
+  exhibitions:'Exhibitions', tickets:'Ticket Prices', addons:'Add-ons',
+};
+const ADD_BTNS = {
+  artifacts:   '<button class="btn-primary" id="addArtifactBtn"><i class="fas fa-plus"></i> Add Artifact</button>',
+  halls:       '<button class="btn-primary" id="addHallBtn"><i class="fas fa-plus"></i> Add Hall</button>',
+  exhibitions: '<button class="btn-primary" id="addExhibitionBtn"><i class="fas fa-plus"></i> Add Exhibition</button>',
+  tickets:     '<button class="btn-primary" id="addTicketBtn"><i class="fas fa-plus"></i> Add Ticket Type</button>',
+  addons:      '<button class="btn-primary" id="addAddonBtn"><i class="fas fa-plus"></i> Add Add-on</button>',
+};
+
+let currentSection = 'overview';
+
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  document.getElementById('section-' + name)?.classList.add('active');
+  document.querySelector(`.nav-link[data-section="${name}"]`)?.classList.add('active');
+  document.getElementById('pageTitle').textContent = TITLES[name] || name;
+  document.getElementById('headerActions').innerHTML = ADD_BTNS[name] || '';
+  currentSection = name;
+
+  // Attach add button listeners
+  document.getElementById('addArtifactBtn')?.addEventListener('click', () => openArtifactModal());
+  document.getElementById('addHallBtn')?.addEventListener('click', () => openHallModal());
+  document.getElementById('addExhibitionBtn')?.addEventListener('click', () => openExhibitionModal());
+  document.getElementById('addTicketBtn')?.addEventListener('click', () => openTicketModal());
+  document.getElementById('addAddonBtn')?.addEventListener('click', () => openAddonModal());
+
+  // Load data
+  if (name === 'artifacts')   loadArtifacts();
+  if (name === 'halls')       loadHalls();
+  if (name === 'messages')    loadMessages();
+  if (name === 'users')       loadUsers();
+  if (name === 'bookings')    loadBookings();
+  if (name === 'exhibitions') loadExhibitions();
+  if (name === 'tickets')     loadTickets();
+  if (name === 'addons')      loadAddons();
+}
+
+document.querySelectorAll('.nav-link[data-section]').forEach(el =>
+  el.addEventListener('click', e => { e.preventDefault(); showSection(el.dataset.section); })
+);
+document.querySelectorAll('[data-goto]').forEach(el =>
+  el.addEventListener('click', e => { e.preventDefault(); showSection(el.dataset.goto); })
+);
+
+// ── OVERVIEW ─────────────────────────────────────────────────────────────────
+function renderActivityChart(points=[]) {
+  const chart = document.getElementById('activityChart');
+  const summary = document.getElementById('activitySummary');
+  if (!chart || !summary) return;
+
+  if (!points.length) {
+    chart.innerHTML = '<div class="chart-empty">No nationality data available.</div>';
+    summary.textContent = 'No user nationality data is available yet.';
+    return;
+  }
+
+  const totalUsers = points.reduce((sum, point) => sum + (Number(point.count) || 0), 0);
+  const topNationality = points.reduce(
+    (best, point) => {
+      const count = Number(point.count) || 0;
+      return count > best.count ? { label: point.label, count } : best;
+    },
+    { label: points[0]?.label || '', count: -1 }
+  );
+  const palette = ['#d4af37', '#84defe', '#ff8f6b', '#8ee89c', '#c6a6ff', '#ffd66b', '#7dd3b0'];
+
+  if (!totalUsers) {
+    chart.innerHTML = '<div class="chart-empty">No users have nationality data yet.</div>';
+    summary.textContent = 'No users have nationality data yet.';
+    return;
+  }
+
+  let currentAngle = 0;
+  const segments = points.map((point, index) => {
+    const count = Number(point.count) || 0;
+    const percentage = (count / totalUsers) * 100;
+    const color = palette[index % palette.length];
+    const start = currentAngle;
+    const end = start + percentage;
+    currentAngle = end;
+    return {
+      ...point,
+      count,
+      color,
+      percentage,
+      start,
+      end,
+    };
+  });
+  const gradient = segments
+    .map(segment => `${segment.color} ${segment.start.toFixed(2)}% ${segment.end.toFixed(2)}%`)
+    .join(', ');
+
+  chart.innerHTML = `
+    <div class="donut-layout">
+      <div class="donut-visual-wrap">
+        <div class="donut-visual" style="background: conic-gradient(${gradient});" aria-hidden="true">
+          <div class="donut-hole">
+            <strong>${totalUsers}</strong>
+            <span>Users</span>
+          </div>
+        </div>
+      </div>
+      <div class="donut-legend-list">
+        ${segments.map(segment => `
+          <div class="donut-legend-item" title="${segment.label}: ${segment.count} users">
+            <i class="donut-dot" style="background:${segment.color}"></i>
+            <div class="donut-meta">
+              <span class="donut-name">${segment.label}</span>
+              <span class="donut-stats">${segment.count} users • ${segment.percentage.toFixed(1)}%</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+
+  summary.textContent = `${totalUsers} users shown. Highest count: ${topNationality.label} with ${topNationality.count} user${topNationality.count === 1 ? '' : 's'}.`;
+}
+
+async function loadOverview() {
+  try {
+    const d = await api('/api/admin-stats/');
+    if (d.error) { document.getElementById('authOverlay').style.display = 'flex'; return; }
+    document.getElementById('sArtifacts').textContent  = d.artifacts ?? '—';
+    document.getElementById('sHalls').textContent      = d.halls ?? '—';
+    document.getElementById('sExhibitions').textContent= d.exhibitions ?? '—';
+    document.getElementById('sUsers').textContent      = d.users ?? '—';
+    document.getElementById('sBookings').textContent   = d.bookings ?? '—';
+    document.getElementById('sMessages').textContent   = d.messages_unread ?? '—';
+    renderActivityChart(d.nationality_distribution || []);
+    const b = document.getElementById('unreadBadge');
+    if (d.messages_unread > 0) {
+      b.textContent = d.messages_unread; b.style.display = 'inline-block';
+    } else if (b) {
+      b.style.display = 'none';
+    }
+    const tbody = document.getElementById('overviewMsgs');
+    if (!tbody) return;
+    if (!d.recent_messages?.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="empty-cell">No messages yet.</td></tr>'; return;
+    }
+    tbody.innerHTML = d.recent_messages.map(m => `
+      <tr class="${m.is_read?'':'unread-row'}">
+        <td>${m.full_name||'—'}</td>
+        <td>${m.subject||'—'}</td>
+        <td>${stars(m.rating)}</td>
+        <td>${fmtDate(m.created_at)}</td>
+        <td><span class="badge-status ${m.is_read?'read':'unread'}">${m.is_read?'Read':'Unread'}</span></td>
+      </tr>`).join('');
+  } catch { document.getElementById('authOverlay').style.display = 'flex'; }
+}
+
+// ── ARTIFACTS ────────────────────────────────────────────────────────────────
+let hallsList = [];
+
+async function loadHallOptions() {
+  if (hallsList.length) return;
+  const d = await api('/api/admin/halls/');
+  hallsList = d.halls || [];
+  const sel = document.getElementById('aHall');
+  sel.innerHTML = '<option value="">— No Hall —</option>' +
+    hallsList.map(h => `<option value="${h.id}">${h.name}</option>`).join('');
+}
+
+async function loadArtifacts() {
+  const tbody = document.getElementById('artifactsBody');
+  tbody.innerHTML = '<tr><td colspan="7" class="empty-cell">Loading…</td></tr>';
+  try {
+    const d = await api('/api/admin/artifacts/');
+    if (!d.artifacts?.length) {
+      tbody.innerHTML = '<tr><td colspan="7" class="empty-cell">No artifacts yet. Click "Add Artifact" to create one.</td></tr>'; return;
+    }
+    tbody.innerHTML = d.artifacts.map(a => `
+      <tr>
+        <td><div class="thumb" style="background-image:url('${a.main_image||''}')">
+          ${!a.main_image?'<i class="fas fa-image" style="color:#555;font-size:1.2rem"></i>':''}</div></td>
+        <td><strong>${a.name}</strong></td>
+        <td>${a.hall_name||'—'}</td>
+        <td><span class="cat-tag">${a.category_display}</span></td>
+        <td>${a.era||'—'}</td>
+        <td>${a.is_featured?'<span class="badge-yes"><i class="fas fa-star"></i></span>':'—'}</td>
+        <td class="actions-cell">
+          <button class="btn-icon edit" onclick="editArtifact(${a.id})" title="Edit"><i class="fas fa-pen"></i></button>
+          <button class="btn-icon del"  onclick="deleteArtifact(${a.id},'${a.name.replace(/'/g,"\\'")}')" title="Delete"><i class="fas fa-trash"></i></button>
+        </td>
+      </tr>`).join('');
+  } catch { tbody.innerHTML = '<tr><td colspan="7" class="empty-cell" style="color:#f87">Error loading artifacts.</td></tr>'; }
+}
+
+// ── Artifact modal ────────────────────────────────────────────────────────────
+function openArtifactModal(data=null) {
+  document.getElementById('artifactModalTitle').textContent = data ? 'Edit Artifact' : 'Add Artifact';
+  document.getElementById('aId').value          = data?.id || '';
+  document.getElementById('aName').value        = data?.name || '';
+  document.getElementById('aCategory').value    = data?.category || 'other';
+  document.getElementById('aEra').value         = data?.era || '';
+  document.getElementById('aDateLabel').value   = data?.date_label || '';
+  document.getElementById('aYear').value        = data?.year_discovered || '';
+  document.getElementById('aDiscoveredBy').value= data?.discovered_by || '';
+  document.getElementById('aMaterial').value    = data?.material || '';
+  document.getElementById('aDescription').value = data?.description || '';
+  document.getElementById('aFeatured').checked  = data?.is_featured || false;
+  document.getElementById('aImage').value       = '';
+  const prev = document.getElementById('aImagePreview');
+  if (data?.main_image) { prev.src = data.main_image; prev.style.display = 'block'; }
+  else prev.style.display = 'none';
+
+  loadHallOptions().then(() => {
+    document.getElementById('aHall').value = data?.hall_id || '';
+  });
+  openModal('artifactModal');
+}
+
+document.getElementById('aImage').addEventListener('change', function() {
+  const prev = document.getElementById('aImagePreview');
+  if (this.files[0]) {
+    prev.src = URL.createObjectURL(this.files[0]);
+    prev.style.display = 'block';
+  }
+});
+
+async function editArtifact(id) {
+  try {
+    const d = await api(`/api/admin/artifacts/${id}/`);
+    openArtifactModal(d);
+  } catch { toast('Failed to load artifact.', false); }
+}
+
+document.getElementById('saveArtifactBtn').addEventListener('click', async () => {
+  const name = document.getElementById('aName').value.trim();
+  if (!name) { toast('Name is required.', false); return; }
+
+  const fd = new FormData();
+  fd.append('name',          name);
+  fd.append('hall_id',       document.getElementById('aHall').value);
+  fd.append('category',      document.getElementById('aCategory').value);
+  fd.append('era',           document.getElementById('aEra').value);
+  fd.append('date_label',    document.getElementById('aDateLabel').value);
+  fd.append('year_discovered', document.getElementById('aYear').value);
+  fd.append('discovered_by', document.getElementById('aDiscoveredBy').value);
+  fd.append('material',      document.getElementById('aMaterial').value);
+  fd.append('description',   document.getElementById('aDescription').value);
+  fd.append('is_featured',   document.getElementById('aFeatured').checked ? 'true' : 'false');
+  const imgFile = document.getElementById('aImage').files[0];
+  if (imgFile) fd.append('main_image', imgFile);
+
+  const id = document.getElementById('aId').value;
+  const url = id ? `/api/admin/artifacts/${id}/` : '/api/admin/artifacts/';
+
+  try {
+    const d = await fetch(DJANGO + url, { method:'POST', credentials:'include', body:fd }).then(r => r.json());
+    if (d.ok) {
+      toast(id ? 'Artifact updated!' : 'Artifact added!');
+      closeModal('artifactModal');
+      loadArtifacts();
+      loadOverview();
+    } else { toast(d.error || 'Error saving artifact.', false); }
+  } catch { toast('Server error.', false); }
+});
+
+function deleteArtifact(id, name) {
+  document.getElementById('deleteMsg').textContent = `Are you sure you want to delete "${name}"? This cannot be undone.`;
+  document.getElementById('confirmDeleteBtn').onclick = async () => {
+    try {
+      const d = await fetch(DJANGO + `/api/admin/artifacts/${id}/`, { method:'DELETE', credentials:'include' }).then(r=>r.json());
+      if (d.ok) { toast('Artifact deleted.'); closeModal('deleteModal'); loadArtifacts(); loadOverview(); }
+      else toast(d.error || 'Delete failed.', false);
+    } catch { toast('Server error.', false); }
+  };
+  openModal('deleteModal');
+}
+
+// ── HALLS ────────────────────────────────────────────────────────────────────
+async function loadHalls() {
+  const tbody = document.getElementById('hallsBody');
+  tbody.innerHTML = '<tr><td colspan="6" class="empty-cell">Loading…</td></tr>';
+  try {
+    const d = await api('/api/admin/halls/');
+    hallsList = d.halls || [];
+    if (!hallsList.length) {
+      tbody.innerHTML = '<tr><td colspan="6" class="empty-cell">No halls yet. Click "Add Hall" to create one.</td></tr>'; return;
+    }
+    tbody.innerHTML = hallsList.map(h => `
+      <tr>
+        <td><strong>${h.name}</strong></td>
+        <td>${h.era_display}</td>
+        <td>${h.theme_display}</td>
+        <td>${h.sub_theme||'—'}</td>
+        <td><span class="count-pill">${h.artifact_count}</span></td>
+        <td class="actions-cell">
+          <button class="btn-icon edit" onclick="editHall(${h.id})" title="Edit"><i class="fas fa-pen"></i></button>
+          <button class="btn-icon del"  onclick="deleteHall(${h.id},'${h.name.replace(/'/g,"\\'")}')" title="Delete"><i class="fas fa-trash"></i></button>
+        </td>
+      </tr>`).join('');
+  } catch { tbody.innerHTML = '<tr><td colspan="6" class="empty-cell" style="color:#f87">Error loading halls.</td></tr>'; }
+}
+
+function openHallModal(data=null) {
+  document.getElementById('hallModalTitle').textContent = data ? 'Edit Hall' : 'Add Hall';
+  document.getElementById('hId').value          = data?.id || '';
+  document.getElementById('hName').value        = data?.name || '';
+  document.getElementById('hEra').value         = data?.era || 'old';
+  document.getElementById('hTheme').value       = data?.theme || 'society';
+  document.getElementById('hSubTheme').value    = data?.sub_theme || '';
+  document.getElementById('hDescription').value = data?.description || '';
+  document.getElementById('hHistory').value     = data?.history_text || '';
+  openModal('hallModal');
+}
+
+function editHall(id) {
+  const h = hallsList.find(x => x.id === id);
+  if (h) openHallModal(h);
+}
+
+document.getElementById('saveHallBtn').addEventListener('click', async () => {
+  const name = document.getElementById('hName').value.trim();
+  if (!name) { toast('Hall name is required.', false); return; }
+  const data = {
+    name, era: document.getElementById('hEra').value,
+    theme: document.getElementById('hTheme').value,
+    sub_theme: document.getElementById('hSubTheme').value,
+    description: document.getElementById('hDescription').value,
+    history_text: document.getElementById('hHistory').value,
+  };
+  const id = document.getElementById('hId').value;
+  const url = id ? `/api/admin/halls/${id}/` : '/api/admin/halls/';
+  try {
+    const d = await fetch(DJANGO + url, {
+      method:'POST', credentials:'include',
+      headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
+    }).then(r=>r.json());
+    if (d.ok) {
+      toast(id ? 'Hall updated!' : 'Hall added!');
+      closeModal('hallModal'); loadHalls(); loadOverview();
+      hallsList = []; // reset cache
+    } else toast(d.error || 'Error saving hall.', false);
+  } catch { toast('Server error.', false); }
+});
+
+function deleteHall(id, name) {
+  document.getElementById('deleteMsg').textContent = `Delete hall "${name}"? Artifacts in it won't be deleted but will lose their hall.`;
+  document.getElementById('confirmDeleteBtn').onclick = async () => {
+    try {
+      const d = await fetch(DJANGO + `/api/admin/halls/${id}/`, { method:'DELETE', credentials:'include' }).then(r=>r.json());
+      if (d.ok) { toast('Hall deleted.'); closeModal('deleteModal'); loadHalls(); loadOverview(); hallsList=[]; }
+      else toast(d.error || 'Delete failed.', false);
+    } catch { toast('Server error.', false); }
+  };
+  openModal('deleteModal');
+}
+
+// ── MESSAGES ─────────────────────────────────────────────────────────────────
+async function loadMessages() {
+  const tbody = document.getElementById('messagesBody');
+  try {
+    const d = await api('/api/admin/messages/');
+    if (!d.messages?.length) {
+      tbody.innerHTML = '<tr><td colspan="7" class="empty-cell">No messages yet.</td></tr>'; return;
+    }
+    tbody.innerHTML = d.messages.map(m => `
+      <tr class="${m.is_read?'':'unread-row'}" style="cursor:pointer" onclick="showMsg(${m.id})">
+        <td>${m.full_name||'—'}</td>
+        <td>${m.email||'—'}</td>
+        <td>${m.subject||'—'}</td>
+        <td>${stars(m.rating)}</td>
+        <td>${fmtDate(m.created_at)}</td>
+        <td><span class="badge-status ${m.is_read?'read':'unread'}">${m.is_read?'Read':'Unread'}</span></td>
+        <td><button class="btn-icon" onclick="event.stopPropagation();markRead(${m.id},this)" title="Mark as read"><i class="fas fa-check"></i></button></td>
+      </tr>`).join('');
+    window._msgs = d.messages;
+  } catch { tbody.innerHTML = '<tr><td colspan="7" class="empty-cell" style="color:#f87">Error.</td></tr>'; }
+}
+
+function showMsg(id) {
+  const m = (window._msgs||[]).find(x=>x.id===id);
+  if (!m) return;
+  document.getElementById('mdSender').textContent  = `${m.full_name} <${m.email}>`;
+  document.getElementById('mdSubject').textContent = m.subject;
+  document.getElementById('mdBody').textContent    = m.message;
+  document.getElementById('msgDetail').style.display = 'block';
+}
+
+async function markRead(id, btn) {
+  try {
+    const d = await fetch(DJANGO + `/api/admin/messages/${id}/`, { method:'POST', credentials:'include' }).then(r=>r.json());
+    if (d.ok) { toast('Marked as read.'); loadMessages(); loadOverview(); }
+    else toast(d.error || 'Error.', false);
+  } catch { toast('Server error.', false); }
+}
+
+// ── USERS ────────────────────────────────────────────────────────────────────
+async function loadUsers() {
+  const tbody = document.getElementById('usersBody');
+  try {
+    const d = await api('/api/admin/users/');
+    if (!d.users?.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="empty-cell">No users yet.</td></tr>'; return;
+    }
+    tbody.innerHTML = d.users.map(u => `
+      <tr>
+        <td>${[u.first_name,u.last_name].filter(Boolean).join(' ')||'—'}</td>
+        <td>${u.email||'—'}</td>
+        <td>${u.nationality||'—'}</td>
+        <td>${fmtDate(u.date_joined)}</td>
+        <td><span class="badge-status ${u.is_active?'read':'unread'}">${u.is_active?'Active':'Inactive'}</span>
+            ${u.is_staff?'<span class="badge-status" style="background:rgba(99,102,241,.2);color:#818cf8;margin-left:4px">Staff</span>':''}</td>
+      </tr>`).join('');
+  } catch { tbody.innerHTML = '<tr><td colspan="5" class="empty-cell" style="color:#f87">Error.</td></tr>'; }
+}
+
+// ── BOOKINGS ─────────────────────────────────────────────────────────────────
+async function loadBookings() {
+  const tbody = document.getElementById('bookingsBody');
+  try {
+    const d = await api('/api/admin/bookings/');
+    if (!d.bookings?.length) {
+      tbody.innerHTML = '<tr><td colspan="9" class="empty-cell">No bookings yet.</td></tr>'; return;
+    }
+    const statusColor = { confirmed:'read', pending:'unread', cancelled:'unread' };
+    tbody.innerHTML = d.bookings.map(b => `
+      <tr>
+        <td>#${b.id}</td>
+        <td><strong>${b.full_name||'—'}</strong></td>
+        <td>${b.email||'—'}</td>
+        <td>${b.mobile||'—'}</td>
+        <td>${fmtDate(b.visit_date)}</td>
+        <td>${b.entry_time ? b.entry_time.slice(0,5) : '—'}</td>
+        <td>${b.tour_language||'—'}</td>
+        <td>EGP ${b.total_amount||0}</td>
+        <td><span class="badge-status ${statusColor[b.status]||'unread'}">${b.status}</span></td>
+      </tr>`).join('');
+  } catch { tbody.innerHTML = '<tr><td colspan="9" class="empty-cell" style="color:#f87">Error.</td></tr>'; }
+}
+
+// ── EXHIBITIONS ──────────────────────────────────────────────────────────────
+async function loadExhibitions() {
+  const tbody = document.getElementById('exhibitionsBody');
+  tbody.innerHTML = '<tr><td colspan="8" class="empty-cell">Loading…</td></tr>';
+  try {
+    const d = await api('/api/admin/exhibitions/');
+    if (!d.exhibitions?.length) {
+      tbody.innerHTML = '<tr><td colspan="8" class="empty-cell">No exhibitions yet. Click "Add Exhibition" to create one.</td></tr>'; return;
+    }
+    const statusBadge = { active:'read', upcoming:'unread', past:'unread' };
+    tbody.innerHTML = d.exhibitions.map(e => `
+      <tr>
+        <td><div class="thumb" style="background-image:url('${e.cover_image||''}')">
+          ${!e.cover_image?'<i class="fas fa-image" style="color:#555;font-size:1.2rem"></i>':''}</div></td>
+        <td><strong>${e.name}</strong></td>
+        <td>${e.location_in_museum||'—'}</td>
+        <td>${fmtDate(e.start_date)}</td>
+        <td>${fmtDate(e.end_date)}</td>
+        <td><span class="badge-status ${statusBadge[e.status]||'unread'}">${e.status}</span></td>
+        <td>${e.is_featured?'<span class="badge-yes"><i class="fas fa-star"></i></span>':'—'}</td>
+        <td class="actions-cell">
+          <button class="btn-icon edit" onclick="editExhibition(${e.id})" title="Edit"><i class="fas fa-pen"></i></button>
+          <button class="btn-icon del"  onclick="deleteExhibition(${e.id},'${e.name.replace(/'/g,"\\'")}')" title="Delete"><i class="fas fa-trash"></i></button>
+        </td>
+      </tr>`).join('');
+  } catch { tbody.innerHTML = '<tr><td colspan="8" class="empty-cell" style="color:#f87">Error loading exhibitions.</td></tr>'; }
+}
+
+function openExhibitionModal(data=null) {
+  document.getElementById('exhibitionModalTitle').textContent = data ? 'Edit Exhibition' : 'Add Exhibition';
+  document.getElementById('exId').value          = data?.id || '';
+  document.getElementById('exName').value        = data?.name || '';
+  document.getElementById('exStartDate').value   = data?.start_date || '';
+  document.getElementById('exEndDate').value     = data?.end_date || '';
+  document.getElementById('exLocation').value    = data?.location_in_museum || '';
+  document.getElementById('exDescription').value = data?.description || '';
+  document.getElementById('exFeatured').checked  = data?.is_featured || false;
+  document.getElementById('exImage').value       = '';
+  const prev = document.getElementById('exImagePreview');
+  if (data?.cover_image) { prev.src = data.cover_image; prev.style.display = 'block'; }
+  else prev.style.display = 'none';
+  openModal('exhibitionModal');
+}
+
+document.getElementById('exImage').addEventListener('change', function() {
+  const prev = document.getElementById('exImagePreview');
+  if (this.files[0]) { prev.src = URL.createObjectURL(this.files[0]); prev.style.display = 'block'; }
+});
+
+async function editExhibition(id) {
+  try {
+    const d = await api(`/api/admin/exhibitions/${id}/`);
+    openExhibitionModal(d);
+  } catch { toast('Failed to load exhibition.', false); }
+}
+
+document.getElementById('saveExhibitionBtn').addEventListener('click', async () => {
+  const name = document.getElementById('exName').value.trim();
+  if (!name) { toast('Name is required.', false); return; }
+  const fd = new FormData();
+  fd.append('name',              name);
+  fd.append('start_date',        document.getElementById('exStartDate').value);
+  fd.append('end_date',          document.getElementById('exEndDate').value);
+  fd.append('location_in_museum',document.getElementById('exLocation').value);
+  fd.append('description',       document.getElementById('exDescription').value);
+  fd.append('is_featured',       document.getElementById('exFeatured').checked ? 'true' : 'false');
+  const imgFile = document.getElementById('exImage').files[0];
+  if (imgFile) fd.append('cover_image', imgFile);
+  const id  = document.getElementById('exId').value;
+  const url = id ? `/api/admin/exhibitions/${id}/` : '/api/admin/exhibitions/';
+  try {
+    const d = await fetch(DJANGO + url, { method:'POST', credentials:'include', body:fd }).then(r=>r.json());
+    if (d.ok) { toast(id ? 'Exhibition updated!' : 'Exhibition added!'); closeModal('exhibitionModal'); loadExhibitions(); loadOverview(); }
+    else toast(d.error || 'Error saving exhibition.', false);
+  } catch { toast('Server error.', false); }
+});
+
+function deleteExhibition(id, name) {
+  document.getElementById('deleteMsg').textContent = `Delete exhibition "${name}"? This cannot be undone.`;
+  document.getElementById('confirmDeleteBtn').onclick = async () => {
+    try {
+      const d = await fetch(DJANGO + `/api/admin/exhibitions/${id}/`, { method:'DELETE', credentials:'include' }).then(r=>r.json());
+      if (d.ok) { toast('Exhibition deleted.'); closeModal('deleteModal'); loadExhibitions(); loadOverview(); }
+      else toast(d.error || 'Delete failed.', false);
+    } catch { toast('Server error.', false); }
+  };
+  openModal('deleteModal');
+}
+
+// ── TICKET PRICES ─────────────────────────────────────────────────────────────
+async function loadTickets() {
+  const tbody = document.getElementById('ticketsBody');
+  tbody.innerHTML = '<tr><td colspan="7" class="empty-cell">Loading…</td></tr>';
+  try {
+    const d = await api('/api/admin/tickets/');
+    if (!d.tickets?.length) {
+      tbody.innerHTML = '<tr><td colspan="7" class="empty-cell">No ticket types yet.</td></tr>'; return;
+    }
+    tbody.innerHTML = d.tickets.map(t => `
+      <tr>
+        <td><strong>${t.name}</strong></td>
+        <td><span class="cat-tag">${t.nationality_display}</span></td>
+        <td>${t.visitor_display}</td>
+        <td><strong style="color:#d4af37">EGP ${parseFloat(t.price).toLocaleString()}</strong></td>
+        <td style="color:#888;font-size:.82rem">${t.description||'—'}</td>
+        <td><span class="badge-status ${t.is_active?'read':'unread'}">${t.is_active?'Active':'Inactive'}</span></td>
+        <td class="actions-cell">
+          <button class="btn-icon edit" onclick="editTicket(${t.id})" title="Edit"><i class="fas fa-pen"></i></button>
+          <button class="btn-icon del"  onclick="deleteTicket(${t.id},'${t.name.replace(/'/g,"\\'")}')" title="Delete"><i class="fas fa-trash"></i></button>
+        </td>
+      </tr>`).join('');
+  } catch { tbody.innerHTML = '<tr><td colspan="7" class="empty-cell" style="color:#f87">Error loading ticket types.</td></tr>'; }
+}
+
+let ticketsList = [];
+function openTicketModal(data=null) {
+  document.getElementById('ticketModalTitle').textContent = data ? 'Edit Ticket Type' : 'Add Ticket Type';
+  document.getElementById('tkId').value          = data?.id || '';
+  document.getElementById('tkName').value        = data?.name || '';
+  document.getElementById('tkNationality').value = data?.nationality_category || 'egyptian';
+  document.getElementById('tkVisitor').value     = data?.visitor_category || 'adult';
+  document.getElementById('tkPrice').value       = data?.price || '';
+  document.getElementById('tkDescription').value = data?.description || '';
+  document.getElementById('tkActive').checked    = data ? data.is_active : true;
+  openModal('ticketModal');
+}
+
+async function editTicket(id) {
+  try {
+    const d = await api(`/api/admin/tickets/`);
+    const t = (d.tickets||[]).find(x => x.id === id);
+    if (t) openTicketModal(t);
+  } catch { toast('Failed to load ticket.', false); }
+}
+
+document.getElementById('saveTicketBtn').addEventListener('click', async () => {
+  const name = document.getElementById('tkName').value.trim();
+  if (!name) { toast('Name is required.', false); return; }
+  const price = parseFloat(document.getElementById('tkPrice').value);
+  if (isNaN(price) || price < 0) { toast('Valid price is required.', false); return; }
+  const data = {
+    name,
+    nationality_category: document.getElementById('tkNationality').value,
+    visitor_category:     document.getElementById('tkVisitor').value,
+    price,
+    description: document.getElementById('tkDescription').value,
+    is_active:   document.getElementById('tkActive').checked,
+  };
+  const id  = document.getElementById('tkId').value;
+  const url = id ? `/api/admin/tickets/${id}/` : '/api/admin/tickets/';
+  try {
+    const d = await fetch(DJANGO + url, {
+      method:'POST', credentials:'include',
+      headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
+    }).then(r=>r.json());
+    if (d.ok) { toast(id ? 'Ticket updated!' : 'Ticket added!'); closeModal('ticketModal'); loadTickets(); }
+    else toast(d.error || 'Error saving ticket.', false);
+  } catch { toast('Server error.', false); }
+});
+
+function deleteTicket(id, name) {
+  document.getElementById('deleteMsg').textContent = `Delete ticket type "${name}"? This cannot be undone.`;
+  document.getElementById('confirmDeleteBtn').onclick = async () => {
+    try {
+      const d = await fetch(DJANGO + `/api/admin/tickets/${id}/`, { method:'DELETE', credentials:'include' }).then(r=>r.json());
+      if (d.ok) { toast('Ticket deleted.'); closeModal('deleteModal'); loadTickets(); }
+      else toast(d.error || 'Delete failed.', false);
+    } catch { toast('Server error.', false); }
+  };
+  openModal('deleteModal');
+}
+
+// ── ADD-ONS ──────────────────────────────────────────────────────────────────
+async function loadAddons() {
+  const tbody = document.getElementById('addonsBody');
+  tbody.innerHTML = '<tr><td colspan="5" class="empty-cell">Loading…</td></tr>';
+  try {
+    const d = await api('/api/admin/addons/');
+    if (!d.addons?.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="empty-cell">No add-ons yet.</td></tr>'; return;
+    }
+    tbody.innerHTML = d.addons.map(a => `
+      <tr>
+        <td><strong>${a.name}</strong></td>
+        <td style="color:#888;font-size:.82rem">${a.description||'—'}</td>
+        <td><strong style="color:#d4af37">EGP ${parseFloat(a.price).toLocaleString()}</strong></td>
+        <td><span class="badge-status ${a.is_active?'read':'unread'}">${a.is_active?'Active':'Inactive'}</span></td>
+        <td class="actions-cell">
+          <button class="btn-icon edit" onclick="editAddon(${a.id})" title="Edit"><i class="fas fa-pen"></i></button>
+          <button class="btn-icon del"  onclick="deleteAddon(${a.id},'${a.name.replace(/'/g,"\\'")}')" title="Delete"><i class="fas fa-trash"></i></button>
+        </td>
+      </tr>`).join('');
+  } catch { tbody.innerHTML = '<tr><td colspan="5" class="empty-cell" style="color:#f87">Error loading add-ons.</td></tr>'; }
+}
+
+function openAddonModal(data=null) {
+  document.getElementById('addonModalTitle').textContent = data ? 'Edit Add-on' : 'Add Add-on';
+  document.getElementById('adId').value          = data?.id || '';
+  document.getElementById('adName').value        = data?.name || '';
+  document.getElementById('adPrice').value       = data?.price || '';
+  document.getElementById('adDescription').value = data?.description || '';
+  document.getElementById('adActive').checked    = data ? data.is_active : true;
+  openModal('addonModal');
+}
+
+async function editAddon(id) {
+  try {
+    const d = await api('/api/admin/addons/');
+    const a = (d.addons||[]).find(x => x.id === id);
+    if (a) openAddonModal(a);
+  } catch { toast('Failed to load add-on.', false); }
+}
+
+document.getElementById('saveAddonBtn').addEventListener('click', async () => {
+  const name = document.getElementById('adName').value.trim();
+  if (!name) { toast('Name is required.', false); return; }
+  const price = parseFloat(document.getElementById('adPrice').value);
+  if (isNaN(price) || price < 0) { toast('Valid price is required.', false); return; }
+  const data = {
+    name,
+    price,
+    description: document.getElementById('adDescription').value,
+    is_active:   document.getElementById('adActive').checked,
+  };
+  const id  = document.getElementById('adId').value;
+  const url = id ? `/api/admin/addons/${id}/` : '/api/admin/addons/';
+  try {
+    const d = await fetch(DJANGO + url, {
+      method:'POST', credentials:'include',
+      headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
+    }).then(r=>r.json());
+    if (d.ok) { toast(id ? 'Add-on updated!' : 'Add-on added!'); closeModal('addonModal'); loadAddons(); }
+    else toast(d.error || 'Error saving add-on.', false);
+  } catch { toast('Server error.', false); }
+});
+
+function deleteAddon(id, name) {
+  document.getElementById('deleteMsg').textContent = `Delete add-on "${name}"? This cannot be undone.`;
+  document.getElementById('confirmDeleteBtn').onclick = async () => {
+    try {
+      const d = await fetch(DJANGO + `/api/admin/addons/${id}/`, { method:'DELETE', credentials:'include' }).then(r=>r.json());
+      if (d.ok) { toast('Add-on deleted.'); closeModal('deleteModal'); loadAddons(); }
+      else toast(d.error || 'Delete failed.', false);
+    } catch { toast('Server error.', false); }
+  };
+  openModal('deleteModal');
+}
+
+// ── LOGOUT ───────────────────────────────────────────────────────────────────
+document.getElementById('logoutBtn').addEventListener('click', async () => {
+  try { await fetch(DJANGO+'/api/logout/', {method:'POST',credentials:'include'}); } catch {}
+  localStorage.removeItem('gem_user');
+  window.location.href = '../home/home.html';
+});
+
+// ── BOOT ─────────────────────────────────────────────────────────────────────
+loadOverview();
+</script>
+</body>
+</html>
