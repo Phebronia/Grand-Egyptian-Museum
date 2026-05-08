@@ -42,6 +42,9 @@ ENV/
 Thumbs.db
 desktop.ini
 
+# Large files (exceed GitHub's 100MB limit)
+explore/artifacts/models/models.rar
+
 # Secrets
 *.key
 *.pem
