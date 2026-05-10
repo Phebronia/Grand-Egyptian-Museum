@@ -99,6 +99,16 @@
             <i class="fa-solid fa-xmark"></i>
         </button>
     </div>
+    <div class="side-user-card" id="gemSideUserCard" style="display:none">
+        <a href="${root}user%20profile/profile.html" class="side-user-link">
+            <div class="side-user-avatar" id="gemSideAvatar"><i class="fa-regular fa-user"></i></div>
+            <div class="side-user-info">
+                <span class="side-user-name" id="gemSideUserName"></span>
+                <span class="side-user-email" id="gemSideUserEmail"></span>
+            </div>
+            <i class="fa-solid fa-chevron-right side-user-arrow"></i>
+        </a>
+    </div>
     <ul class="side-links">
         <li><i class="fa-solid fa-house"></i><a href="${root}home/home.html" data-navkey="home" data-i18n="nav.home">HOME</a></li>
         <li><i class="fa-solid fa-compass"></i><a href="${root}explore/explore.htm" data-navkey="explore" data-i18n="nav.explore">EXPLORE</a></li>
@@ -226,6 +236,27 @@
         try { return JSON.parse(localStorage.getItem('gem_user')); }
         catch { return null; }
     })();
+
+    /* ── Side menu user card ── */
+    const sideUserCard  = document.getElementById('gemSideUserCard');
+    const sideAvatar    = document.getElementById('gemSideAvatar');
+    const sideUserName  = document.getElementById('gemSideUserName');
+    const sideUserEmail = document.getElementById('gemSideUserEmail');
+
+    if (user && sideUserCard) {
+        const profile = (() => {
+            try { return JSON.parse(localStorage.getItem('gem_profile') || '{}'); }
+            catch { return {}; }
+        })();
+        const displayName = profile.fullName || user.name || 'Visitor';
+        sideUserCard.style.display = 'block';
+        sideUserName.textContent  = displayName;
+        sideUserEmail.textContent = user.email || '';
+        if (profile.avatar) {
+            sideAvatar.style.backgroundImage = `url(${profile.avatar})`;
+            sideAvatar.innerHTML = '';
+        }
+    }
 
     if (userBtn) {
         if (!user) {
