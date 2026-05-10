@@ -131,8 +131,8 @@
   <section id="section-users" class="section">
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Name</th><th>Email</th><th>Nationality</th><th>Joined</th><th>Status</th></tr></thead>
-        <tbody id="usersBody"><tr><td colspan="5" class="empty-cell">Loading…</td></tr></tbody>
+        <thead><tr><th>Name</th><th>Email</th><th>Nationality</th><th>Phone</th><th>Joined</th><th>Profile Changes</th><th>Status</th></tr></thead>
+        <tbody id="usersBody"><tr><td colspan="7" class="empty-cell">Loading…</td></tr></tbody>
       </table>
     </div>
   </section>
@@ -910,23 +910,66 @@ async function markRead(id, btn) {
 }
 
 // ── USERS ────────────────────────────────────────────────────────────────────
+function getLocalUsers() {
+  const demos = [
+    { email: 'rony@gmai.com',     name: 'Rony'    },
+    { email: 'sohaila@gmail.com', name: 'Sohaila' },
+    { email: 'sagda@gmail.com',   name: 'Sagda'   },
+    { email: 'basmala@gmail.com', name: 'Basmala' },
+  ];
+  return demos.map(d => {
+    try {
+      const p = JSON.parse(localStorage.getItem('gem_profile_' + d.email) || '{}');
+      return { ...d, profile: p };
+    } catch { return { ...d, profile: {} }; }
+  });
+}
+
+function renderLocalUserRow(u) {
+  const p = u.profile;
+  const name = p.fullName || u.name;
+  const changes = [];
+  if (p.fullName)      changes.push('Name');
+  if (p.phone)         changes.push('Phone');
+  if (p.nationality)   changes.push('Nationality');
+  if (p.dob)           changes.push('DOB');
+  if (p.avatar)        changes.push('Photo');
+  return `<tr>
+    <td><strong>${name}</strong></td>
+    <td>${u.email}</td>
+    <td>${p.nationality || '—'}</td>
+    <td>${p.phone || '—'}</td>
+    <td><span style="color:#666;font-size:.75rem">Demo account</span></td>
+    <td>${changes.length
+      ? changes.map(c => `<span class="cat-tag" style="margin-right:3px">${c}</span>`).join('')
+      : '<span style="color:#555;font-size:.78rem">No changes</span>'}</td>
+    <td><span class="badge-status read">Active</span>
+        <span class="badge-status" style="background:rgba(99,102,241,.2);color:#818cf8;margin-left:4px">Demo</span></td>
+  </tr>`;
+}
+
 async function loadUsers() {
   const tbody = document.getElementById('usersBody');
+  const localUsers = getLocalUsers();
+  const localRows  = localUsers.map(renderLocalUserRow).join('');
+
   try {
     const d = await api('/api/admin/users/');
-    if (!d.users?.length) {
-      tbody.innerHTML = '<tr><td colspan="5" class="empty-cell">No users yet.</td></tr>'; return;
-    }
-    tbody.innerHTML = d.users.map(u => `
+    const backendRows = (d.users || []).map(u => `
       <tr>
-        <td>${[u.first_name,u.last_name].filter(Boolean).join(' ')||'—'}</td>
+        <td><strong>${[u.first_name,u.last_name].filter(Boolean).join(' ')||'—'}</strong></td>
         <td>${u.email||'—'}</td>
         <td>${u.nationality||'—'}</td>
+        <td>—</td>
         <td>${fmtDate(u.date_joined)}</td>
+        <td><span style="color:#555;font-size:.78rem">—</span></td>
         <td><span class="badge-status ${u.is_active?'read':'unread'}">${u.is_active?'Active':'Inactive'}</span>
             ${u.is_staff?'<span class="badge-status" style="background:rgba(99,102,241,.2);color:#818cf8;margin-left:4px">Staff</span>':''}</td>
       </tr>`).join('');
-  } catch { tbody.innerHTML = '<tr><td colspan="5" class="empty-cell" style="color:#f87">Error.</td></tr>'; }
+    tbody.innerHTML = (backendRows + localRows) || '<tr><td colspan="7" class="empty-cell">No users yet.</td></tr>';
+  } catch {
+    tbody.innerHTML = localRows || '<tr><td colspan="7" class="empty-cell">No users found.</td></tr>';
+  }
 }
 
 // ── BOOKINGS ─────────────────────────────────────────────────────────────────
