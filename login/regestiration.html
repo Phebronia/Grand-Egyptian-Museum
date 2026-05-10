@@ -207,9 +207,16 @@
       const email    = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value;
 
-      // Demo account — works without backend
-      if (email === 'rony@gmai.com' && password === 'rony1234') {
-        applyUserSession({ name: 'Rony', email: 'rony@gmai.com' }, false);
+      // Demo accounts — work without backend
+      const demoAccounts = [
+        { email: 'rony@gmai.com',       password: 'rony1234', name: 'Rony'    },
+        { email: 'sohaila@gmail.com',   password: 'sooo1234', name: 'Sohaila' },
+        { email: 'sagda@gmail.com',     password: 'sgod1234', name: 'Sagda'   },
+        { email: 'basmala@gmail.com',   password: 'bosy1234', name: 'Basmala' },
+      ];
+      const demo = demoAccounts.find(a => a.email === email.toLowerCase() && a.password === password);
+      if (demo) {
+        applyUserSession({ name: demo.name, email: demo.email }, false);
         return;
       }
 
