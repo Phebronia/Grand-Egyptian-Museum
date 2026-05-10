@@ -179,12 +179,20 @@
   </section>
 
   <!-- AUTH OVERLAY -->
-  <div class="auth-overlay" id="authOverlay">
+  <div class="auth-overlay" id="authOverlay" style="display:none">
     <div class="auth-box">
       <i class="fas fa-shield-alt"></i>
-      <h2>Staff Access Required</h2>
-      <p>Login with a staff account to access the dashboard.</p>
-      <a href="http://127.0.0.1:8000/admin/" class="btn-primary" style="margin-top:1rem;display:inline-block;padding:.7rem 1.5rem;border-radius:6px;text-decoration:none">Login via Django Admin</a>
+      <h2>Admin Login</h2>
+      <p>Enter your admin credentials to continue.</p>
+      <div style="margin-top:1.2rem;width:100%;display:flex;flex-direction:column;gap:.75rem">
+        <input type="email" id="adminEmailInput" placeholder="Admin email"
+          style="padding:.7rem 1rem;border-radius:6px;border:1px solid #444;background:#1a1a1a;color:#fff;font-size:.9rem;width:100%;outline:none">
+        <input type="password" id="adminPassInput" placeholder="Password"
+          style="padding:.7rem 1rem;border-radius:6px;border:1px solid #444;background:#1a1a1a;color:#fff;font-size:.9rem;width:100%;outline:none">
+        <div id="adminLoginErr" style="color:#f87;font-size:.8rem;display:none">Incorrect email or password.</div>
+        <button id="adminLoginBtn" class="btn-primary"
+          style="padding:.75rem;border-radius:6px;font-size:.95rem;cursor:pointer;width:100%">Login</button>
+      </div>
     </div>
   </div>
 </main>
@@ -482,6 +490,40 @@
 <script>
 const DJANGO = 'http://127.0.0.1:8000';
 
+// ── Local admin auth ──────────────────────────────────────────────────────────
+const ADMIN_CREDS = { email: 'admin@gem.com', password: 'admin1234' };
+
+function isAdminAuthed() {
+  return localStorage.getItem('gem_admin_auth') === 'true';
+}
+
+function showAuthOverlay() {
+  document.getElementById('authOverlay').style.display = 'flex';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const loginBtn = document.getElementById('adminLoginBtn');
+  const emailIn  = document.getElementById('adminEmailInput');
+  const passIn   = document.getElementById('adminPassInput');
+  const errMsg   = document.getElementById('adminLoginErr');
+
+  function tryLogin() {
+    const e = emailIn.value.trim().toLowerCase();
+    const p = passIn.value;
+    if (e === ADMIN_CREDS.email && p === ADMIN_CREDS.password) {
+      localStorage.setItem('gem_admin_auth', 'true');
+      document.getElementById('authOverlay').style.display = 'none';
+      errMsg.style.display = 'none';
+      loadOverview();
+    } else {
+      errMsg.style.display = 'block';
+    }
+  }
+
+  loginBtn?.addEventListener('click', tryLogin);
+  passIn?.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+});
+
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function fmtDate(iso) {
   if (!iso) return '—';
@@ -641,7 +683,7 @@ function renderActivityChart(points=[]) {
 async function loadOverview() {
   try {
     const d = await api('/api/admin-stats/');
-    if (d.error) { document.getElementById('authOverlay').style.display = 'flex'; return; }
+    if (d.error) { return; } // Django auth error — don't re-lock, just skip backend stats
     document.getElementById('sArtifacts').textContent  = d.artifacts ?? '—';
     document.getElementById('sHalls').textContent      = d.halls ?? '—';
     document.getElementById('sExhibitions').textContent= d.exhibitions ?? '—';
@@ -668,7 +710,7 @@ async function loadOverview() {
         <td>${fmtDate(m.created_at)}</td>
         <td><span class="badge-status ${m.is_read?'read':'unread'}">${m.is_read?'Read':'Unread'}</span></td>
       </tr>`).join('');
-  } catch { document.getElementById('authOverlay').style.display = 'flex'; }
+  } catch { /* Django offline — skip backend stats, local users still load */ }
 }
 
 // ── ARTIFACTS ────────────────────────────────────────────────────────────────
@@ -1248,11 +1290,16 @@ function deleteAddon(id, name) {
 document.getElementById('logoutBtn').addEventListener('click', async () => {
   try { await fetch(DJANGO+'/api/logout/', {method:'POST',credentials:'include'}); } catch {}
   localStorage.removeItem('gem_user');
+  localStorage.removeItem('gem_admin_auth');
   window.location.href = '../home/home.html';
 });
 
 // ── BOOT ─────────────────────────────────────────────────────────────────────
-loadOverview();
+if (isAdminAuthed()) {
+  loadOverview();
+} else {
+  showAuthOverlay();
+}
 </script>
 </body>
 </html>
