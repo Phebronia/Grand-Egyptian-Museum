@@ -538,6 +538,23 @@ html[dir="rtl"] .side-menu.open { left: auto; right: 0; }
 }
 .side-signup:hover { background: var(--gem-gold-dark); }
 
+.side-logout {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-top: 1px solid rgba(196, 122, 44, 0.1);
+  border-radius: 0;
+  color: #e87878;
+  cursor: pointer;
+  padding: 0.875rem 1rem;
+  margin-top: auto;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.side-logout:hover { background: rgba(220, 80, 80, 0.08); color: #ff8080; }
+
 .side-buy-link { text-decoration: none; margin-top: 0.75rem; }
 
 .side-buy {

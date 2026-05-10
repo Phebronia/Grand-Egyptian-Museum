@@ -134,6 +134,10 @@
             <span data-i18n="nav.signUp">SIGN UP</span>
         </a>
     </div>
+    <button class="side-auth-btn side-logout" id="gemSideLogout" style="display:none">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span data-i18n="nav.logout">LOG OUT</span>
+    </button>
     <a href="${root}ticket/booking.html" class="side-buy-link">
         <button class="side-buy" data-i18n="nav.buyTicket">BUY TICKET</button>
     </a>
@@ -258,14 +262,24 @@
         }
     }
 
+    const sideLogoutBtn = document.getElementById('gemSideLogout');
+
+    async function doLogout() {
+        try { await fetch(`${DJANGO}/api/logout/`, { method: 'POST', credentials: 'include' }); }
+        catch (_) {}
+        localStorage.removeItem('gem_user');
+        window.location.href = root + 'home/home.html';
+    }
+
     if (userBtn) {
         if (!user) {
             userBtn.addEventListener('click', () => {
                 window.location.href = root + 'login/regestiration.html';
             });
         } else {
-            /* Hide sign-in/up in side menu when logged in */
+            /* Hide sign-in/up, show logout in side menu when logged in */
             if (sideAuth) sideAuth.style.display = 'none';
+            if (sideLogoutBtn) sideLogoutBtn.style.display = 'flex';
 
             userBtn.addEventListener('click', e => {
                 e.stopPropagation();
@@ -273,14 +287,11 @@
             });
             document.addEventListener('click', () => userMenu?.classList.remove('show'));
 
-            document.getElementById('ddLogoutBtn')?.addEventListener('click', async () => {
-                try { await fetch(`${DJANGO}/api/logout/`, { method: 'POST', credentials: 'include' }); }
-                catch (_) {}
-                localStorage.removeItem('gem_user');
-                window.location.href = root + 'home/home.html';
-            });
+            document.getElementById('ddLogoutBtn')?.addEventListener('click', doLogout);
         }
     }
+
+    sideLogoutBtn?.addEventListener('click', doLogout);
 
     /* ── Side menu language switcher ── */
     const sideLangBtns = document.querySelectorAll('.side-lang-btn[data-lang]');
