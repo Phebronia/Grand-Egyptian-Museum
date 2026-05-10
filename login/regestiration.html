@@ -207,6 +207,12 @@
       const email    = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value;
 
+      // Demo account — works without backend
+      if (email === 'rony@gmai.com' && password === 'rony1234') {
+        applyUserSession({ name: 'Rony', email: 'rony@gmai.com' }, false);
+        return;
+      }
+
       try {
         const res = await fetch(`${DJANGO}/api/login/`, {
           method: 'POST',
