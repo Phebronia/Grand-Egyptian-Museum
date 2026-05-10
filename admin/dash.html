@@ -179,7 +179,7 @@
   </section>
 
   <!-- AUTH OVERLAY -->
-  <div class="auth-overlay" id="authOverlay" style="display:none">
+  <div class="auth-overlay" id="authOverlay" style="display:flex">
     <div class="auth-box">
       <i class="fas fa-shield-alt"></i>
       <h2>Admin Login</h2>
@@ -497,32 +497,24 @@ function isAdminAuthed() {
   return localStorage.getItem('gem_admin_auth') === 'true';
 }
 
-function showAuthOverlay() {
-  document.getElementById('authOverlay').style.display = 'flex';
+function tryAdminLogin() {
+  const emailIn = document.getElementById('adminEmailInput');
+  const passIn  = document.getElementById('adminPassInput');
+  const errMsg  = document.getElementById('adminLoginErr');
+  const e = (emailIn?.value || '').trim().toLowerCase();
+  const p = passIn?.value || '';
+  if (e === ADMIN_CREDS.email && p === ADMIN_CREDS.password) {
+    localStorage.setItem('gem_admin_auth', 'true');
+    document.getElementById('authOverlay').style.display = 'none';
+    if (errMsg) errMsg.style.display = 'none';
+    loadOverview();
+  } else {
+    if (errMsg) errMsg.style.display = 'block';
+  }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const loginBtn = document.getElementById('adminLoginBtn');
-  const emailIn  = document.getElementById('adminEmailInput');
-  const passIn   = document.getElementById('adminPassInput');
-  const errMsg   = document.getElementById('adminLoginErr');
-
-  function tryLogin() {
-    const e = emailIn.value.trim().toLowerCase();
-    const p = passIn.value;
-    if (e === ADMIN_CREDS.email && p === ADMIN_CREDS.password) {
-      localStorage.setItem('gem_admin_auth', 'true');
-      document.getElementById('authOverlay').style.display = 'none';
-      errMsg.style.display = 'none';
-      loadOverview();
-    } else {
-      errMsg.style.display = 'block';
-    }
-  }
-
-  loginBtn?.addEventListener('click', tryLogin);
-  passIn?.addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
-});
+document.getElementById('adminLoginBtn')?.addEventListener('click', tryAdminLogin);
+document.getElementById('adminPassInput')?.addEventListener('keydown', e => { if (e.key === 'Enter') tryAdminLogin(); });
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 function fmtDate(iso) {
@@ -1296,9 +1288,8 @@ document.getElementById('logoutBtn').addEventListener('click', async () => {
 
 // ── BOOT ─────────────────────────────────────────────────────────────────────
 if (isAdminAuthed()) {
+  document.getElementById('authOverlay').style.display = 'none';
   loadOverview();
-} else {
-  showAuthOverlay();
 }
 </script>
 </body>
