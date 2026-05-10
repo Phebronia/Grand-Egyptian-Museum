@@ -39,12 +39,14 @@
         <li><a href="${root}explore/explore.htm" data-navkey="explore" data-i18n="nav.explore">EXPLORE</a></li>
         <li><a href="${root}planyourvisit/visit.html" data-navkey="plan" data-i18n="nav.plan">PLAN YOUR VISIT</a></li>
         <li><a href="${root}about/about.html" data-navkey="about" data-i18n="nav.about">ABOUT US</a></li>
+        <li><a href="${root}quiz/quiz.html" data-navkey="quiz" data-i18n="nav.quiz">QUIZ</a></li>
         <li class="moree">
             <a href="#"><span data-i18n="nav.more">MORE</span> <i class="fa-solid fa-chevron-down"></i></a>
             <div class="con">
                 <ul>
                     <li><a href="${root}pharaonic%20name/ph-name.html" data-i18n="nav.pharaonicNames">Pharaonic Names</a></li>
                     <li><a href="${root}Program%20plan/plan.html" data-i18n="nav.programPlan">Program Plan</a></li>
+                    <li><a href="${root}tutankhamun-health/tutankhamun-health.html" data-navkey="tutHealth" data-i18n="nav.tutHealth">Tutankhamun's Health</a></li>
                     <li><a href="${root}contact%20us/contact.html" data-i18n="nav.contact">Contact Us</a></li>
                 </ul>
             </div>
@@ -114,8 +116,10 @@
         <li><i class="fa-solid fa-compass"></i><a href="${root}explore/explore.htm" data-navkey="explore" data-i18n="nav.explore">EXPLORE</a></li>
         <li><i class="fa-solid fa-map-location-dot"></i><a href="${root}planyourvisit/visit.html" data-navkey="plan" data-i18n="nav.plan">PLAN YOUR VISIT</a></li>
         <li><i class="fa-solid fa-circle-info"></i><a href="${root}about/about.html" data-navkey="about" data-i18n="nav.about">ABOUT US</a></li>
+        <li><i class="fa-solid fa-lightbulb"></i><a href="${root}quiz/quiz.html" data-navkey="quiz" data-i18n="nav.quiz">QUIZ</a></li>
         <li><i class="fa-solid fa-scroll"></i><a href="${root}pharaonic%20name/ph-name.html" data-i18n="nav.pharaonicNames">Pharaonic Names</a></li>
         <li><i class="fa-solid fa-calendar-days"></i><a href="${root}Program%20plan/plan.html" data-i18n="nav.programPlan">Program Plan</a></li>
+        <li><i class="fa-solid fa-heart-pulse"></i><a href="${root}tutankhamun-health/tutankhamun-health.html" data-navkey="tutHealth" data-i18n="nav.tutHealth">Tutankhamun's Health</a></li>
         <li><i class="fa-solid fa-envelope"></i><a href="${root}contact%20us/contact.html" data-i18n="nav.contact">Contact Us</a></li>
     </ul>
     <div class="side-lang">
@@ -208,7 +212,9 @@
             (key === 'home'    && (path.includes('/home/home') || path.includes('home.html'))) ||
             (key === 'explore' && path.includes('/explore/')) ||
             (key === 'plan'    && path.includes('/planyourvisit/')) ||
-            (key === 'about'   && path.includes('/about/'));
+            (key === 'about'   && path.includes('/about/')) ||
+            (key === 'quiz'      && (path.includes('/quiz/') || path.includes('quiz.html'))) ||
+            (key === 'tutHealth' && (path.includes('/tutankhamun-health/') || path.includes('tutankhamun-health.html')));
         if (active) a.classList.add('active');
     });
 

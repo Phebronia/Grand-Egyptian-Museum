@@ -16,7 +16,7 @@
 
   <a class="nav-link active" data-section="overview">  <i class="fas fa-th-large"></i><span>Dashboard</span></a>
   <a class="nav-link" data-section="artifacts">        <i class="fas fa-monument"></i><span>Artifacts</span></a>
-  <a class="nav-link" data-section="halls">            <i class="fas fa-dungeon"></i><span>Halls</span></a>
+  <a class="nav-link" data-sction="halls">            <i class="fas fa-dungeon"></i><span>Halls</span></a>
   <a class="nav-link" data-section="messages">         <i class="fas fa-envelope"></i><span>Messages</span>
     <span class="badge" id="unreadBadge" style="display:none"></span></a>
   <a class="nav-link" data-section="users">            <i class="fas fa-users"></i><span>Users</span></a>
@@ -38,6 +38,13 @@
     <h1 id="pageTitle">Dashboard</h1>
     <div class="header-actions" id="headerActions"></div>
   </header>
+
+  <!-- Django offline banner -->
+  <div id="offlineBanner" style="display:none;background:#3b1a1a;border:1px solid #7f2a2a;color:#fca5a5;padding:.75rem 1.25rem;border-radius:8px;margin-bottom:1rem;font-size:.9rem">
+    <i class="fas fa-exclamation-triangle" style="margin-right:.5rem"></i>
+    Cannot connect to Django backend (<strong>http://127.0.0.1:8000</strong>). Start the server with:
+    <code style="background:#1a0a0a;padding:2px 8px;border-radius:4px;margin-left:.5rem">python manage.py runserver</code>
+  </div>
 
   <!-- ── OVERVIEW ── -->
   <section id="section-overview" class="section active">
@@ -489,6 +496,7 @@
 
 <script>
 const DJANGO = 'http://127.0.0.1:8000';
+const ADMIN_KEY = 'gem-admin-2024';
 
 // ── Local admin auth ──────────────────────────────────────────────────────────
 const ADMIN_CREDS = { email: 'admin@gem.com', password: 'admin1234' };
@@ -532,7 +540,11 @@ function toast(msg, ok=true) {
   setTimeout(() => el.classList.remove('show'), 3000);
 }
 async function api(url, opts={}) {
-  const res = await fetch(DJANGO + url, { credentials:'include', ...opts });
+  const res = await fetch(DJANGO + url, {
+    credentials: 'include',
+    ...opts,
+    headers: { 'X-Admin-Key': ADMIN_KEY, ...(opts.headers || {}) }
+  });
   return res.json();
 }
 
@@ -673,9 +685,14 @@ function renderActivityChart(points=[]) {
 }
 
 async function loadOverview() {
+  const banner = document.getElementById('offlineBanner');
   try {
     const d = await api('/api/admin-stats/');
-    if (d.error) { return; } // Django auth error — don't re-lock, just skip backend stats
+    if (d.error) {
+      if (banner) banner.style.display = 'block';
+      return;
+    }
+    if (banner) banner.style.display = 'none';
     document.getElementById('sArtifacts').textContent  = d.artifacts ?? '—';
     document.getElementById('sHalls').textContent      = d.halls ?? '—';
     document.getElementById('sExhibitions').textContent= d.exhibitions ?? '—';
@@ -702,7 +719,9 @@ async function loadOverview() {
         <td>${fmtDate(m.created_at)}</td>
         <td><span class="badge-status ${m.is_read?'read':'unread'}">${m.is_read?'Read':'Unread'}</span></td>
       </tr>`).join('');
-  } catch { /* Django offline — skip backend stats, local users still load */ }
+  } catch {
+    if (banner) banner.style.display = 'block';
+  }
 }
 
 // ── ARTIFACTS ────────────────────────────────────────────────────────────────
@@ -803,7 +822,7 @@ document.getElementById('saveArtifactBtn').addEventListener('click', async () =>
   const url = id ? `/api/admin/artifacts/${id}/` : '/api/admin/artifacts/';
 
   try {
-    const d = await fetch(DJANGO + url, { method:'POST', credentials:'include', body:fd }).then(r => r.json());
+    const d = await api(url, { method:'POST', body:fd });
     if (d.ok) {
       toast(id ? 'Artifact updated!' : 'Artifact added!');
       closeModal('artifactModal');
@@ -817,7 +836,7 @@ function deleteArtifact(id, name) {
   document.getElementById('deleteMsg').textContent = `Are you sure you want to delete "${name}"? This cannot be undone.`;
   document.getElementById('confirmDeleteBtn').onclick = async () => {
     try {
-      const d = await fetch(DJANGO + `/api/admin/artifacts/${id}/`, { method:'DELETE', credentials:'include' }).then(r=>r.json());
+      const d = await api(`/api/admin/artifacts/${id}/`, { method:'DELETE' });
       if (d.ok) { toast('Artifact deleted.'); closeModal('deleteModal'); loadArtifacts(); loadOverview(); }
       else toast(d.error || 'Delete failed.', false);
     } catch { toast('Server error.', false); }
@@ -880,10 +899,10 @@ document.getElementById('saveHallBtn').addEventListener('click', async () => {
   const id = document.getElementById('hId').value;
   const url = id ? `/api/admin/halls/${id}/` : '/api/admin/halls/';
   try {
-    const d = await fetch(DJANGO + url, {
-      method:'POST', credentials:'include',
+    const d = await api(url, {
+      method:'POST',
       headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
-    }).then(r=>r.json());
+    });
     if (d.ok) {
       toast(id ? 'Hall updated!' : 'Hall added!');
       closeModal('hallModal'); loadHalls(); loadOverview();
@@ -896,7 +915,7 @@ function deleteHall(id, name) {
   document.getElementById('deleteMsg').textContent = `Delete hall "${name}"? Artifacts in it won't be deleted but will lose their hall.`;
   document.getElementById('confirmDeleteBtn').onclick = async () => {
     try {
-      const d = await fetch(DJANGO + `/api/admin/halls/${id}/`, { method:'DELETE', credentials:'include' }).then(r=>r.json());
+      const d = await api(`/api/admin/halls/${id}/`, { method:'DELETE' });
       if (d.ok) { toast('Hall deleted.'); closeModal('deleteModal'); loadHalls(); loadOverview(); hallsList=[]; }
       else toast(d.error || 'Delete failed.', false);
     } catch { toast('Server error.', false); }
@@ -937,7 +956,7 @@ function showMsg(id) {
 
 async function markRead(id, btn) {
   try {
-    const d = await fetch(DJANGO + `/api/admin/messages/${id}/`, { method:'POST', credentials:'include' }).then(r=>r.json());
+    const d = await api(`/api/admin/messages/${id}/`, { method:'POST' });
     if (d.ok) { toast('Marked as read.'); loadMessages(); loadOverview(); }
     else toast(d.error || 'Error.', false);
   } catch { toast('Server error.', false); }
@@ -1101,7 +1120,7 @@ document.getElementById('saveExhibitionBtn').addEventListener('click', async () 
   const id  = document.getElementById('exId').value;
   const url = id ? `/api/admin/exhibitions/${id}/` : '/api/admin/exhibitions/';
   try {
-    const d = await fetch(DJANGO + url, { method:'POST', credentials:'include', body:fd }).then(r=>r.json());
+    const d = await api(url, { method:'POST', body:fd });
     if (d.ok) { toast(id ? 'Exhibition updated!' : 'Exhibition added!'); closeModal('exhibitionModal'); loadExhibitions(); loadOverview(); }
     else toast(d.error || 'Error saving exhibition.', false);
   } catch { toast('Server error.', false); }
@@ -1111,7 +1130,7 @@ function deleteExhibition(id, name) {
   document.getElementById('deleteMsg').textContent = `Delete exhibition "${name}"? This cannot be undone.`;
   document.getElementById('confirmDeleteBtn').onclick = async () => {
     try {
-      const d = await fetch(DJANGO + `/api/admin/exhibitions/${id}/`, { method:'DELETE', credentials:'include' }).then(r=>r.json());
+      const d = await api(`/api/admin/exhibitions/${id}/`, { method:'DELETE' });
       if (d.ok) { toast('Exhibition deleted.'); closeModal('deleteModal'); loadExhibitions(); loadOverview(); }
       else toast(d.error || 'Delete failed.', false);
     } catch { toast('Server error.', false); }
@@ -1181,10 +1200,10 @@ document.getElementById('saveTicketBtn').addEventListener('click', async () => {
   const id  = document.getElementById('tkId').value;
   const url = id ? `/api/admin/tickets/${id}/` : '/api/admin/tickets/';
   try {
-    const d = await fetch(DJANGO + url, {
-      method:'POST', credentials:'include',
+    const d = await api(url, {
+      method:'POST',
       headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
-    }).then(r=>r.json());
+    });
     if (d.ok) { toast(id ? 'Ticket updated!' : 'Ticket added!'); closeModal('ticketModal'); loadTickets(); }
     else toast(d.error || 'Error saving ticket.', false);
   } catch { toast('Server error.', false); }
@@ -1194,7 +1213,7 @@ function deleteTicket(id, name) {
   document.getElementById('deleteMsg').textContent = `Delete ticket type "${name}"? This cannot be undone.`;
   document.getElementById('confirmDeleteBtn').onclick = async () => {
     try {
-      const d = await fetch(DJANGO + `/api/admin/tickets/${id}/`, { method:'DELETE', credentials:'include' }).then(r=>r.json());
+      const d = await api(`/api/admin/tickets/${id}/`, { method:'DELETE' });
       if (d.ok) { toast('Ticket deleted.'); closeModal('deleteModal'); loadTickets(); }
       else toast(d.error || 'Delete failed.', false);
     } catch { toast('Server error.', false); }
@@ -1257,10 +1276,10 @@ document.getElementById('saveAddonBtn').addEventListener('click', async () => {
   const id  = document.getElementById('adId').value;
   const url = id ? `/api/admin/addons/${id}/` : '/api/admin/addons/';
   try {
-    const d = await fetch(DJANGO + url, {
-      method:'POST', credentials:'include',
+    const d = await api(url, {
+      method:'POST',
       headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
-    }).then(r=>r.json());
+    });
     if (d.ok) { toast(id ? 'Add-on updated!' : 'Add-on added!'); closeModal('addonModal'); loadAddons(); }
     else toast(d.error || 'Error saving add-on.', false);
   } catch { toast('Server error.', false); }
@@ -1270,7 +1289,7 @@ function deleteAddon(id, name) {
   document.getElementById('deleteMsg').textContent = `Delete add-on "${name}"? This cannot be undone.`;
   document.getElementById('confirmDeleteBtn').onclick = async () => {
     try {
-      const d = await fetch(DJANGO + `/api/admin/addons/${id}/`, { method:'DELETE', credentials:'include' }).then(r=>r.json());
+      const d = await api(`/api/admin/addons/${id}/`, { method:'DELETE' });
       if (d.ok) { toast('Add-on deleted.'); closeModal('deleteModal'); loadAddons(); }
       else toast(d.error || 'Delete failed.', false);
     } catch { toast('Server error.', false); }
@@ -1280,7 +1299,7 @@ function deleteAddon(id, name) {
 
 // ── LOGOUT ───────────────────────────────────────────────────────────────────
 document.getElementById('logoutBtn').addEventListener('click', async () => {
-  try { await fetch(DJANGO+'/api/logout/', {method:'POST',credentials:'include'}); } catch {}
+  try { await api('/api/logout/', {method:'POST'}); } catch {}
   localStorage.removeItem('gem_user');
   localStorage.removeItem('gem_admin_auth');
   window.location.href = '../home/home.html';

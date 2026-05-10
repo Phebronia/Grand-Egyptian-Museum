@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Set lang/dir before first paint — prevents flash of wrong direction -->
+    <script>
+        (function () {
+            var lang = localStorage.getItem('lang');
+            if (!lang) {
+                lang = (navigator.language || 'en').toLowerCase().startsWith('ar') ? 'ar' : 'en';
+                localStorage.setItem('lang', lang);
+            }
+            document.documentElement.lang = lang;
+            document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
+        })();
+    </script>
+
+    <title data-i18n="quiz.pageTitle">Quiz — Grand Egyptian Museum</title>
+
+    <link rel="stylesheet" href="../shared/nav-footer.css">
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ QUIZ PAGE ═══ -->
+<main class="quiz-main">
+
+    <!-- ── Hero / Intro ─────────────────────────────────── -->
+    <section class="quiz-hero" id="quizHero">
+        <div class="quiz-hero-bg"></div>
+        <div class="quiz-hero-content">
+            <span class="quiz-eyebrow" data-i18n="quiz.eyebrow">⟡ TEST YOUR KNOWLEDGE ⟡</span>
+            <h1 class="quiz-hero-title" data-i18n="quiz.heroTitle">Ancient Egypt Quiz</h1>
+            <p class="quiz-hero-sub" data-i18n="quiz.heroSub">10 questions · Multiple choice · Discover your rank</p>
+
+            <div class="quiz-hero-stats">
+                <div class="quiz-stat">
+                    <i class="fa-solid fa-scroll"></i>
+                    <span data-i18n="quiz.stat1">10 Questions</span>
+                </div>
+                <div class="quiz-stat">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span data-i18n="quiz.stat2">4 Options Each</span>
+                </div>
+                <div class="quiz-stat">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span data-i18n="quiz.stat3">Earn Your Rank</span>
+                </div>
+            </div>
+
+            <button class="quiz-start-btn" id="quizStartBtn">
+                <span data-i18n="quiz.startBtn">Begin the Journey</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Decorative corner ornaments -->
+        <div class="quiz-ornament quiz-ornament--tl"></div>
+        <div class="quiz-ornament quiz-ornament--tr"></div>
+        <div class="quiz-ornament quiz-ornament--bl"></div>
+        <div class="quiz-ornament quiz-ornament--br"></div>
+    </section>
+
+    <!-- ── Active Quiz ───────────────────────────────────── -->
+    <section class="quiz-section" id="quizSection" style="display:none">
+        <div class="quiz-wrap">
+
+            <!-- Progress bar -->
+            <div class="quiz-progress-header">
+                <div class="quiz-progress-label">
+                    <span data-i18n="quiz.question">Question</span>&nbsp;
+                    <strong id="quizCurrent">1</strong>&nbsp;
+                    <span data-i18n="quiz.of">of</span>&nbsp;
+                    <strong id="quizTotal">10</strong>
+                </div>
+                <div class="quiz-score-live">
+                    <i class="fa-solid fa-star"></i>
+                    <span id="quizLiveScore">0</span>
+                </div>
+            </div>
+            <div class="quiz-progress-track">
+                <div class="quiz-progress-fill" id="quizProgressFill" style="width:10%"></div>
+            </div>
+
+            <!-- Question card -->
+            <div class="quiz-card" id="quizCard">
+                <div class="quiz-q-num" id="quizQNum">01</div>
+                <h2 class="quiz-q-text" id="quizQuestion"></h2>
+                <div class="quiz-options" id="quizOptions"></div>
+
+                <div class="quiz-feedback" id="quizFeedback" style="display:none">
+                    <i id="quizFeedbackIcon"></i>
+                    <span id="quizFeedbackText"></span>
+                </div>
+
+                <button class="quiz-next-btn" id="quizNextBtn" style="display:none">
+                    <span id="quizNextLabel" data-i18n="quiz.next">Next</span>
+                    <i class="fa-solid fa-arrow-right" id="quizNextIcon"></i>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ── Results Screen ────────────────────────────────── -->
+    <section class="quiz-results" id="quizResults" style="display:none">
+        <div class="quiz-results-inner">
+
+            <div class="quiz-results-emblem" id="quizEmblem">
+                <i class="fa-solid fa-ankh" id="quizEmblemIcon"></i>
+            </div>
+
+            <div class="quiz-score-ring">
+                <span class="quiz-score-num" id="quizScoreNum">0</span>
+                <span class="quiz-score-sep">/</span>
+                <span class="quiz-score-den">10</span>
+            </div>
+
+            <div class="quiz-rank" id="quizRankTitle"></div>
+            <div class="quiz-rank-sub" id="quizRankSub"></div>
+
+            <div class="quiz-results-actions">
+                <button class="quiz-retry-btn" id="quizRetryBtn">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span data-i18n="quiz.tryAgain">Try Again</span>
+                </button>
+                <a class="quiz-home-btn" href="../home/home.html">
+                    <i class="fa-solid fa-house"></i>
+                    <span data-i18n="quiz.backHome">Back to Home</span>
+                </a>
+            </div>
+
+        </div>
+
+        <!-- Confetti canvas (only shown for high scores) -->
+        <canvas id="quizConfetti"></canvas>
+    </section>
+
+</main>
+<!-- ═══════════════════════════════════════════════════════ -->
+
+<script src="../shared/nav-footer.js"></script>
+<script src="../shared/i18n.js"></script>
+<script src="quiz.js"></script>
+
+</body>
+</html>

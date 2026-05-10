@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Language + RTL detection before first paint -->
+    <script>
+        (function () {
+            var lang = localStorage.getItem('lang');
+            if (!lang) {
+                lang = (navigator.language || 'en').toLowerCase().startsWith('ar') ? 'ar' : 'en';
+                localStorage.setItem('lang', lang);
+            }
+            document.documentElement.lang = lang;
+            document.documentElement.dir  = lang === 'ar' ? 'rtl' : 'ltr';
+        })();
+    </script>
+
+    <title data-i18n="tutHealth.pageTitle">Tutankhamun's Health — Grand Egyptian Museum</title>
+
+    <link rel="stylesheet" href="../shared/nav-footer.css">
+    <link rel="stylesheet" href="tutankhamun-health.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Poppins:wght@300;400;500;600;700&family=Cairo:wght@300;400;600;700&family=Cormorant+Infant:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TUTANKHAMUN HEALTH PAGE
+     Nav + Footer injected by shared/nav-footer.js
+═══════════════════════════════════════════════════════════ -->
+
+<!-- ════════════════════ SECTION 1: HERO ════════════════════ -->
+<section class="th-hero" id="thHero">
+
+    <!-- Layered background -->
+    <div class="th-hero-bg" aria-hidden="true"></div>
+
+    <!-- Top decorative border -->
+    <div class="th-deco-border th-deco-border--top" aria-hidden="true">
+        <div class="th-deco-inner">
+            <span class="th-deco-line"></span>
+            <span class="th-deco-ankh">☥</span>
+            <span class="th-deco-line"></span>
+            <span class="th-deco-diamond">◆</span>
+            <span class="th-deco-line"></span>
+            <span class="th-deco-ankh">☥</span>
+            <span class="th-deco-line"></span>
+        </div>
+    </div>
+
+    <!-- Hero content -->
+    <div class="th-hero-content">
+
+        <!-- Eyebrow -->
+        <p class="th-eyebrow">
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+            <span data-i18n="tutHealth.eyebrow">MEDICAL HISTORY · ANCIENT EGYPT</span>
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+        </p>
+
+        <!-- Bilingual title — both lines always visible for visual impact -->
+        <h1 class="th-hero-title">
+            <span class="th-title-en" data-i18n="tutHealth.heroTitleEn">The Secrets Behind the Mask</span>
+            <span class="th-title-divider" aria-hidden="true"></span>
+            <span class="th-title-ar" data-i18n="tutHealth.heroTitleAr">الأسرار خلف القناع</span>
+        </h1>
+
+        <!-- Subtitle (switches with language) -->
+        <p class="th-hero-sub">
+            <span class="th-sub-en" data-i18n="tutHealth.heroSubEn">
+                A medical journey into the life and death of Tutankhamun
+            </span>
+            <span class="th-sub-ar" data-i18n="tutHealth.heroSubAr">
+                رحلة طبية في حياة وموت توت عنخ آمون
+            </span>
+        </p>
+
+        <!-- Key facts strip -->
+        <div class="th-hero-facts">
+            <div class="th-fact">
+                <span class="th-fact-num">5+</span>
+                <span class="th-fact-label" data-i18n="tutHealth.factConditions">Confirmed Conditions</span>
+            </div>
+            <div class="th-fact-sep" aria-hidden="true">|</div>
+            <div class="th-fact">
+                <span class="th-fact-num">2010</span>
+                <span class="th-fact-label" data-i18n="tutHealth.factDna">DNA Study Published</span>
+            </div>
+            <div class="th-fact-sep" aria-hidden="true">|</div>
+            <div class="th-fact">
+                <span class="th-fact-num">6</span>
+                <span class="th-fact-label" data-i18n="tutHealth.factStudies">Major Autopsies</span>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <a href="#thDiagram" class="th-hero-cta">
+            <span data-i18n="tutHealth.heroCta">Begin the Examination</span>
+            <i class="fa-solid fa-chevron-down"></i>
+        </a>
+
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="th-scroll-indicator" aria-hidden="true">
+        <span class="th-scroll-label" data-i18n="tutHealth.scrollLabel">Scroll to explore</span>
+        <div class="th-scroll-chevrons">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Bottom decorative border -->
+    <div class="th-deco-border th-deco-border--bottom" aria-hidden="true">
+        <div class="th-deco-inner">
+            <span class="th-deco-line"></span>
+            <span class="th-deco-ankh">☥</span>
+            <span class="th-deco-line"></span>
+            <span class="th-deco-diamond">◆</span>
+            <span class="th-deco-line"></span>
+            <span class="th-deco-ankh">☥</span>
+            <span class="th-deco-line"></span>
+        </div>
+    </div>
+
+</section>
+<!-- ════════════ END SECTION 1 ════════════ -->
+
+
+<!-- ════════════════════ SECTION 2: BODY DIAGRAM ════════════════════ -->
+<section class="th-diagram" id="thDiagram">
+
+    <div class="th-section-header">
+        <p class="th-eyebrow">
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+            <span data-i18n="tutHealth.diag.eyebrow">MEDICAL FINDINGS</span>
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+        </p>
+        <h2 class="th-section-title" data-i18n="tutHealth.diag.title">The Wounded King</h2>
+        <p class="th-section-sub" data-i18n="tutHealth.diag.sub">Click a hotspot to explore each confirmed condition</p>
+    </div>
+
+    <div class="th-diag-layout">
+
+        <!-- Body SVG with hotspots -->
+        <div class="th-body-wrap">
+            <svg class="th-body-svg" viewBox="0 0 220 520" xmlns="http://www.w3.org/2000/svg" aria-label="Body diagram of Tutankhamun">
+
+                <!-- Body silhouette -->
+                <g class="th-silhouette">
+                    <!-- Head -->
+                    <ellipse cx="110" cy="48" rx="30" ry="36" />
+                    <!-- Neck -->
+                    <rect x="100" y="82" width="20" height="18" rx="4" />
+                    <!-- Torso -->
+                    <path d="M72 100 Q65 115 63 150 L63 270 Q63 278 70 278 L150 278 Q157 278 157 270 L157 150 Q155 115 148 100 Z" />
+                    <!-- Left arm -->
+                    <path d="M72 108 Q52 120 44 165 Q40 190 42 220 Q44 230 50 230 Q56 230 58 220 Q60 195 64 168 Z" />
+                    <!-- Right arm -->
+                    <path d="M148 108 Q168 120 176 165 Q180 190 178 220 Q176 230 170 230 Q164 230 162 220 Q160 195 156 168 Z" />
+                    <!-- Left leg upper -->
+                    <path d="M85 278 L78 400 Q77 410 85 410 L100 410 Q107 410 107 400 L105 278 Z" />
+                    <!-- Right leg upper -->
+                    <path d="M135 278 L142 400 Q143 410 135 410 L120 410 Q113 410 113 400 L115 278 Z" />
+                    <!-- Left leg lower -->
+                    <path d="M78 408 L74 490 Q73 500 82 500 L100 500 Q108 500 107 490 L105 408 Z" />
+                    <!-- Right leg lower -->
+                    <path d="M142 408 L146 490 Q147 500 138 500 L120 500 Q112 500 113 490 L115 408 Z" />
+                </g>
+
+                <!-- Hotspot: Head / Brain -->
+                <g class="th-hotspot" data-condition="head" tabindex="0" role="button" aria-label="Head — bone disease">
+                    <circle cx="110" cy="48" r="18" class="th-hs-ring" />
+                    <circle cx="110" cy="48" r="8"  class="th-hs-dot"  />
+                    <text x="136" y="52" class="th-hs-label" data-i18n="tutHealth.diag.labelHead">Skull</text>
+                </g>
+
+                <!-- Hotspot: Mouth / Cleft palate -->
+                <g class="th-hotspot" data-condition="mouth" tabindex="0" role="button" aria-label="Mouth — cleft palate">
+                    <circle cx="110" cy="78" r="14" class="th-hs-ring" />
+                    <circle cx="110" cy="78" r="6"  class="th-hs-dot"  />
+                    <text x="128" y="82" class="th-hs-label" data-i18n="tutHealth.diag.labelMouth">Palate</text>
+                </g>
+
+                <!-- Hotspot: Left thigh / Bone necrosis -->
+                <g class="th-hotspot" data-condition="thigh" tabindex="0" role="button" aria-label="Left thigh — bone necrosis">
+                    <circle cx="91" cy="340" r="16" class="th-hs-ring" />
+                    <circle cx="91" cy="340" r="7"  class="th-hs-dot"  />
+                    <text x="28" y="344" class="th-hs-label th-hs-label--left" data-i18n="tutHealth.diag.labelThigh">Femur</text>
+                </g>
+
+                <!-- Hotspot: Left foot / Clubfoot -->
+                <g class="th-hotspot" data-condition="foot" tabindex="0" role="button" aria-label="Left foot — clubfoot">
+                    <circle cx="87" cy="495" r="16" class="th-hs-ring" />
+                    <circle cx="87" cy="495" r="7"  class="th-hs-dot"  />
+                    <text x="24" y="499" class="th-hs-label th-hs-label--left" data-i18n="tutHealth.diag.labelFoot">Clubfoot</text>
+                </g>
+
+                <!-- Hotspot: Blood / Malaria -->
+                <g class="th-hotspot" data-condition="blood" tabindex="0" role="button" aria-label="Blood — malaria infection">
+                    <circle cx="157" cy="185" r="16" class="th-hs-ring" />
+                    <circle cx="157" cy="185" r="7"  class="th-hs-dot"  />
+                    <text x="177" y="189" class="th-hs-label" data-i18n="tutHealth.diag.labelBlood">Blood</text>
+                </g>
+
+            </svg>
+        </div>
+
+        <!-- Detail panel -->
+        <div class="th-detail-panel" id="thDetailPanel" aria-live="polite">
+            <div class="th-panel-idle" id="thPanelIdle">
+                <i class="fa-solid fa-hand-pointer th-panel-idle-icon"></i>
+                <p data-i18n="tutHealth.diag.panelIdle">Select a hotspot to learn more</p>
+            </div>
+            <div class="th-panel-content" id="thPanelContent" hidden>
+                <button class="th-panel-close" id="thPanelClose" aria-label="Close">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="th-panel-tag" id="thPanelTag"></div>
+                <h3 class="th-panel-title" id="thPanelTitle"></h3>
+                <p class="th-panel-body" id="thPanelBody"></p>
+                <div class="th-panel-evidence">
+                    <span class="th-ev-label" data-i18n="tutHealth.diag.evidence">Evidence</span>
+                    <span class="th-ev-value" id="thPanelEvidence"></span>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /.th-diag-layout -->
+
+</section>
+<!-- ════════════ END SECTION 2 ════════════ -->
+
+
+<!-- ════════════════════ SECTION 3: FAMILY TREE ════════════════════ -->
+<section class="th-family" id="thFamily">
+
+    <div class="th-section-header">
+        <p class="th-eyebrow">
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+            <span data-i18n="tutHealth.fam.eyebrow">ROYAL BLOODLINE</span>
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+        </p>
+        <h2 class="th-section-title" data-i18n="tutHealth.fam.title">A Dynasty Too Close</h2>
+        <p class="th-section-sub" data-i18n="tutHealth.fam.sub">Centuries of inbreeding within the royal family caused a cascade of inherited conditions</p>
+    </div>
+
+    <!-- Family tree -->
+    <div class="th-tree-wrap">
+
+        <!-- Gen 1 -->
+        <div class="th-tree-gen">
+            <div class="th-tree-couple">
+                <div class="th-tree-person">
+                    <div class="th-tree-avatar th-tree-avatar--male"><i class="fa-solid fa-crown"></i></div>
+                    <span class="th-tree-name" data-i18n="tutHealth.fam.yuya">Yuya</span>
+                    <span class="th-tree-role" data-i18n="tutHealth.fam.yuyaRole">Nobleman</span>
+                </div>
+                <div class="th-tree-heart" aria-hidden="true">♥</div>
+                <div class="th-tree-person">
+                    <div class="th-tree-avatar th-tree-avatar--female"><i class="fa-solid fa-star"></i></div>
+                    <span class="th-tree-name" data-i18n="tutHealth.fam.thuya">Thuya</span>
+                    <span class="th-tree-role" data-i18n="tutHealth.fam.thuyaRole">Noblewoman</span>
+                </div>
+            </div>
+            <div class="th-tree-vline" aria-hidden="true"></div>
+        </div>
+
+        <!-- Gen 2 -->
+        <div class="th-tree-gen">
+            <div class="th-tree-couple">
+                <div class="th-tree-person">
+                    <div class="th-tree-avatar th-tree-avatar--male"><i class="fa-solid fa-crown"></i></div>
+                    <span class="th-tree-name" data-i18n="tutHealth.fam.amenhotep">Amenhotep III</span>
+                    <span class="th-tree-role" data-i18n="tutHealth.fam.amenhotepRole">Pharaoh</span>
+                </div>
+                <div class="th-tree-heart" aria-hidden="true">♥</div>
+                <div class="th-tree-person th-tree-person--highlight">
+                    <div class="th-tree-avatar th-tree-avatar--female"><i class="fa-solid fa-star"></i></div>
+                    <span class="th-tree-name" data-i18n="tutHealth.fam.tiye">Queen Tiye</span>
+                    <span class="th-tree-role" data-i18n="tutHealth.fam.tiyeRole">Daughter of Yuya &amp; Thuya</span>
+                </div>
+            </div>
+            <div class="th-tree-vline" aria-hidden="true"></div>
+        </div>
+
+        <!-- Gen 3 — siblings who became parents -->
+        <div class="th-tree-gen">
+            <div class="th-tree-couple th-tree-couple--warning">
+                <div class="th-tree-person">
+                    <div class="th-tree-avatar th-tree-avatar--male"><i class="fa-solid fa-crown"></i></div>
+                    <span class="th-tree-name" data-i18n="tutHealth.fam.akhenaten">Akhenaten</span>
+                    <span class="th-tree-role" data-i18n="tutHealth.fam.akhenatenRole">Pharaoh · Son of Amenhotep III</span>
+                </div>
+                <div class="th-tree-heart th-tree-heart--warn" aria-hidden="true">♥</div>
+                <div class="th-tree-person">
+                    <div class="th-tree-avatar th-tree-avatar--female"><i class="fa-solid fa-star"></i></div>
+                    <span class="th-tree-name" data-i18n="tutHealth.fam.youngLady">The Younger Lady</span>
+                    <span class="th-tree-role" data-i18n="tutHealth.fam.youngLadyRole">Sister of Akhenaten (KV35YL)</span>
+                </div>
+            </div>
+            <div class="th-tree-warn-badge">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span data-i18n="tutHealth.fam.siblingWarn">Siblings — confirmed by 2010 DNA study</span>
+            </div>
+            <div class="th-tree-vline" aria-hidden="true"></div>
+        </div>
+
+        <!-- Gen 4 — Tutankhamun -->
+        <div class="th-tree-gen th-tree-gen--last">
+            <div class="th-tree-person th-tree-person--king">
+                <div class="th-tree-avatar th-tree-avatar--king"><i class="fa-solid fa-ankh"></i></div>
+                <span class="th-tree-name" data-i18n="tutHealth.fam.tut">Tutankhamun</span>
+                <span class="th-tree-role" data-i18n="tutHealth.fam.tutRole">Pharaoh · c. 1332–1323 BC</span>
+            </div>
+        </div>
+
+    </div><!-- /.th-tree-wrap -->
+
+    <!-- Genetic conditions grid -->
+    <div class="th-genes-header">
+        <h3 class="th-genes-title" data-i18n="tutHealth.fam.genesTitle">Inherited Conditions</h3>
+        <p class="th-genes-sub" data-i18n="tutHealth.fam.genesSub">Direct consequences of generational royal inbreeding</p>
+    </div>
+
+    <div class="th-genes-grid">
+
+        <div class="th-gene-card">
+            <div class="th-gene-icon"><i class="fa-solid fa-person-walking"></i></div>
+            <h4 class="th-gene-name" data-i18n="tutHealth.fam.gene1Name">Clubfoot</h4>
+            <p class="th-gene-latin">Talipes Equinovarus</p>
+            <p class="th-gene-desc" data-i18n="tutHealth.fam.gene1Desc">A congenital foot deformity twisting the foot inward. Forced the king to rely on walking sticks — over 130 were found in his tomb.</p>
+        </div>
+
+        <div class="th-gene-card">
+            <div class="th-gene-icon"><i class="fa-solid fa-bone"></i></div>
+            <h4 class="th-gene-name" data-i18n="tutHealth.fam.gene2Name">Köhler Disease II</h4>
+            <p class="th-gene-latin">Avascular Necrosis</p>
+            <p class="th-gene-desc" data-i18n="tutHealth.fam.gene2Desc">Bone death caused by disrupted blood supply to the metatarsals. Found in the second and third metatarsal bones of the left foot.</p>
+        </div>
+
+        <div class="th-gene-card">
+            <div class="th-gene-icon"><i class="fa-solid fa-face-grimace"></i></div>
+            <h4 class="th-gene-name" data-i18n="tutHealth.fam.gene3Name">Cleft Palate</h4>
+            <p class="th-gene-latin">Palatoschisis</p>
+            <p class="th-gene-desc" data-i18n="tutHealth.fam.gene3Desc">A split in the roof of the mouth present from birth. A known marker of congenital abnormality common in offspring of closely related parents.</p>
+        </div>
+
+        <div class="th-gene-card">
+            <div class="th-gene-icon"><i class="fa-solid fa-shield-virus"></i></div>
+            <h4 class="th-gene-name" data-i18n="tutHealth.fam.gene4Name">Weakened Immunity</h4>
+            <p class="th-gene-latin">Immune Deficiency</p>
+            <p class="th-gene-desc" data-i18n="tutHealth.fam.gene4Desc">Inbreeding reduces genetic diversity, compromising the immune response. Tutankhamun carried at least four strains of malaria — suggesting a severely weakened defence system.</p>
+        </div>
+
+    </div>
+
+</section>
+<!-- ════════════ END SECTION 3 ════════════ -->
+
+
+<!-- ════════════════════ SECTION 4: ERA DISEASES ════════════════════ -->
+<section class="th-diseases" id="thDiseases">
+
+    <div class="th-section-header">
+        <p class="th-eyebrow">
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+            <span data-i18n="tutHealth.dis.eyebrow">ANCIENT EGYPT'S PLAGUES</span>
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+        </p>
+        <h2 class="th-section-title" data-i18n="tutHealth.dis.title">Diseases of the Pharaohs' Era</h2>
+        <p class="th-section-sub" data-i18n="tutHealth.dis.sub">The ancient world was rife with infectious and parasitic illness — many confirmed in royal mummies</p>
+    </div>
+
+    <div class="th-dis-grid">
+
+        <div class="th-dis-card">
+            <div class="th-dis-icon-wrap th-dis-icon--malaria">
+                <i class="fa-solid fa-mosquito"></i>
+            </div>
+            <div class="th-dis-body">
+                <h3 class="th-dis-name" data-i18n="tutHealth.dis.d1name">Malaria</h3>
+                <p class="th-dis-pathogen">Plasmodium falciparum</p>
+                <p class="th-dis-desc" data-i18n="tutHealth.dis.d1desc">The deadliest form of malaria, spread by Anopheles mosquitoes thriving along the Nile. Four strains of P. falciparum DNA were found in Tutankhamun's remains — the oldest confirmed malaria infection in recorded history.</p>
+                <div class="th-dis-badge th-dis-badge--confirmed" data-i18n="tutHealth.dis.confirmed">Confirmed in Tutankhamun</div>
+            </div>
+        </div>
+
+        <div class="th-dis-card">
+            <div class="th-dis-icon-wrap th-dis-icon--schisto">
+                <i class="fa-solid fa-worm"></i>
+            </div>
+            <div class="th-dis-body">
+                <h3 class="th-dis-name" data-i18n="tutHealth.dis.d2name">Schistosomiasis</h3>
+                <p class="th-dis-pathogen">Schistosoma haematobium</p>
+                <p class="th-dis-desc" data-i18n="tutHealth.dis.d2desc">A parasitic disease caused by flatworms living in Nile water. Eggs found in several Egyptian mummies. The parasite caused chronic internal bleeding, organ damage, and severe fatigue — a silent killer that weakened the population for millennia.</p>
+                <div class="th-dis-badge th-dis-badge--era" data-i18n="tutHealth.dis.era">Widespread in the era</div>
+            </div>
+        </div>
+
+        <div class="th-dis-card">
+            <div class="th-dis-icon-wrap th-dis-icon--tb">
+                <i class="fa-solid fa-lungs"></i>
+            </div>
+            <div class="th-dis-body">
+                <h3 class="th-dis-name" data-i18n="tutHealth.dis.d3name">Tuberculosis</h3>
+                <p class="th-dis-pathogen">Mycobacterium tuberculosis</p>
+                <p class="th-dis-desc" data-i18n="tutHealth.dis.d3desc">Evidence of TB has been found in Egyptian mummies dating back to 3000 BC. The disease attacked the lungs and spine, leaving distinctive lesions on vertebrae. While not confirmed in Tutankhamun himself, TB was endemic throughout the Nile Valley during the New Kingdom.</p>
+                <div class="th-dis-badge th-dis-badge--era" data-i18n="tutHealth.dis.era">Widespread in the era</div>
+            </div>
+        </div>
+
+        <div class="th-dis-card">
+            <div class="th-dis-icon-wrap th-dis-icon--parasite">
+                <i class="fa-solid fa-biohazard"></i>
+            </div>
+            <div class="th-dis-body">
+                <h3 class="th-dis-name" data-i18n="tutHealth.dis.d4name">Parasitic Infections</h3>
+                <p class="th-dis-pathogen">Multiple species</p>
+                <p class="th-dis-desc" data-i18n="tutHealth.dis.d4desc">Studies of ancient Egyptian remains have documented roundworm, tapeworm, and Guinea worm infections. Contaminated water and food made parasitic disease ubiquitous across all social classes — royalty included. These chronic infections depleted nutrition and suppressed immunity over time.</p>
+                <div class="th-dis-badge th-dis-badge--era" data-i18n="tutHealth.dis.era">Widespread in the era</div>
+            </div>
+        </div>
+
+        <div class="th-dis-card">
+            <div class="th-dis-icon-wrap th-dis-icon--athero">
+                <i class="fa-solid fa-heart-crack"></i>
+            </div>
+            <div class="th-dis-body">
+                <h3 class="th-dis-name" data-i18n="tutHealth.dis.d5name">Atherosclerosis</h3>
+                <p class="th-dis-pathogen">Arterial calcification</p>
+                <p class="th-dis-desc" data-i18n="tutHealth.dis.d5desc">CT scans of 52 Egyptian mummies from multiple eras revealed calcified arteries consistent with heart disease — proving that atherosclerosis is not a modern condition. A high-salt, high-fat diet combined with genetic predisposition made it common among the elite class who could afford meat-rich diets.</p>
+                <div class="th-dis-badge th-dis-badge--era" data-i18n="tutHealth.dis.era">Widespread in the era</div>
+            </div>
+        </div>
+
+        <div class="th-dis-card">
+            <div class="th-dis-icon-wrap th-dis-icon--dental">
+                <i class="fa-solid fa-tooth"></i>
+            </div>
+            <div class="th-dis-body">
+                <h3 class="th-dis-name" data-i18n="tutHealth.dis.d6name">Severe Dental Disease</h3>
+                <p class="th-dis-pathogen">Dental attrition &amp; abscess</p>
+                <p class="th-dis-desc" data-i18n="tutHealth.dis.d6desc">Sand-contaminated bread ground on stone mills wore Egyptian teeth to the pulp. Almost every adult mummy shows severe dental attrition. Tooth abscesses were common causes of fatal infection. Ramses II suffered from a severe abscess — potentially life-threatening at his advanced age.</p>
+                <div class="th-dis-badge th-dis-badge--era" data-i18n="tutHealth.dis.era">Widespread in the era</div>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- ════════════ END SECTION 4 ════════════ -->
+
+
+<!-- ════════════════════ SECTION 5: RESEARCH TIMELINE ════════════════════ -->
+<section class="th-timeline" id="thTimeline">
+
+    <div class="th-section-header">
+        <p class="th-eyebrow">
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+            <span data-i18n="tutHealth.tl.eyebrow">A CENTURY OF DISCOVERY</span>
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+        </p>
+        <h2 class="th-section-title" data-i18n="tutHealth.tl.title">The Research Timeline</h2>
+        <p class="th-section-sub" data-i18n="tutHealth.tl.sub">From Howard Carter's torch to modern DNA sequencing — a hundred years of uncovering the truth</p>
+    </div>
+
+    <div class="th-tl-track">
+
+        <div class="th-tl-item th-tl-item--left th-tl-reveal">
+            <div class="th-tl-content">
+                <span class="th-tl-year">1922</span>
+                <h3 class="th-tl-event" data-i18n="tutHealth.tl.e1title">Discovery of KV62</h3>
+                <p class="th-tl-detail" data-i18n="tutHealth.tl.e1body">Howard Carter and Lord Carnarvon unseal the nearly intact tomb of Tutankhamun in the Valley of the Kings. Over 5,000 objects are catalogued over the next decade — including 130+ walking canes that would later hint at the king's mobility problems.</p>
+            </div>
+            <div class="th-tl-node" aria-hidden="true"><i class="fa-solid fa-magnifying-glass"></i></div>
+        </div>
+
+        <div class="th-tl-item th-tl-item--right th-tl-reveal">
+            <div class="th-tl-node" aria-hidden="true"><i class="fa-solid fa-skull"></i></div>
+            <div class="th-tl-content">
+                <span class="th-tl-year">1925</span>
+                <h3 class="th-tl-event" data-i18n="tutHealth.tl.e2title">Derry's First Autopsy</h3>
+                <p class="th-tl-detail" data-i18n="tutHealth.tl.e2body">Anatomist Douglas Derry performs the first full examination of the royal mummy. He estimates the king was 18–22 years old at death and notes bone immaturity. Skeletal abnormalities go largely unrecognised at this stage.</p>
+            </div>
+        </div>
+
+        <div class="th-tl-item th-tl-item--left th-tl-reveal">
+            <div class="th-tl-content">
+                <span class="th-tl-year">1968</span>
+                <h3 class="th-tl-event" data-i18n="tutHealth.tl.e3title">X-Ray Study</h3>
+                <p class="th-tl-detail" data-i18n="tutHealth.tl.e3body">A University of Liverpool team X-rays the mummy and finds loose bone fragments inside the skull, sparking decades of debate about a possible blow to the head. Later CT analysis would reveal these fragments likely shifted post-mummification during transport.</p>
+            </div>
+            <div class="th-tl-node" aria-hidden="true"><i class="fa-solid fa-radiation"></i></div>
+        </div>
+
+        <div class="th-tl-item th-tl-item--right th-tl-reveal">
+            <div class="th-tl-node" aria-hidden="true"><i class="fa-solid fa-microscope"></i></div>
+            <div class="th-tl-content">
+                <span class="th-tl-year">2005</span>
+                <h3 class="th-tl-event" data-i18n="tutHealth.tl.e4title">CT Scan Project</h3>
+                <p class="th-tl-detail" data-i18n="tutHealth.tl.e4body">The Egyptian Supreme Council of Antiquities conducts a full CT scan of the mummy — 1,700 cross-sectional images. The team identifies a left leg fracture shortly before death, avascular necrosis in multiple bones, and the clubfoot deformity. The murder hypothesis is largely dismissed.</p>
+            </div>
+        </div>
+
+        <div class="th-tl-item th-tl-item--left th-tl-reveal">
+            <div class="th-tl-content">
+                <span class="th-tl-year">2010</span>
+                <h3 class="th-tl-event" data-i18n="tutHealth.tl.e5title">DNA Study — JAMA</h3>
+                <p class="th-tl-detail" data-i18n="tutHealth.tl.e5body">Zahi Hawass leads a landmark study published in the Journal of the American Medical Association. DNA from 11 royal mummies establishes a five-generation family tree. The study confirms: Tutankhamun's parents were siblings, he carried four malaria strains, and he had multiple bone diseases. The conclusion: death from a combination of malaria and complications from a leg fracture.</p>
+            </div>
+            <div class="th-tl-node th-tl-node--gold" aria-hidden="true"><i class="fa-solid fa-dna"></i></div>
+        </div>
+
+        <div class="th-tl-item th-tl-item--right th-tl-reveal">
+            <div class="th-tl-node" aria-hidden="true"><i class="fa-solid fa-computer"></i></div>
+            <div class="th-tl-content">
+                <span class="th-tl-year">2014</span>
+                <h3 class="th-tl-event" data-i18n="tutHealth.tl.e6title">Virtual Autopsy</h3>
+                <p class="th-tl-detail" data-i18n="tutHealth.tl.e6body">A BBC documentary team uses 2,000 CT scans to build a virtual 3D model of Tutankhamun's body — the most detailed reconstruction to date. The model confirms a severely deformed left foot, multiple inherited conditions, and a complex of injuries. A new theory emerges: the king may have been struck by a chariot wheel, fracturing his chest and leg.</p>
+            </div>
+        </div>
+
+    </div><!-- /.th-tl-track -->
+
+</section>
+<!-- ════════════ END SECTION 5 ════════════ -->
+
+
+<!-- ════════════════════ SECTION 6: REFERENCES ════════════════════ -->
+<section class="th-refs" id="thRefs">
+
+    <div class="th-section-header">
+        <p class="th-eyebrow">
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+            <span data-i18n="tutHealth.ref.eyebrow">SCHOLARLY SOURCES</span>
+            <span class="th-eyebrow-ankh" aria-hidden="true">☥</span>
+        </p>
+        <h2 class="th-section-title" data-i18n="tutHealth.ref.title">References</h2>
+        <p class="th-section-sub" data-i18n="tutHealth.ref.sub">All findings on this page are drawn from peer-reviewed research and primary archaeological sources</p>
+    </div>
+
+    <div class="th-acc-list" id="thAccList">
+
+        <div class="th-acc-item">
+            <button class="th-acc-trigger" aria-expanded="false">
+                <span class="th-acc-num">01</span>
+                <span class="th-acc-label" data-i18n="tutHealth.ref.r1label">DNA Study — Hawass et al. (2010)</span>
+                <i class="fa-solid fa-chevron-down th-acc-arrow"></i>
+            </button>
+            <div class="th-acc-body" hidden>
+                <p class="th-acc-citation">Hawass, Z., Gad, Y. Z., Ismail, S., et al. (2010). <em>Ancestry and Pathology in King Tutankhamun's Family.</em> JAMA, 303(7), 638–647. <span class="th-acc-doi">doi:10.1001/jama.2010.121</span></p>
+                <p class="th-acc-note" data-i18n="tutHealth.ref.r1note">The landmark study that identified malaria, bone disease, and sibling parentage using DNA from 11 royal mummies. The primary source for most modern findings about Tutankhamun's health.</p>
+            </div>
+        </div>
+
+        <div class="th-acc-item">
+            <button class="th-acc-trigger" aria-expanded="false">
+                <span class="th-acc-num">02</span>
+                <span class="th-acc-label" data-i18n="tutHealth.ref.r2label">CT Scan Project — Selim &amp; Elhadidy (2006)</span>
+                <i class="fa-solid fa-chevron-down th-acc-arrow"></i>
+            </button>
+            <div class="th-acc-body" hidden>
+                <p class="th-acc-citation">Selim, A., &amp; Elhadidy, M. (2006). <em>The CT Study of Tutankhamun.</em> In Hawass, Z. (Ed.), Tutankhamun and the Golden Age of the Pharaohs. National Geographic Society. (CT imaging data collected 2005.)</p>
+                <p class="th-acc-note" data-i18n="tutHealth.ref.r2note">1,700 CT cross-sections produced from the 2005 Egyptian Mummy Project. Identified the clubfoot, bone necrosis, and the left leg fracture that likely occurred close to death.</p>
+            </div>
+        </div>
+
+        <div class="th-acc-item">
+            <button class="th-acc-trigger" aria-expanded="false">
+                <span class="th-acc-num">03</span>
+                <span class="th-acc-label" data-i18n="tutHealth.ref.r3label">Virtual Autopsy — Ashraf Selim et al. (2014)</span>
+                <i class="fa-solid fa-chevron-down th-acc-arrow"></i>
+            </button>
+            <div class="th-acc-body" hidden>
+                <p class="th-acc-citation">Selim, A., et al. (2014). <em>Whole body CT of Tutankhamun: a virtual autopsy.</em> Prepared for the BBC documentary <em>Tutankhamun: The Truth Uncovered</em>. 2,000 CT scans used to generate a 3D anatomical model.</p>
+                <p class="th-acc-note" data-i18n="tutHealth.ref.r3note">The most detailed post-mortem reconstruction yet. Confirmed a scoliosis-like spinal curvature, the deformed left foot, and a complex chest fracture. Introduced the chariot accident hypothesis.</p>
+            </div>
+        </div>
+
+        <div class="th-acc-item">
+            <button class="th-acc-trigger" aria-expanded="false">
+                <span class="th-acc-num">04</span>
+                <span class="th-acc-label" data-i18n="tutHealth.ref.r4label">X-Ray Analysis — Harrison et al. (1969)</span>
+                <i class="fa-solid fa-chevron-down th-acc-arrow"></i>
+            </button>
+            <div class="th-acc-body" hidden>
+                <p class="th-acc-citation">Harrison, R. G., Connolly, R. C., &amp; Abdalla, A. (1969). <em>Kinship of Smenkhkare and Tutankhamun demonstrated serologically.</em> Nature, 224, 325–326. And: Harrison, R. G. (1966). <em>An anatomical examination of the pharaonic remains purported to be Akhenaten.</em> Journal of Egyptian Archaeology, 52, 95–119.</p>
+                <p class="th-acc-note" data-i18n="tutHealth.ref.r4note">The first systematic radiological study of the mummy. Identified loose bone fragments in the skull, fuelling the murder debate. Blood type O was determined — later disputed as unreliable from degraded samples.</p>
+            </div>
+        </div>
+
+        <div class="th-acc-item">
+            <button class="th-acc-trigger" aria-expanded="false">
+                <span class="th-acc-num">05</span>
+                <span class="th-acc-label" data-i18n="tutHealth.ref.r5label">Derry's Original Autopsy (1925)</span>
+                <i class="fa-solid fa-chevron-down th-acc-arrow"></i>
+            </button>
+            <div class="th-acc-body" hidden>
+                <p class="th-acc-citation">Derry, D. E. (1927). <em>Report on the Human Remains.</em> In Carter, H. &amp; Mace, A. C. (Eds.), The Tomb of Tut·ankh·Amen, Vol. II. Cassell &amp; Company, London. pp. 143–161.</p>
+                <p class="th-acc-note" data-i18n="tutHealth.ref.r5note">The first formal anatomical report on the mummy. Estimated age at death as 18–22 years. Limited by the tools of the time but remained the primary reference for decades.</p>
+            </div>
+        </div>
+
+        <div class="th-acc-item">
+            <button class="th-acc-trigger" aria-expanded="false">
+                <span class="th-acc-num">06</span>
+                <span class="th-acc-label" data-i18n="tutHealth.ref.r6label">Atherosclerosis in Mummies — Allam et al. (2011)</span>
+                <i class="fa-solid fa-chevron-down th-acc-arrow"></i>
+            </button>
+            <div class="th-acc-body" hidden>
+                <p class="th-acc-citation">Allam, A. H., Thompson, R. C., Wann, L. S., et al. (2011). <em>Atherosclerosis in Ancient Egyptian Mummies: The Horus Study.</em> JACC Cardiovascular Imaging, 4(4), 315–327. doi:10.1016/j.jcmg.2011.02.002</p>
+                <p class="th-acc-note" data-i18n="tutHealth.ref.r6note">CT scanning of 52 ancient Egyptian mummies across multiple dynasties — evidence of atherosclerosis in 45% of subjects, proving cardiovascular disease predates modern lifestyle factors.</p>
+            </div>
+        </div>
+
+    </div><!-- /.th-acc-list -->
+
+</section>
+<!-- ════════════ END SECTION 6 ════════════ -->
+
+
+<!-- ═══════════════════════════════════════════════════════════
+     Scripts (nav-footer first, then i18n, then page logic)
+═══════════════════════════════════════════════════════════ -->
+<script src="../shared/nav-footer.js"></script>
+<script src="../shared/i18n.js"></script>
+<script src="tutankhamun-health.js"></script>
+
+</body>
+</html>

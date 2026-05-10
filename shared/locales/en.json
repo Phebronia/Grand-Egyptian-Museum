@@ -15,7 +15,9 @@
     "signUp": "SIGN UP",
     "language": "LANGUAGE",
     "profile": "Profile",
-    "logout": "Logout"
+    "logout": "Logout",
+    "quiz": "QUIZ",
+    "tutHealth": "Tutankhamun's Health"
   },
   "footer": {
     "tagline": "Preserving 7,000 years of history. Home to the world's largest collection of pharaonic artifacts.",
@@ -623,7 +625,11 @@
       "hist3Body": "Tutankhamun died at about 18 or 19 years old, and the exact cause of his death remains uncertain. Some studies suggest illness or injury, while others point to genetic conditions inherited from the close bloodlines of the royal family.",
       "hist4Title": "The Discovery",
       "hist4Body": "What made Tutankhamun world-famous was the discovery of his nearly intact tomb by British archaeologist <strong>Howard Carter</strong> in the Valley of the Kings. The tomb, known as <strong>KV62</strong>, contained over 5,000 artifacts, including his iconic gold funerary mask.",
-      "histOutro": "Today, Tutankhamun is one of the most famous figures of ancient Egypt — a symbol of the richness, mystery, and artistry of the pharaonic civilization."
+      "histOutro": "Today, Tutankhamun is one of the most famous figures of ancient Egypt — a symbol of the richness, mystery, and artistry of the pharaonic civilization.",
+      "healthBannerEyebrow": "DISCOVER MORE",
+      "healthBannerTitle": "Want to know the medical secrets behind Tutankhamun's mummy?",
+      "healthBannerSub": "Explore his genetic conditions, injuries, and the diseases of his era — backed by real scientific research.",
+      "healthBannerBtn": "Explore His Health Story →"
     },
     "grandHall": {
       "pageTitle": "The Grand Hall — Grand Egyptian Museum",
@@ -662,6 +668,111 @@
       "hist4Body": "The final ascent is funerary. Stone sarcophagi from across three millennia and a lone pyramidion from an unknown 13th Dynasty king at Saqqara prepare the visitor for the last step — a panoramic window opening onto the Giza Pyramids, the eternal houses of the kings.",
       "histOutro": "Rising six stories through 6,000 square metres, the Grand Staircase is both architecture and narrative — a climb from the earliest kings to the splendour of the New Kingdom, ending with the pyramids themselves framed in glass."
     }
+  },
+  "tutHealth": {
+    "pageTitle": "Tutankhamun's Health — Grand Egyptian Museum",
+    "eyebrow": "MEDICAL HISTORY · ANCIENT EGYPT",
+    "heroTitleEn": "The Secrets Behind the Mask",
+    "heroTitleAr": "الأسرار خلف القناع",
+    "heroSubEn": "A medical journey into the life and death of Tutankhamun",
+    "heroSubAr": "رحلة طبية في حياة وموت توت عنخ آمون",
+    "factConditions": "Confirmed Conditions",
+    "factDna": "DNA Study Published",
+    "factStudies": "Major Autopsies",
+    "heroCta": "Begin the Examination",
+    "scrollLabel": "Scroll to explore",
+    "diag": {
+      "eyebrow": "MEDICAL FINDINGS",
+      "title": "The Wounded King",
+      "sub": "Click a hotspot to explore each confirmed condition",
+      "labelHead": "Skull",
+      "labelMouth": "Palate",
+      "labelThigh": "Femur",
+      "labelFoot": "Clubfoot",
+      "labelBlood": "Blood",
+      "panelIdle": "Select a hotspot to learn more",
+      "evidence": "Evidence"
+    },
+    "fam": {
+      "eyebrow": "ROYAL BLOODLINE",
+      "title": "A Dynasty Too Close",
+      "sub": "Centuries of inbreeding within the royal family caused a cascade of inherited conditions",
+      "yuya": "Yuya", "yuyaRole": "Nobleman",
+      "thuya": "Thuya", "thuyaRole": "Noblewoman",
+      "amenhotep": "Amenhotep III", "amenhotepRole": "Pharaoh",
+      "tiye": "Queen Tiye", "tiyeRole": "Daughter of Yuya & Thuya",
+      "akhenaten": "Akhenaten", "akhenatenRole": "Pharaoh · Son of Amenhotep III",
+      "youngLady": "The Younger Lady", "youngLadyRole": "Sister of Akhenaten (KV35YL)",
+      "siblingWarn": "Siblings — confirmed by 2010 DNA study",
+      "tut": "Tutankhamun", "tutRole": "Pharaoh · c. 1332–1323 BC",
+      "genesTitle": "Inherited Conditions",
+      "genesSub": "Direct consequences of generational royal inbreeding",
+      "gene1Name": "Clubfoot", "gene1Desc": "A congenital foot deformity twisting the foot inward. Forced the king to rely on walking sticks — over 130 were found in his tomb.",
+      "gene2Name": "Köhler Disease II", "gene2Desc": "Bone death caused by disrupted blood supply to the metatarsals. Found in the second and third metatarsal bones of the left foot.",
+      "gene3Name": "Cleft Palate", "gene3Desc": "A split in the roof of the mouth present from birth. A known marker of congenital abnormality common in offspring of closely related parents.",
+      "gene4Name": "Weakened Immunity", "gene4Desc": "Inbreeding reduces genetic diversity, compromising the immune response. Tutankhamun carried at least four strains of malaria — suggesting a severely weakened defence system."
+    },
+    "dis": {
+      "eyebrow": "ANCIENT EGYPT'S PLAGUES",
+      "title": "Diseases of the Pharaohs' Era",
+      "sub": "The ancient world was rife with infectious and parasitic illness — many confirmed in royal mummies",
+      "d1name": "Malaria", "d1desc": "The deadliest form of malaria, spread by Anopheles mosquitoes thriving along the Nile. Four strains of P. falciparum DNA were found in Tutankhamun's remains — the oldest confirmed malaria infection in recorded history.",
+      "d2name": "Schistosomiasis", "d2desc": "A parasitic disease caused by flatworms living in Nile water. Eggs found in several Egyptian mummies. The parasite caused chronic internal bleeding, organ damage, and severe fatigue — a silent killer that weakened the population for millennia.",
+      "d3name": "Tuberculosis", "d3desc": "Evidence of TB has been found in Egyptian mummies dating back to 3000 BC. The disease attacked the lungs and spine, leaving distinctive lesions on vertebrae. While not confirmed in Tutankhamun himself, TB was endemic throughout the Nile Valley during the New Kingdom.",
+      "d4name": "Parasitic Infections", "d4desc": "Studies of ancient Egyptian remains have documented roundworm, tapeworm, and Guinea worm infections. Contaminated water and food made parasitic disease ubiquitous across all social classes — royalty included.",
+      "d5name": "Atherosclerosis", "d5desc": "CT scans of 52 Egyptian mummies revealed calcified arteries consistent with heart disease — proving that atherosclerosis is not a modern condition. A high-salt, high-fat diet combined with genetic predisposition made it common among the elite.",
+      "d6name": "Severe Dental Disease", "d6desc": "Sand-contaminated bread ground on stone mills wore Egyptian teeth to the pulp. Almost every adult mummy shows severe dental attrition. Tooth abscesses were common causes of fatal infection.",
+      "confirmed": "Confirmed in Tutankhamun",
+      "era": "Widespread in the era"
+    },
+    "tl": {
+      "eyebrow": "A CENTURY OF DISCOVERY",
+      "title": "The Research Timeline",
+      "sub": "From Howard Carter's torch to modern DNA sequencing — a hundred years of uncovering the truth",
+      "e1title": "Discovery of KV62", "e1body": "Howard Carter and Lord Carnarvon unseal the nearly intact tomb of Tutankhamun in the Valley of the Kings. Over 5,000 objects are catalogued over the next decade — including 130+ walking canes that would later hint at the king's mobility problems.",
+      "e2title": "Derry's First Autopsy", "e2body": "Anatomist Douglas Derry performs the first full examination of the royal mummy. He estimates the king was 18–22 years old at death and notes bone immaturity. Skeletal abnormalities go largely unrecognised at this stage.",
+      "e3title": "X-Ray Study", "e3body": "A University of Liverpool team X-rays the mummy and finds loose bone fragments inside the skull, sparking decades of debate about a possible blow to the head. Later CT analysis would reveal these fragments likely shifted post-mummification.",
+      "e4title": "CT Scan Project", "e4body": "The Egyptian Supreme Council of Antiquities conducts a full CT scan of the mummy — 1,700 cross-sectional images. The team identifies a left leg fracture, avascular necrosis in multiple bones, and the clubfoot deformity. The murder hypothesis is largely dismissed.",
+      "e5title": "DNA Study — JAMA", "e5body": "Zahi Hawass leads a landmark study published in JAMA. DNA from 11 royal mummies establishes a five-generation family tree. The study confirms: Tutankhamun's parents were siblings, he carried four malaria strains, and he had multiple bone diseases.",
+      "e6title": "Virtual Autopsy", "e6body": "A BBC documentary team uses 2,000 CT scans to build a virtual 3D model of Tutankhamun's body. The model confirms a severely deformed left foot and multiple inherited conditions. A new theory emerges: the king may have been struck by a chariot wheel."
+    },
+    "ref": {
+      "eyebrow": "SCHOLARLY SOURCES",
+      "title": "References",
+      "sub": "All findings on this page are drawn from peer-reviewed research and primary archaeological sources",
+      "r1label": "DNA Study — Hawass et al. (2010)", "r1note": "The landmark study that identified malaria, bone disease, and sibling parentage using DNA from 11 royal mummies. The primary source for most modern findings about Tutankhamun's health.",
+      "r2label": "CT Scan Project — Selim & Elhadidy (2006)", "r2note": "1,700 CT cross-sections produced from the 2005 Egyptian Mummy Project. Identified the clubfoot, bone necrosis, and the left leg fracture that likely occurred close to death.",
+      "r3label": "Virtual Autopsy — Ashraf Selim et al. (2014)", "r3note": "The most detailed post-mortem reconstruction yet. Confirmed a scoliosis-like spinal curvature, the deformed left foot, and a complex chest fracture. Introduced the chariot accident hypothesis.",
+      "r4label": "X-Ray Analysis — Harrison et al. (1969)", "r4note": "The first systematic radiological study of the mummy. Identified loose bone fragments in the skull, fuelling the murder debate. Blood type O was determined — later disputed as unreliable from degraded samples.",
+      "r5label": "Derry's Original Autopsy (1925)", "r5note": "The first formal anatomical report on the mummy. Estimated age at death as 18–22 years. Limited by the tools of the time but remained the primary reference for decades.",
+      "r6label": "Atherosclerosis in Mummies — Allam et al. (2011)", "r6note": "CT scanning of 52 ancient Egyptian mummies — evidence of atherosclerosis in 45% of subjects, proving cardiovascular disease predates modern lifestyle factors."
+    }
+  },
+  "quiz": {
+    "pageTitle": "Quiz — Grand Egyptian Museum",
+    "eyebrow": "⟡ TEST YOUR KNOWLEDGE ⟡",
+    "heroTitle": "Ancient Egypt Quiz",
+    "heroSub": "10 questions · Multiple choice · Discover your rank",
+    "stat1": "10 Questions",
+    "stat2": "4 Options Each",
+    "stat3": "Earn Your Rank",
+    "startBtn": "Begin the Journey",
+    "question": "Question",
+    "of": "of",
+    "next": "Next",
+    "finish": "See Results",
+    "correct": "Correct!",
+    "wrong": "Wrong!",
+    "tryAgain": "Try Again",
+    "backHome": "Back to Home",
+    "rank1": "Pharaoh Scholar",
+    "rank2": "Skilled Explorer",
+    "rank3": "Curious Visitor",
+    "rank4": "Beginner",
+    "rank1sub": "Outstanding knowledge of ancient Egypt!",
+    "rank2sub": "Great understanding of pharaonic history!",
+    "rank3sub": "Keep exploring — Egypt has more to reveal.",
+    "rank4sub": "Every journey begins with a single step."
   },
   "level": {
     "level1": {

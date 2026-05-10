@@ -75,4 +75,10 @@ urlpatterns = [
     # Newsletter subscribers
     path('api/admin/newsletter/', views.api_admin_newsletter, name='api_admin_newsletter'),
 
+    # Quiz
+    path('quiz/', views.quiz_view, name='quiz'),
+
+    # Tutankhamun Health
+    path('tutankhamun-health/', views.tutankhamun_health_view, name='tutankhamun_health'),
+
 ]

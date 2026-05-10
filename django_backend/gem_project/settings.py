@@ -38,6 +38,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = ['http://localhost:5500', 'http://127.0.0.1:5500']
 
+from corsheaders.defaults import default_headers
+CORS_ALLOW_HEADERS = list(default_headers) + ['x-admin-key']
+
 ROOT_URLCONF = 'gem_project.urls'
 
 TEMPLATES = [
