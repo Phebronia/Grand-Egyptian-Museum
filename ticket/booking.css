@@ -616,7 +616,11 @@ body {
     .addons { grid-template-columns: 1fr; }
     .row-inputs { flex-direction: column; gap: 14px; }
     .footer { grid-template-columns: 1fr; gap: 28px; }
-    .flex-between { flex-direction: column; }
+    .flex-between { flex-direction: column; align-items: center; text-align: center; }
+    #panel-4 .panel-footer { justify-content: center; flex-wrap: wrap; }
+    #panel-4 .promo-input-group { max-width: 100%; margin: 0 auto; }
+    #panel-4 .review-section h3 { text-align: center; }
+    #panel-4 .promo-section label { text-align: center; }
 }
 
 

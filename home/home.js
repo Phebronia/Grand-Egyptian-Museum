@@ -1,31 +1,5 @@
 /* i18n is handled by ../shared/i18n.js which is loaded before this script */
-
-/* =========================================================
-   📱 SIDE MENU
-========================================================= */
-const menuBtn  = document.querySelector('.menu-btn');
-const sideMenu = document.querySelector('.side-menu');
-const sideClose = document.querySelector('.side-close');
-
-menuBtn?.addEventListener('click', () => {
-    sideMenu?.classList.add('open');
-    menuBtn.classList.add('active');
-});
-
-sideClose?.addEventListener('click', () => {
-    sideMenu?.classList.remove('open');
-    menuBtn.classList.remove('active');
-});
-
-document.addEventListener('click', (e) => {
-    if (sideMenu?.classList.contains('open') &&
-        !sideMenu.contains(e.target) &&
-        !menuBtn?.contains(e.target)) {
-        sideMenu.classList.remove('open');
-        menuBtn?.classList.remove('active');
-    }
-});
-
+/* nav/side-menu/footer/back-to-top are handled by ../shared/nav-footer.js  */
 
 /* =========================================================
    🎞 HERO SLIDER
@@ -126,44 +100,3 @@ document.addEventListener('languagechange', () => {
 });
 
 
-/* =========================================================
-   ⬆️ BACK TO TOP
-========================================================= */
-const backToTop = document.querySelector('.back-to-top');
-window.addEventListener('scroll', () => {
-    if (!backToTop) return;
-    backToTop.style.display = window.scrollY > 400 ? 'flex' : 'none';
-});
-
-
-/* =========================================================
-   👤 USER NAV DROPDOWN
-========================================================= */
-(function initUserNav() {
-    const DJANGO = 'http://127.0.0.1:8000';
-    const btn    = document.getElementById('userIconBtn');
-    const menu   = document.getElementById('userDdMenu');
-    if (!btn) return;
-
-    const user = (() => {
-        try { return JSON.parse(localStorage.getItem('gem_user')); }
-        catch { return null; }
-    })();
-
-    if (!user) {
-        btn.addEventListener('click', () => {
-            window.location.href = '../login/regestiration.html';
-        });
-        return;
-    }
-
-    btn.addEventListener('click', (e) => { e.stopPropagation(); menu.classList.toggle('show'); });
-    document.addEventListener('click', () => menu.classList.remove('show'));
-
-    document.getElementById('ddLogoutBtn')?.addEventListener('click', async () => {
-        try { await fetch(`${DJANGO}/api/logout/`, { method: 'POST', credentials: 'include' }); }
-        catch (_) {}
-        localStorage.removeItem('gem_user');
-        window.location.href = '../home/home.html';
-    });
-})();

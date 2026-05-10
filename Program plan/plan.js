@@ -1,38 +1,4 @@
-const menuBtn = document.querySelector('.menu-btn');
-const sideMenu = document.querySelector('.side-menu');
-const nav = document.querySelector('.nav');
-const closeBtn = document.querySelector('.side-close');
-const backToTop = document.querySelector('.back-to-top');
-
-function closeMenu() {
-    sideMenu.classList.remove('open');
-    nav.classList.remove('hidden');
-}
-
-menuBtn.addEventListener('click', () => {
-    sideMenu.classList.toggle('open');
-    nav.classList.toggle('hidden');
-});
-
-closeBtn.addEventListener('click', closeMenu);
-
-document.addEventListener('click', (e) => {
-    if (
-        sideMenu.classList.contains('open') &&
-        !sideMenu.contains(e.target) &&
-        !menuBtn.contains(e.target)
-    ) {
-        closeMenu();
-    }
-});
-
-window.addEventListener('scroll', () => {
-    backToTop.style.display = window.scrollY > 300 ? 'block' : 'none';
-});
-
-backToTop.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+/* nav / side-menu / back-to-top are handled by ../shared/nav-footer.js */
 
   function selectVisitor(el) {
     document.querySelectorAll('.visitor-card').forEach(c => c.classList.remove('selected'));

@@ -332,8 +332,11 @@
   .nav { height: 64px; }
   .nav-links, .icons { display: none; }
   .menu-btn { display: flex; }
+  .nav-brand { order: 2; }
+  .nav-right { order: 1; }
   .buy-btn { padding: 0.5rem 1rem; font-size: 0.6875rem; }
   .nav-logo img { width: 38px; height: 38px; }
+  .back-to-top { display: none !important; }
 }
 
 /* =========================================================
@@ -489,6 +492,42 @@ html[dir="rtl"] .side-menu.open { left: auto; right: 0; }
 }
 .side-buy:hover { opacity: 0.85; }
 
+.side-lang {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(196, 122, 44, 0.15);
+  margin-top: 0.5rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+}
+
+.side-lang-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.side-lang-btn:hover,
+.side-lang-btn.active {
+  color: var(--gem-gold);
+  background: rgba(196, 122, 44, 0.1);
+}
+
+.side-lang-divider {
+  color: rgba(196, 122, 44, 0.3);
+  font-size: 0.75rem;
+}
+
 /* =========================================================
    FOOTER
    ========================================================= */
@@ -496,7 +535,7 @@ footer.footer {
   position: relative;
   width: 100%;
   background: #050505;
-  margin-top: 5rem;
+  margin-top: 0;
 }
 
 .footer-top-accent {
@@ -642,8 +681,11 @@ html[dir="rtl"] .footer-col ul li a::before { content: '←'; }
 }
 
 @media (max-width: 600px) {
-  .footer-content { grid-template-columns: 1fr; gap: 2rem; }
-  .footer-brand { grid-column: span 1; }
+  .footer-content { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer-brand { grid-column: span 2; align-items: center; text-align: center; }
+  .footer-logo { flex-direction: column; align-items: center; gap: 0.5rem; }
+  .footer-brand p { max-width: 100%; }
+  .footer-socials { justify-content: center; }
   .footer-bottom { flex-direction: column; text-align: center; gap: 0.75rem; }
 }
 

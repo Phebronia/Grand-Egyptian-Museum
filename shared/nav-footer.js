@@ -108,6 +108,12 @@
         <li><i class="fa-solid fa-calendar-days"></i><a href="${root}Program%20plan/plan.html" data-i18n="nav.programPlan">Program Plan</a></li>
         <li><i class="fa-solid fa-envelope"></i><a href="${root}contact%20us/contact.html" data-i18n="nav.contact">Contact Us</a></li>
     </ul>
+    <div class="side-lang">
+        <i class="fa-solid fa-globe"></i>
+        <button class="side-lang-btn" data-lang="en">EN</button>
+        <span class="side-lang-divider">|</span>
+        <button class="side-lang-btn" data-lang="ar">ع</button>
+    </div>
     <div class="side-auth-buttons" id="gemSideAuth">
         <a href="${root}login/regestiration.html" class="side-auth-btn side-signin">
             <i class="fa-solid fa-right-to-bracket"></i>
@@ -244,6 +250,20 @@
             });
         }
     }
+
+    /* ── Side menu language switcher ── */
+    const sideLangBtns = document.querySelectorAll('.side-lang-btn[data-lang]');
+    function updateSideLangActive() {
+        const current = document.documentElement.lang || 'en';
+        sideLangBtns.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === current));
+    }
+    sideLangBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            if (window.I18n) window.I18n.change(btn.dataset.lang);
+            updateSideLangActive();
+        });
+    });
+    updateSideLangActive();
 
     /* ── Back to top visibility ── */
     const btt = document.getElementById('gemBackToTop') || document.querySelector('.back-to-top');

@@ -436,22 +436,78 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+    body {
+        max-height: none;
+        min-height: 100vh;
+        overflow-y: auto;
+        align-items: flex-start;
+        padding: 16px;
+    }
+
     .card-wrapper {
-    max-width: 400px;
-    height: auto;
-    min-height: 600px;
-    flex-direction: column;
+        max-width: 100%;
+        height: auto;
+        min-height: unset;
+        flex-direction: column;
     }
 
-    .slider-panel,
+    /* Slider panel becomes a compact top section */
+    .slider-panel {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 0;
+    }
+
+    .slider-content {
+        position: relative;
+        inset: auto;
+        padding: 24px 20px;
+    }
+
+    .slider-content.hidden { display: none; }
+
+    .left-img-placeholder {
+        width: 70px;
+        height: 70px;
+        font-size: 35px;
+        margin-bottom: 12px;
+    }
+
+    .left-title { font-size: 20px; margin-bottom: 8px; }
+    .left-sub { font-size: 12px; margin-bottom: 16px; }
+    .divider-ornament { margin-bottom: 16px; }
+
+    /* Forms stack below the slider panel */
     .form-container {
-    width: 100%;
-    position: relative;
-    height: auto;
-    min-height: 260px;
+        position: relative;
+        width: 100%;
+        top: auto;
+        left: auto;
+        right: auto;
+        height: auto;
+        padding: 24px 20px;
     }
 
-    .card-wrapper.signup-active .slider-panel {
-    transform: translateY(100%);
+    /* Use display to hide inactive form so it takes no space */
+    .login-form { display: flex; opacity: 1; }
+    .signup-form { display: none; }
+    .card-wrapper.signup-active .login-form { display: none; }
+    .card-wrapper.signup-active .signup-form {
+        display: flex;
+        opacity: 1;
+        transform: none;
+        pointer-events: auto;
+        transition-delay: 0s;
     }
+
+    /* No horizontal slide animation on mobile */
+    .card-wrapper.signup-active .slider-panel { transform: none; }
+
+    .field { margin-bottom: 12px; }
+    .field input { padding: 11px 14px; font-size: 13px; }
+    .btn-submit { padding: 12px; margin-bottom: 14px; }
+    .forgot { margin-bottom: 14px; }
+    .or-row { margin-bottom: 12px; }
+    .social-row { margin-bottom: 14px; }
 }

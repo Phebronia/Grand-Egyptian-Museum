@@ -73,6 +73,7 @@ function render() {
   if (currentStyle === "circle") {
     drawCircle(currentSymbols);
   } else {
+    if (currentStyle === "vertical") output.classList.add("vertical");
     typeEffect(currentSymbols, currentStyle === "vertical");
   }
 }
@@ -89,7 +90,6 @@ function typeEffect(symbols, isVertical = false) {
     const node = document.createElement("span");
     node.textContent = symbols[i] + (isVertical ? "" : " ");
     output.appendChild(node);
-    if (isVertical) output.appendChild(document.createElement("br"));
     playTick();
     i++;
   }, ANIM_DELAY);

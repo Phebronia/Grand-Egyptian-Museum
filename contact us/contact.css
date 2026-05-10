@@ -22,13 +22,13 @@ background-repeat: no-repeat ;
 
 
 /* hero */
-.hero { height:90vh ; z-index: 2; }
+.hero { height:90vh ; z-index: 2; position: relative; }
 /* overlay*/
 .overlay{
 position: absolute;
-width: 1440px;
-height: 550px;
-left: calc(50% - 1440px/2);
+width: 100%;
+height: 100%;
+left: 0;
 top: 0px;
 background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%,
  rgba(0, 0, 0, 0.7) 100%);
@@ -36,7 +36,7 @@ background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%,
 /* CONTACT US */
 .hero-content{
 position: absolute;
-width: 392px;
+width: 400px;
 height: 64px;
 left: calc(50% - 392px/2);
 top: 264px;
@@ -57,7 +57,7 @@ position: absolute;
 width: 394px;
 height: 24px;
 left: calc(50% - 394px/2);
-top: 75px;
+margin-top: 5px;
 font-family: 'Cinzel';
 font-style: normal;
 font-weight: 400;
@@ -131,7 +131,8 @@ color: #E5E5E5;
   background-color: black;
 }
 .form-box {
-  width: 900px;
+  width: 100%;
+  max-width: 900px;
   background:rgba(255, 255, 255, 0.084) ;
   border-radius: 20px;
   padding: 30px;
@@ -209,3 +210,41 @@ textarea {
   transition: 0.3s;
 }
 .submit-btn:hover { transform: scale(1.05); }
+
+@media (max-width: 768px) {
+  .hero-content {
+    width: 90%;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: auto;
+  }
+  .hero-content h1 {
+    font-size: 36px;
+    line-height: 1.2;
+  }
+  .hero-content p {
+    position: static;
+    width: 100%;
+    font-size: 13px;
+    margin-top: 10px;
+  }
+  .row {
+    flex-direction: column;
+  }
+  .feedback {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .feedback p { font-size: 16px; }
+  .contact-info { padding: 40px 16px; }
+  .contact-form { padding: 40px 16px; }
+  .form-box { padding: 20px; }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 { font-size: 26px; }
+  .card { width: 100%; }
+  .submit-btn { width: 100%; }
+}
