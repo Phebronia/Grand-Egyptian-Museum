@@ -1,6 +1,7 @@
 import json
 from collections import Counter
 from datetime import datetime as _dt, time as _time
+from django.conf import settings
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -923,7 +924,6 @@ def api_booking(request):
         status='confirmed',
     )
     return JsonResponse({'ok': True, 'booking_id': booking.id})
-
 
 # ─── Newsletter ──────────────────────────────────────────────────────────────
 

@@ -74,4 +74,5 @@ urlpatterns = [
 
     # Newsletter subscribers
     path('api/admin/newsletter/', views.api_admin_newsletter, name='api_admin_newsletter'),
+
 ]

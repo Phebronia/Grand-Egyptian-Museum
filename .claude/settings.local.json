@@ -21,7 +21,10 @@
       "Bash(netstat -ano)",
       "Bash(findstr :8000)",
       "Bash(git -C \"c:\\\\Users\\\\win10\\\\Desktop\\\\Grand Egyptian Museum\" status)",
-      "Bash(gh auth *)"
+      "Bash(gh auth *)",
+      "Bash(pip install *)",
+      "Bash(python manage.py check)",
+      "Bash(pip uninstall *)"
     ]
   }
 }

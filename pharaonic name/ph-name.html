@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hieroglyphs</title>
+    <script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
+    <title data-i18n="phName.pageTitle">Pharaonic Names — Grand Egyptian Museum</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Noto+Sans+Egyptian+Hieroglyphs&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../shared/nav-footer.css">
@@ -25,10 +26,10 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <p class="hero-tag">INTERACTIVE EXPERIENCE</p>
-            <h1 class="hero-title">Write your name in hieroglyphs</h1>
-            <p class="hero-sub">Discover your identity in ancient Egyptian symbols</p>
-            <a href="#translator" class="hero-btn">Start Translating</a>
+            <p class="hero-tag" data-i18n="phName.heroTag">INTERACTIVE EXPERIENCE</p>
+            <h1 class="hero-title" data-i18n="phName.heroTitle">Write your name in hieroglyphs</h1>
+            <p class="hero-sub" data-i18n="phName.heroSub">Discover your identity in ancient Egyptian symbols</p>
+            <a href="#translator" class="hero-btn" data-i18n="phName.heroBtn">Start Translating</a>
         </div>
     </section>
 
@@ -40,25 +41,25 @@
             <!-- LEFT SIDE -->
             <div class="left">
                 <div class="card input-card">
-                    <p>ENTER YOUR NAME</p>
-                    <input type="text" placeholder="Name">
+                    <p data-i18n="phName.enterName">ENTER YOUR NAME</p>
+                    <input type="text" placeholder="Name" data-i18n-placeholder="phName.namePlaceholder">
                     <div>
-                        <button id="translateBtn">Reveal Your Name</button>
-                        <button id="downloadBtn" disabled>Download as Image</button>
+                        <button id="translateBtn" data-i18n="phName.revealBtn">Reveal Your Name</button>
+                        <button id="downloadBtn" disabled data-i18n="phName.downloadBtn">Download as Image</button>
                     </div>
                     
                 </div>
 
                 <div class="styles">
-                    <div class="style-box active" data-style="horizontal">Horizontal</div>
-                    <div class="style-box" data-style="vertical">Vertical</div>
-                    <div class="style-box" data-style="circle">Circle</div>
+                    <div class="style-box active" data-style="horizontal" data-i18n="phName.styleHorizontal">Horizontal</div>
+                    <div class="style-box" data-style="vertical" data-i18n="phName.styleVertical">Vertical</div>
+                    <div class="style-box" data-style="circle" data-i18n="phName.styleCircle">Circle</div>
                 </div>
             </div>
 
             <!-- RIGHT SIDE -->
             <div class="card output-card">
-                <p class="your">YOUR NAME IN HIEROGLYPHS</p>
+                <p class="your" data-i18n="phName.outputTitle">YOUR NAME IN HIEROGLYPHS</p>
                 <p class="hiero-text"></p>
             </div>
 

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>(function(){var l=localStorage.getItem('lang');if(!l)l=(navigator.language||'en').toLowerCase().startsWith('ar')?'ar':'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';})();</script>
     <link rel="stylesheet" href="plan.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="../shared/nav-footer.css">
-    <title>plan your visit</title>
+    <title data-i18n="programPlan.pageTitle">Program Plan — Grand Egyptian Museum</title>
 </head>
 <body>
     
@@ -20,8 +21,8 @@
     <section class="plan-section">
  
         <!-- Title -->
-        <h2 class="section-title">Plan Your Visit</h2>
-        <p class="section-sub">Customize your visit experience</p>
+        <h2 class="section-title" data-i18n="programPlan.sectionTitle">Plan Your Visit</h2>
+        <p class="section-sub" data-i18n="programPlan.sectionSub">Customize your visit experience</p>
         <div class="title-divider"></div>
         
         <!-- Steps indicator -->
@@ -33,7 +34,7 @@
                         <path d="M2 7L5.5 10.5L12 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <span class="step-label" id="label-1">Visitor Type</span>
+                <span class="step-label" id="label-1" data-i18n="programPlan.step1Label">Visitor Type</span>
             </div>
             <div class="step-line" id="line-1"></div>
             <div class="step">
@@ -43,7 +44,7 @@
                         <path d="M2 7L5.5 10.5L12 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <span class="step-label" id="label-2">Duration</span>
+                <span class="step-label" id="label-2" data-i18n="programPlan.step2Label">Duration</span>
             </div>
             <div class="step-line" id="line-2"></div>
             <div class="step">
@@ -53,7 +54,7 @@
                         <path d="M2 7L5.5 10.5L12 4" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
                 </div>
-                <span class="step-label" id="label-3">Your Plan</span>
+                <span class="step-label" id="label-3" data-i18n="programPlan.step3Label">Your Plan</span>
             </div>
         </div>
         
@@ -61,7 +62,7 @@
         
         <!-- ── STEP 1 ── -->
         <div id="step1-block">
-            <p class="section-label">Select Visitor Type</p>
+            <p class="section-label" data-i18n="programPlan.selectVisitorType">Select Visitor Type</p>
             <div class="visitor-grid"> 
         
             <div class="visitor-card " onclick="selectVisitor(this)">
@@ -70,7 +71,7 @@
                     <circle cx="20" cy="13" r="7" fill="url(#gs)"/>
                     <path d="M6 37c0-7.732 6.268-14 14-14s14 6.268 14 14" stroke="url(#gs)" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
-                <span>Solo</span>
+                <span data-i18n="programPlan.solo">Solo</span>
             </div>
         
             <div class="visitor-card" onclick="selectVisitor(this)">
@@ -80,7 +81,7 @@
                     <circle cx="26" cy="12" r="6" fill="url(#gg)"/>
                     <path d="M2 37c0-6.627 5.373-12 12-12h12c6.627 0 12 5.373 12 12" stroke="url(#gg)" stroke-width="2.5" stroke-linecap="round"/>
                 </svg>
-                <span>Group</span>
+                <span data-i18n="programPlan.group">Group</span>
             </div>
         
             <div class="visitor-card" onclick="selectVisitor(this)">
@@ -90,7 +91,7 @@
                     <path d="M13 28v5M27 28v5M9 33h22" stroke="url(#ge)" stroke-width="2.5" stroke-linecap="round"/>
                     <circle cx="20" cy="18" r="4" fill="url(#ge)"/>
                 </svg>
-                <span>Educational</span>
+                <span data-i18n="programPlan.educational">Educational</span>
             </div>
         
             <div class="visitor-card" onclick="selectVisitor(this)">
@@ -99,53 +100,53 @@
                     <circle cx="20" cy="20" r="14" stroke="url(#gt)" stroke-width="2.5"/>
                     <path d="M20 6v14l8 8" stroke="url(#gt)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
-                <span>Tour / Trip</span>
+                <span data-i18n="programPlan.tourTrip">Tour / Trip</span>
             </div>
         
             </div>
             <div class="full-divider"></div>
-            <button class="create-btn" onclick="completeStep1()">Next &rarr;</button>
-            <p class="option-message" id="visitor-message">choose your option</p>
+            <button class="create-btn" onclick="completeStep1()" data-i18n="programPlan.nextBtn">Next →</button>
+            <p class="option-message" id="visitor-message" data-i18n="programPlan.chooseOption">choose your option</p>
             <div class="full-divider"></div>
         </div>
         
         <!-- ── STEP 2 ── -->
         <div id="step2-block" style="display:none;">
-            <p class="section-label">Select Duration</p>
+            <p class="section-label" data-i18n="programPlan.selectDuration">Select Duration</p>
             <div class="duration-row">
-                <button class="dur-btn" onclick="selectDur(this)">1 Hour</button>
-                <button class="dur-btn" onclick="selectDur(this)">2 Hours</button>
-                <button class="dur-btn" onclick="selectDur(this)">4 Hours</button>
-                <button class="dur-btn" onclick="selectDur(this)">Full Day</button>
+                <button class="dur-btn" onclick="selectDur(this)" data-i18n="programPlan.dur1">1 Hour</button>
+                <button class="dur-btn" onclick="selectDur(this)" data-i18n="programPlan.dur2">2 Hours</button>
+                <button class="dur-btn" onclick="selectDur(this)" data-i18n="programPlan.dur4">4 Hours</button>
+                <button class="dur-btn" onclick="selectDur(this)" data-i18n="programPlan.durFullDay">Full Day</button>
             </div>
             <div class="full-divider"></div>
-            <button class="create-btn" onclick="completeStep2()">Create My Plan</button>
-            <p class="option-message" id="duration-message">choose your option</p>
+            <button class="create-btn" onclick="completeStep2()" data-i18n="programPlan.createPlanBtn">Create My Plan</button>
+            <p class="option-message" id="duration-message" data-i18n="programPlan.chooseOption">choose your option</p>
             <div class="full-divider"></div>
         </div>
         
         <!-- ── STEP 3 ── -->
         <div id="step3-block" style="display:none;">
-            <p class="section-label">Your Plan Preview</p>
+            <p class="section-label" data-i18n="programPlan.planPreview">Your Plan Preview</p>
             <div class="plan-list">
             <div class="plan-item">
                 <div class="plan-dot large"></div>
-                <span class="plan-name">Ramesses II Statue</span>
-                <span class="plan-time">10 min</span>
+                <span class="plan-name" data-i18n="programPlan.planItem1">Ramesses II Statue</span>
+                <span class="plan-time" data-i18n="programPlan.time1">10 min</span>
             </div>
             <div class="plan-item">
                 <div class="plan-dot"></div>
-                <span class="plan-name">Grand Staircase</span>
-                <span class="plan-time">20 min</span>
+                <span class="plan-name" data-i18n="programPlan.planItem2">Grand Staircase</span>
+                <span class="plan-time" data-i18n="programPlan.time2">20 min</span>
             </div>
             <div class="plan-item">
                 <div class="plan-dot"></div>
-                <span class="plan-name">Royal Artifacts Hall</span>
-                <span class="plan-time">15 min</span>
+                <span class="plan-name" data-i18n="programPlan.planItem3">Royal Artifacts Hall</span>
+                <span class="plan-time" data-i18n="programPlan.time3">15 min</span>
             </div>
             </div>
             <div class="full-divider"></div>
-            <button class="create-btn" onclick="resetAll()">Start Over</button>
+            <button class="create-btn" onclick="resetAll()" data-i18n="programPlan.startOver">Start Over</button>
             <div class="full-divider"></div>
         </div>
  

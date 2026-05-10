@@ -130,13 +130,13 @@ async function downloadAsImage() {
   if (currentSymbols.length === 0 || isAnimating) return;
 
   if (typeof html2canvas === "undefined") {
-    alert("Image library failed to load. Check your internet connection.");
+    alert(window.I18n ? window.I18n.t('phName.errorLibrary') : "Image library failed to load. Check your internet connection.");
     return;
   }
 
   downloadBtn.disabled = true;
   const originalText = downloadBtn.textContent;
-  downloadBtn.textContent = "Generating...";
+  downloadBtn.textContent = window.I18n ? window.I18n.t('phName.generating') : "Generating...";
 
   try {
     // Target the whole output card so the title and border are included
@@ -155,7 +155,7 @@ async function downloadAsImage() {
     link.click();
   } catch (err) {
     console.error("Download failed:", err);
-    alert("Something went wrong while generating the image.");
+    alert(window.I18n ? window.I18n.t('phName.errorGeneral') : "Something went wrong while generating the image.");
   } finally {
     downloadBtn.textContent = originalText;
     updateDownloadButton();

@@ -64,15 +64,15 @@
 
     <div class="visual-hint">
       <i class="fa-solid fa-hand-pointer"></i>
-      <span>Drag to rotate · Scroll to zoom</span>
+      <span data-i18n="artifact.common.dragHint">Drag to rotate · Scroll to zoom</span>
     </div>
   </div>
 
   <div class="exhibit-info">
 
-    <span class="artifact-eyebrow">New Kingdom · Dynasty XVIII</span>
-    <h1>Head of Tutankhamun <em>emerging from a lotus</em></h1>
-    <p class="artifact-subtitle">The young king reborn as the sun-god at the dawn of creation</p>
+    <span class="artifact-eyebrow" data-i18n="artifact.tutHead.eyebrow">New Kingdom · Dynasty XVIII</span>
+    <h1 data-i18n="[html]artifact.tutHead.h1">Head of Tutankhamun <em>emerging from a lotus</em></h1>
+    <p class="artifact-subtitle" data-i18n="artifact.tutHead.subtitle">The young king reborn as the sun-god at the dawn of creation</p>
 
     <div class="artifact-actions">
 
@@ -82,7 +82,7 @@
         </button>
         <div class="audio-info">
           <div class="audio-top">
-            <span class="audio-label">Listen</span>
+            <span class="audio-label" data-i18n="artifact.common.listen">Listen</span>
             <span class="audio-time"><span id="audioCurrent">0:00</span> / <span id="audioDuration">0:00</span></span>
           </div>
           <div class="audio-progress" id="audioProgress">
@@ -95,18 +95,18 @@
 
       <button class="fav-btn" id="favBtn" aria-label="Add to favorites" aria-pressed="false">
         <i class="fa-regular fa-heart" id="favIcon"></i>
-        <span class="fav-label">Save</span>
+        <span class="fav-label" data-i18n="artifact.common.save">Save</span>
       </button>
 
     </div>
 
     <dl class="artifact-meta">
-      <div class="meta-item"><dt>Era</dt><dd>New Kingdom</dd></div>
-      <div class="meta-item"><dt>Discovered</dt><dd>1922</dd></div>
-      <div class="meta-item"><dt>Discovered by</dt><dd>Howard Carter</dd></div>
-      <div class="meta-item"><dt>Materials</dt><dd>Painted Wood</dd></div>
-      <div class="meta-item"><dt>Height</dt><dd>30 cm</dd></div>
-      <div class="meta-item"><dt>Location</dt><dd>Tomb KV62</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.era">Era</dt><dd>New Kingdom</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.discovered">Discovered</dt><dd>1922</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.discoveredBy">Discovered by</dt><dd>Howard Carter</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.materials">Materials</dt><dd>Painted Wood</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.height">Height</dt><dd>30 cm</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.location">Location</dt><dd>Tomb KV62</dd></div>
     </dl>
 
   </div>
@@ -116,25 +116,25 @@
 <!-- DESCRIPTION -->
 <section class="artifact-body">
   <div class="body-content">
-    <h2>About the artifact</h2>
-    <p class="lead">Sculpted from wood and painted with remarkable delicacy, 
-      this small head shows the young Tutankhamun rising from the open petals of a blue lotus — 
+    <h2 data-i18n="artifact.common.aboutArtifact">About the artifact</h2>
+    <p class="lead" data-i18n="artifact.tutHead.lead">Sculpted from wood and painted with remarkable delicacy,
+      this small head shows the young Tutankhamun rising from the open petals of a blue lotus —
       a symbol of rebirth and the first moment of creation in Egyptian belief.</p>
-    <p>In the ancient Egyptian creation myth, the sun-god first emerged as a child from a lotus flower 
-      that rose out of the primeval waters of Nun. By depicting the king in this form, the sculpture 
-      identifies Tutankhamun with the sun at the instant of its daily rebirth — an act of divine renewal 
+    <p data-i18n="artifact.tutHead.body1">In the ancient Egyptian creation myth, the sun-god first emerged as a child from a lotus flower
+      that rose out of the primeval waters of Nun. By depicting the king in this form, the sculpture
+      identifies Tutankhamun with the sun at the instant of its daily rebirth — an act of divine renewal
       intended to accompany the king into the afterlife.</p>
-    <p>The features are rendered with striking naturalism: the elongated skull, full cheeks, and soft 
-      expression reflect the late Amarna artistic style inherited from the reign of his father, 
-      <em>Akhenaten</em>. The surface was carved from a single piece of wood, then coated with plaster 
+    <p data-i18n="[html]artifact.tutHead.body2">The features are rendered with striking naturalism: the elongated skull, full cheeks, and soft
+      expression reflect the late Amarna artistic style inherited from the reign of his father,
+      <em>Akhenaten</em>. The surface was carved from a single piece of wood, then coated with plaster
       and painted with fine detail.</p>
-    <p>Found in the corridor of tomb KV62 in 1922, the piece was among the first objects Howard Carter 
-      encountered upon entering the tomb. Today it is regarded as one of the most poetic and visually 
-      arresting works from the entire Tutankhamun collection — an intimate portrait that captures both 
+    <p data-i18n="artifact.tutHead.body3">Found in the corridor of tomb KV62 in 1922, the piece was among the first objects Howard Carter
+      encountered upon entering the tomb. Today it is regarded as one of the most poetic and visually
+      arresting works from the entire Tutankhamun collection — an intimate portrait that captures both
       the fragility and the divinity of the boy king.</p>
     <blockquote class="quote">
-      <p>The king rises like the sun from the eternal lotus.</p>
-      <cite>— From the Egyptian funerary texts</cite>
+      <p data-i18n="artifact.tutHead.quote">The king rises like the sun from the eternal lotus.</p>
+      <cite data-i18n="artifact.tutHead.cite">— From the Egyptian funerary texts</cite>
     </blockquote>
   </div>
 </section>
@@ -206,6 +206,7 @@ window.addEventListener("beforeunload", () => { if (!audio.paused) audio.pause()
 window.GEM_ARTIFACT = { id: 'tut-head', title: 'Head of Tutankhamun from a Lotus', era: 'New Kingdom · Dynasty XVIII', img: 'imgs/tut-head.jfif', link: 'tut-head.html' };
 </script>
 <script src="gem-favorites.js"></script>
+<script src="../../shared/i18n.js"></script>
 
 </body>
 </html>
