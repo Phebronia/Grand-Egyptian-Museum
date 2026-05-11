@@ -405,11 +405,11 @@
         <li><a href="${root}explore/explore.htm" data-navkey="explore" data-i18n="nav.explore">EXPLORE</a></li>
         <li><a href="${root}planyourvisit/visit.html" data-navkey="plan" data-i18n="nav.plan">PLAN YOUR VISIT</a></li>
         <li><a href="${root}about/about.html" data-navkey="about" data-i18n="nav.about">ABOUT US</a></li>
-        <li><a href="${root}quiz/quiz.html" data-navkey="quiz" data-i18n="nav.quiz">QUIZ</a></li>
         <li class="moree">
             <a href="#"><span data-i18n="nav.more">MORE</span> <i class="fa-solid fa-chevron-down"></i></a>
             <div class="con">
                 <ul>
+                    <li><a href="${root}quiz/quiz.html" data-navkey="quiz" data-i18n="nav.quiz">QUIZ</a></li>
                     <li><a href="${root}pharaonic%20name/ph-name.html" data-i18n="nav.pharaonicNames">Pharaonic Names</a></li>
                     <li><a href="${root}Program%20plan/plan.html" data-i18n="nav.programPlan">Program Plan</a></li>
                     <li><a href="${root}tutankhamun-health/tutankhamun-health.html" data-navkey="tutHealth" data-i18n="nav.tutHealth">Tutankhamun's Health</a></li>
