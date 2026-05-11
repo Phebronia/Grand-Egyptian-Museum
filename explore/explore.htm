@@ -34,6 +34,15 @@
   </div>
 </section>
 
+<section class="search-results" id="searchResultsSection" hidden>
+  <div class="section-title">
+    <span class="eyebrow" id="searchEyebrow">Search</span>
+    <h2 id="searchResultsTitle">Search Results</h2>
+    <p class="subtitle" id="searchResultsSummary">Search for artifacts, halls, and pages across the museum website.</p>
+  </div>
+  <div class="search-results-grid" id="searchResultsGrid"></div>
+</section>
+
 <!-- FEATURED -->
 <section class="section featured">
   <div class="section-title">
@@ -272,53 +281,9 @@
   </div>
 
 </section>
-
-<script>
-
-/* FILTER HALLS - highlights column instead of hiding */
-const btns = document.querySelectorAll(".halls-filter button");
-const matrix = document.querySelector(".matrix");
-const cards = document.querySelectorAll(".hall-card");
-const colHeads = document.querySelectorAll(".col-head");
-
-btns.forEach(btn => {
-  btn.onclick = () => {
-    btns.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    const theme = btn.dataset.theme;
-
-    if (theme === "all") {
-      matrix.classList.remove("filtered");
-      cards.forEach(c => c.classList.remove("dimmed", "focused"));
-      colHeads.forEach(h => h.classList.remove("dimmed", "focused"));
-    } else {
-      matrix.classList.add("filtered");
-      cards.forEach(c => {
-        if (c.dataset.theme === theme) {
-          c.classList.add("focused");
-          c.classList.remove("dimmed");
-        } else {
-          c.classList.add("dimmed");
-          c.classList.remove("focused");
-        }
-      });
-      colHeads.forEach(h => {
-        if (h.dataset.col === theme) {
-          h.classList.add("focused");
-          h.classList.remove("dimmed");
-        } else {
-          h.classList.add("dimmed");
-          h.classList.remove("focused");
-        }
-      });
-    }
-  };
-});
-
-</script>
 <script src="../shared/i18n.js"></script>
 <script src="../shared/nav-footer.js"></script>
+<script src="explore.js"></script>
 
 </body>
 </html>
