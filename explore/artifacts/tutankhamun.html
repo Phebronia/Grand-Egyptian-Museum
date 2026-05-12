@@ -34,7 +34,8 @@
   <div class="exhibit-visual">
     <div class="view-tabs" role="tablist">
       <button class="view-tab active" data-view="3d" role="tab" aria-selected="true">
-        <i class="fa-solid fa-cube"></i> <span data-i18n="artifact.common.view3d">3D view</span>
+        <i class="fa-solid fa-cube"></i> 
+        <span data-i18n="artifact.common.view3d">3D view</span>
       </button>
       <button class="view-tab" data-view="photo" role="tab" aria-selected="false">
         <i class="fa-solid fa-image"></i> <span data-i18n="artifact.common.photo">Photo</span>
@@ -49,15 +50,10 @@
         camera-controls
         shadow-intensity="1"
         exposure="0.9"
-        ar
-        ar-modes="webxr scene-viewer quick-look">
         <div class="model-loading" slot="poster">
           <i class="fa-solid fa-cube fa-spin"></i>
           <span>Loading 3D model…</span>
         </div>
-        <button slot="ar-button" class="ar-btn">
-          <i class="fa-solid fa-expand"></i> View in AR
-        </button>
       </model-viewer>
     </div>
 
