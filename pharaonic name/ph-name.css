@@ -229,6 +229,33 @@ html {
   transform-origin: 0 120px; font-size: 35px;
 }
 
+/* ============================================
+   RTL OVERRIDES
+   ============================================ */
+[dir="rtl"] .hero-content {
+  left: auto;
+  right: 80px;
+}
+
+[dir="rtl"] .hero-tag,
+[dir="rtl"] .hero-title,
+[dir="rtl"] .hero-sub {
+  text-align: right;
+}
+
+[dir="rtl"] .input-card p {
+  text-align: right;
+}
+
+[dir="rtl"] .input-card > div {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .back-to-top {
+  right: auto;
+  left: 40px;
+}
+
 @media (max-width: 768px) {
   /* Hero */
   .hero { height: auto; min-height: 500px; }
@@ -260,4 +287,13 @@ html {
   .hero-sub { font-size: 14px; }
   .main-content { padding: 32px 16px; }
   .styles { height: 80px; font-size: 14px; }
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] .hero-content { left: 24px; right: 24px; }
+  [dir="rtl"] .input-card > div { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  [dir="rtl"] .hero-content { left: 16px; right: 16px; }
 }

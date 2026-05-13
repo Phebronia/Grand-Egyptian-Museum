@@ -457,3 +457,57 @@ img { max-width: 100%; display: block; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================
+   RTL OVERRIDES
+   ============================================ */
+[dir="rtl"] .breadcrumb i.fa-chevron-right {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .view-tabs {
+  left: auto;
+  right: 1rem;
+}
+
+[dir="rtl"] .visual-hint {
+  left: auto;
+  right: 1rem;
+}
+
+[dir="rtl"] .ar-btn {
+  right: auto;
+  left: 1rem;
+}
+
+[dir="rtl"] .audio-player {
+  padding: 0.625rem 0.625rem 0.625rem 1rem;
+}
+
+[dir="rtl"] .audio-progress-fill {
+  left: auto;
+  right: 0;
+}
+
+[dir="rtl"] .audio-progress-thumb {
+  transform: translate(50%, -50%);
+}
+
+[dir="rtl"] .quote {
+  border-left: none;
+  border-right: 3px solid var(--gold);
+  border-radius: 12px 0 0 12px;
+}
+
+[dir="rtl"] .exhibit-info h1 em {
+  text-align: right;
+}
+
+[dir="rtl"] .artifact-eyebrow {
+  display: block;
+  text-align: right;
+}
+
+[dir="rtl"] .body-content {
+  text-align: right;
+}

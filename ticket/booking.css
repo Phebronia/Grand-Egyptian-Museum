@@ -623,6 +623,12 @@ body {
     #panel-4 .promo-section label { text-align: center; }
 }
 
+/* ========= RTL ========= */
+[dir="rtl"] .step:not(:last-child)::after {
+    left: auto;
+    right: 50%;
+}
+
 
 
 

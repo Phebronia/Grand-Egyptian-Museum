@@ -894,6 +894,62 @@ z-index: 2;
 
 
 
+/* ============================================
+   RTL OVERRIDES
+   ============================================ */
+[dir="rtl"] .hero-content {
+  margin-left: 0;
+  margin-right: 80px;
+  align-items: flex-start;
+}
+
+[dir="rtl"] .card-ha p {
+  margin-left: 0;
+  margin-right: 30px;
+}
+
+[dir="rtl"] .exp-box {
+  text-align: right;
+}
+
+[dir="rtl"] .exp-card {
+  text-align: right;
+}
+
+[dir="rtl"] .exp-card p {
+  margin-left: 0;
+  margin-right: 35px;
+}
+
+[dir="rtl"] .arch-row.reverse {
+  direction: rtl;
+}
+
+[dir="rtl"] .card h5 {
+  margin-left: 0;
+  margin-right: 20px;
+  text-align: right;
+}
+
+[dir="rtl"] .timeline .card p {
+  text-align: right;
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+[dir="rtl"] .arch-text {
+  text-align: right;
+}
+
+[dir="rtl"] .story-left h2,
+[dir="rtl"] .arch-text h2 {
+  text-align: right;
+}
+
+[dir="rtl"] .textt {
+  text-align: right;
+}
+
 @media (max-width: 768px) {
   /* Hero */
   .hero { height: auto; min-height: 480px; padding: 60px 0 40px; }
@@ -978,4 +1034,18 @@ z-index: 2;
 
   /* Container */
   .container { width: 92%; }
+}
+
+@media (max-width: 768px) {
+  [dir="rtl"] .hero-content {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  [dir="rtl"] .timeline .item {
+    text-align: right;
+  }
+
+  [dir="rtl"] .arch-row.reverse .arch-text { order: 2; }
+  [dir="rtl"] .arch-row.reverse .arch-img  { order: 1; }
 }

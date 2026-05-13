@@ -48,7 +48,7 @@
         auto-rotate
         camera-controls
         shadow-intensity="1"
-        exposure="0.9"
+        exposure="0.9">
         <div class="model-loading" slot="poster">
           <i class="fa-solid fa-cube fa-spin"></i>
           <span>Loading 3D model…</span>
@@ -69,8 +69,8 @@
   <div class="exhibit-info">
 
     <span class="artifact-eyebrow" data-i18n="artifact.hatshepsut.eyebrow">New Kingdom · Dynasty XVIII</span>
-    <h1 data-i18n="artifact.hatshepsut.h1">Golden Mask <em>of Tutankhamun</em></h1>
-    <p class="artifact-subtitle" data-i18n="artifact.hatshepsut.subtitle">The burial mask that became the face of ancient Egypt</p>
+    <h1 data-i18n="[html]artifact.hatshepsut.h1">Hatshepsut <em>the Female Pharaoh</em></h1>
+    <p class="artifact-subtitle" data-i18n="artifact.hatshepsut.subtitle">The woman who ruled as king — Egypt's most powerful female pharaoh</p>
 
     <div class="artifact-actions">
 
@@ -100,11 +100,11 @@
 
     <dl class="artifact-meta">
       <div class="meta-item"><dt data-i18n="artifact.common.era">Era</dt><dd>New Kingdom</dd></div>
-      <div class="meta-item"><dt data-i18n="artifact.common.discovered">Discovered</dt><dd>1922</dd></div>
-      <div class="meta-item"><dt data-i18n="artifact.common.discoveredBy">Discovered by</dt><dd>Howard Carter</dd></div>
-      <div class="meta-item"><dt data-i18n="artifact.common.materials">Materials</dt><dd>Gold, Glass, Lapis Lazuli</dd></div>
-      <div class="meta-item"><dt data-i18n="artifact.common.weight">Weight</dt><dd>10.23 kg</dd></div>
-      <div class="meta-item"><dt data-i18n="artifact.common.height">Height</dt><dd>54 cm</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.reign">Reign</dt><dd>c. 1479 – 1458 BC</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.dynasty">Dynasty</dt><dd>Eighteenth</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.material">Material</dt><dd>Painted Limestone</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.originalSite">Original site</dt><dd>Deir el-Bahari</dd></div>
+      <div class="meta-item"><dt data-i18n="artifact.common.discovered">Discovered</dt><dd>1920s</dd></div>
     </dl>
 
   </div>
@@ -115,13 +115,13 @@
 <section class="artifact-body">
   <div class="body-content">
     <h2 data-i18n="artifact.common.aboutArtifact">About the artifact</h2>
-    <p class="lead" data-i18n="artifact.hatshepsut.lead">This mask of solid gold is one of the most famous objects in the world — the death mask of the boy king Tutankhamun, who ruled Egypt over 3,300 years ago.</p>
-    <p data-i18n="artifact.hatshepsut.body1">Crafted from two layers of high-karat gold and inlaid with lapis lazuli, carnelian, obsidian, and coloured glass, the mask was placed directly over the face of the king's mummified body. Its weight of more than 10 kilograms of gold speaks to the wealth of the New Kingdom at the height of its power.</p>
-    <p data-i18n="[html]artifact.hatshepsut.body2">The headdress is the striped <em>nemes</em> worn only by pharaohs, flanked by a vulture goddess Nekhbet and a cobra goddess Wadjet — the protective deities of Upper and Lower Egypt. The false beard, braided and curled, symbolizes the king's divine status, while the broad collar is composed of twelve rows of semi-precious stones.</p>
-    <p data-i18n="artifact.hatshepsut.body3">Discovered by British archaeologist Howard Carter in 1922 inside the nearly untouched tomb KV62 in the Valley of the Kings, the mask has since become the most recognizable artifact from ancient Egypt — a symbol of pharaonic power, craftsmanship, and the timeless mystery of Tutankhamun himself.</p>
+    <p class="lead" data-i18n="artifact.hatshepsut.lead">Hatshepsut was one of ancient Egypt's most successful pharaohs — a woman who declared herself king, wore a false beard, and ruled the most powerful empire on earth for more than twenty years.</p>
+    <p data-i18n="artifact.hatshepsut.body1">Born around 1507 BC, Hatshepsut was the daughter of Thutmose I and queen consort to Thutmose II. When her husband died, she became regent for her young stepson Thutmose III — but within a few years she had claimed the full titles and regalia of pharaoh, presenting herself in sculpture and relief wearing the double crown, royal kilt, and braided false beard that marked the divine kingship.</p>
+    <p data-i18n="[html]artifact.hatshepsut.body2">Her reign was defined not by war but by trade and building. She sent a celebrated expedition to the land of <em>Punt</em>, returning with myrrh trees, ivory, ebony, and exotic animals. She erected two towering obelisks at Karnak — the tallest in the world at the time — and built her magnificent mortuary temple at <em>Deir el-Bahari</em>, regarded as one of the greatest architectural achievements of ancient Egypt.</p>
+    <p data-i18n="artifact.hatshepsut.body3">After her death, Thutmose III ordered many of her images erased from monuments and her statues smashed — an attempt to erase her from history. She was forgotten for centuries. Only in the 19th century did scholars decoding hieroglyphs reveal that she had been female, restoring Hatshepsut to her rightful place as one of Egypt's most extraordinary rulers.</p>
     <blockquote class="quote">
-      <p data-i18n="artifact.hatshepsut.quote">Everywhere the glint of gold.</p>
-      <cite data-i18n="artifact.hatshepsut.cite">— Howard Carter, on entering the tomb, 1922</cite>
+      <p data-i18n="artifact.hatshepsut.quote">I am the king's daughter. I am the king's wife. I am the king.</p>
+      <cite data-i18n="artifact.hatshepsut.cite">— Inscriptions of Hatshepsut</cite>
     </blockquote>
   </div>
 </section>
@@ -193,6 +193,7 @@ window.addEventListener("beforeunload", () => { if (!audio.paused) audio.pause()
 window.GEM_ARTIFACT = { id: 'hatshepsut', title: 'Hatshepsut', era: 'New Kingdom · Dynasty XVIII', img: 'imgs/Hatshepsut.jpg', link: 'Hatshepsut.html' };
 </script>
 <script src="gem-favorites.js"></script>
+<script src="../../shared/i18n.js"></script>
 
 </body>
 </html>

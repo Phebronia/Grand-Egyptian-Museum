@@ -620,6 +620,7 @@ function bindProceed() {
 }
 
 /* ---------- DOWNLOAD BUTTON ---------- */
+
 function bindDownload() {
     const btn = document.getElementById('download-btn');
     if (!btn) return;
@@ -649,6 +650,7 @@ function bindDownload() {
 }
 
 /* ---------- PDF GENERATION ---------- */
+
 function generateTicketPDF() {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF({ unit: 'pt', format: 'a4' });
@@ -657,10 +659,10 @@ function generateTicketPDF() {
     let y = 0;
 
     /* ===== HEADER BAND ===== */
-    doc.setFillColor(26, 26, 26);              // dark band
+    doc.setFillColor(26, 26, 26);                                                        // dark band
     doc.rect(0, 0, pageW, 90, 'F');
 
-    doc.setFillColor(212, 184, 122);           // gold accent line
+    doc.setFillColor(212, 184, 122);                                                    // gold accent line
     doc.rect(0, 90, pageW, 4, 'F');
 
     doc.setTextColor(255, 255, 255);
