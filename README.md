@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="images/![Uploading ChatGPT Image 20 يوليو 2026، 12_22_56 ص.png…]()
+" alt="Grand Egyptian Museum Banner">
+</p>
+
+# Grand Egyptian Museum
+
+
 # Grand Egyptian Museum
 
 A full-stack web application developed as a graduation project to provide a modern digital experience for the Grand Egyptian Museum. The platform allows visitors to explore museum collections, discover artifacts, and access museum information through an elegant and user-friendly interface.
